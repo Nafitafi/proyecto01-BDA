@@ -4,6 +4,8 @@
 
 package itson.proyecto1_bda;
 
+import org.itson.banco.presentacion.ControladorTransferencia;
+
 /**
  *
  * @author nafbr
@@ -11,6 +13,7 @@ package itson.proyecto1_bda;
 public class Proyecto1_BDA {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        ControladorTransferencia casoTransferencia = new ControladorTransferencia();
+        casoTransferencia.iniciar();
     }
 }

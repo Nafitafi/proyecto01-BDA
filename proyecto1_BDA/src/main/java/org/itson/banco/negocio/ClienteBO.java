@@ -11,7 +11,7 @@ import org.itson.banco.persistencia.PersistenciaException;
 
 /**
  *
- * @author Nahomi FIgueroa, EMily Lara y Oliver Robles
+ * @author Nahomi Figueroa, Emily Lara y Oliver Robles
  */
 public class ClienteBO implements IClienteBO {
 

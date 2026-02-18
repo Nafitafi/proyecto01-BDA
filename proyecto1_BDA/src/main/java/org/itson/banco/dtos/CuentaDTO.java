@@ -62,5 +62,10 @@ public class CuentaDTO {
     public void setFechaApertura(String fechaApertura) {
         this.fechaApertura = fechaApertura;
     }
+
+    @Override
+    public String toString() {
+        return Integer.toString(numeroCuenta);
+    }
     
 }
