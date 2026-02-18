@@ -2,10 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package org.itson.banco.persistencia;
+package org.itson.banco.persistencia.test;
 
 import java.util.List;
 import org.itson.banco.entidades.Cuenta;
+import org.itson.banco.persistencia.ConexionBD;
+import org.itson.banco.persistencia.CuentaDAO;
+import org.itson.banco.persistencia.ICuentaDAO;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

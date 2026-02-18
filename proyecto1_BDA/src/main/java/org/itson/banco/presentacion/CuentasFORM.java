@@ -313,7 +313,7 @@ public class CuentasFORM extends javax.swing.JFrame {
     private void btnTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirActionPerformed
         // Aquí le diremos al controlador que queremos transferir
         // controlador.irATransferencias();
-        JOptionPane.showMessageDialog(this, "Hola Emy sigue tu chamba");
+        controlador.irATransferencias();
     }//GEN-LAST:event_btnTransferirActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

@@ -2,10 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package org.itson.banco.negocio;
+package org.itson.banco.negocio.Test;
 
 import java.util.List;
 import org.itson.banco.dtos.CuentaDTO;
+import org.itson.banco.negocio.CuentaBO;
+import org.itson.banco.negocio.ICuentaBO;
+import org.itson.banco.negocio.NegocioException;
 import org.itson.banco.persistencia.ConexionBD;
 import org.itson.banco.persistencia.CuentaDAO;
 import org.itson.banco.persistencia.ICuentaDAO;

@@ -28,9 +28,9 @@ public class ControladorTransferencia {
         cuentas.setVisible(true);
     }
 
-    // Método para ir a transferencias (emy agarrate de aqui)
+    // Método para ir a transferencias (emy agarrate de aqui) (ok nafi gracias)
     public void irATransferencias() {
-        // TransferenciaFORM trans = new TransferenciaFORM(this, clienteLogueado);
-        // trans.setVisible(true);
+        TransferenciaFORM trans = new TransferenciaFORM(this, clienteLogueado);
+        trans.setVisible(true);
     }
 }
