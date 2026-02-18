@@ -18,7 +18,7 @@ public class TransferenciaBO implements ITransferenciaBO {
     private ITransferenciaDAO transferenciaDAO;
     
     
-    public TransferenciaBO(TransferenciaDAO transfrenciaDAO){
+    public TransferenciaBO(ITransferenciaDAO transfrenciaDAO){
             this.transferenciaDAO = transferenciaDAO;
     }
     

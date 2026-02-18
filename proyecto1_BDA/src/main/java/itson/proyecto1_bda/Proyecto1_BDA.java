@@ -4,6 +4,9 @@
 
 package itson.proyecto1_bda;
 
+import org.itson.banco.negocio.TransferenciaBO;
+import org.itson.banco.persistencia.ITransferenciaDAO;
+import org.itson.banco.persistencia.TransferenciaDAO;
 import org.itson.banco.presentacion.ControladorTransferencia;
 
 /**
@@ -13,6 +16,8 @@ import org.itson.banco.presentacion.ControladorTransferencia;
 public class Proyecto1_BDA {
 
     public static void main(String[] args) {
+        
+        
         ControladorTransferencia casoTransferencia = new ControladorTransferencia();
         casoTransferencia.iniciar();
     }

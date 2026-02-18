@@ -311,9 +311,17 @@ public class CuentasFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirActionPerformed
-        // Aquí le diremos al controlador que queremos transferir
-        // controlador.irATransferencias();
-        controlador.irATransferencias();
+        Object seleccionado = cbxCuentasUsuario.getSelectedItem();
+
+        if (seleccionado == null) { // Aquí validamos que el usuario si seleccione una cuenta
+            JOptionPane.showMessageDialog(this, "Seleccione una cuenta");
+            return;
+        }
+
+        CuentaDTO cuentaSeleccionada = (CuentaDTO) seleccionado;
+
+        controlador.irATransferencias(cuentaSeleccionada);
+        this.dispose();
     }//GEN-LAST:event_btnTransferirActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

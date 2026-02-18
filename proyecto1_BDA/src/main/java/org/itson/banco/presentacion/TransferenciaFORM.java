@@ -7,6 +7,9 @@ package org.itson.banco.presentacion;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.itson.banco.dtos.ClienteDTO;
+import org.itson.banco.dtos.CuentaDTO;
+import org.itson.banco.dtos.TransferenciaDTO;
+import org.itson.banco.persistencia.ClienteDAO;
 
 /**
  *
@@ -16,14 +19,20 @@ public class TransferenciaFORM extends javax.swing.JFrame {
 
     private static final Logger LOGGER = Logger.getLogger(TransferenciaFORM.class.getName());
     private final ControladorTransferencia controlador;
+    private final CuentaDTO cuentaOrigen;
+    private ClienteDTO cliente;
     
     
     /**
      * Creates new form TransferenciaFORM
      */
-    public TransferenciaFORM(ControladorTransferencia controlador, ClienteDTO cliente) {
+    public TransferenciaFORM(ControladorTransferencia controlador, ClienteDTO cliente, CuentaDTO cuentaOrigen) {
         this.controlador = controlador;
+        this.cuentaOrigen = cuentaOrigen;
+        this.cliente = cliente;
         initComponents();
+        setLocationRelativeTo(null);
+        cargarCuentaOrigen();        
     }
 
     /**
@@ -51,7 +60,6 @@ public class TransferenciaFORM extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 300));
 
         pnlBanner.setBackground(new java.awt.Color(255, 255, 255));
         pnlBanner.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -114,6 +122,11 @@ public class TransferenciaFORM extends javax.swing.JFrame {
         lblTitulo.setText("Realizar transferencia");
 
         txtCuentaOrigen.setEditable(false);
+        txtCuentaOrigen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCuentaOrigenActionPerformed(evt);
+            }
+        });
 
         txtCuentaDestino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +144,11 @@ public class TransferenciaFORM extends javax.swing.JFrame {
         lblCuentaOrigen2.setText("Monto");
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlDatosCuentaLayout = new javax.swing.GroupLayout(pnlDatosCuenta);
         pnlDatosCuenta.setLayout(pnlDatosCuentaLayout);
@@ -240,9 +258,16 @@ public class TransferenciaFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-        // Aquí le diremos al controlador que queremos transferir
-        // controlador.irATransferencias();
-        JOptionPane.showMessageDialog(this, "Hola Emy sigue tu chamba");
+//        try{
+//            String cuentaDestino = txtCuentaDestino.getText();
+//            String monto = txtMonto.getText();
+//            
+//            if(cuentaDestino.isBlank() || m)
+//        }
+        
+        controlador.abrirConfirmarTransferencia();
+        this.dispose();
+        
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     private void txtCuentaDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentaDestinoActionPerformed
@@ -253,6 +278,30 @@ public class TransferenciaFORM extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMontoActionPerformed
 
+    private void txtCuentaOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentaOrigenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCuentaOrigenActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(
+            this,
+            "¿Está seguro de querer volver?",
+            "Confirmar",
+            JOptionPane.YES_NO_OPTION,
+            JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            // Acción si el usuario dice SÍ
+            controlador.loginExitoso(cliente);
+            this.dispose(); // cerrar ventana actual
+        }
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void cargarCuentaOrigen() {
+    txtCuentaOrigen.setText(String.valueOf(cuentaOrigen.getNumeroCuenta()));
+    txtCuentaOrigen.setEditable(false);
+}
     /**
      * @param args the command line arguments
      */
