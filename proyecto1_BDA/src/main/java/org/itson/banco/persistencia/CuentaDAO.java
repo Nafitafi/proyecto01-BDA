@@ -58,4 +58,51 @@ public class CuentaDAO implements ICuentaDAO {
 
         return listaCuentas; 
     }
+
+    /**
+     * Metodo de consulta que trae la cuenta que empata con el numero de cuenta necesario.
+     * @param numeroCuenta Numero de la cuenta que desea
+     * @return La cuenta solicitada o null si no existen en la base
+     * @throws PersistenciaException 
+     */
+    @Override
+    public Cuenta consultarCuentaPorNumero(int numeroCuenta) throws PersistenciaException {
+        
+        String comandoSQL = """
+            SELECT numero_cuenta, saldo, estado, fecha_apertura, id_cliente
+            FROM cuentas WHERE numero_cuenta = ?
+                            """;
+        
+        Cuenta cuenta = null;
+        
+        try (Connection conn = conexion.crearConexion(); PreparedStatement comando = conn.prepareStatement(comandoSQL)) {
+            
+            comando.setInt(1, numeroCuenta);
+            ResultSet resultados = comando.executeQuery();
+            
+            
+            if (resultados.next()) {
+                
+                cuenta = new Cuenta();
+                
+                cuenta.setNumeroCuenta(resultados.getInt("numero_cuenta"));
+                cuenta.setSaldo(resultados.getDouble("saldo"));
+                cuenta.setEstado(resultados.getString("estado"));
+                cuenta.setFechaApertura(resultados.getString("fecha_apertura"));
+                cuenta.setIdCliente(resultados.getInt("id_cliente"));
+                
+                return cuenta;
+                
+            }
+            
+            
+        } catch (SQLException ex) {
+            LOGGER.severe(ex.getMessage());
+            throw new PersistenciaException("Error al consultar cuenta.", ex);
+        }
+        
+        return cuenta;
+        
+    }
+    
 }
