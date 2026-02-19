@@ -1,11 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package org.itson.banco.presentacion;
 
 import javax.swing.JOptionPane;
 import org.itson.banco.dtos.ClienteDTO;
+import org.itson.banco.dtos.CuentaDTO;
+import org.itson.banco.dtos.TransferenciaDTO;
+import org.itson.banco.negocio.NegocioException;
+import org.itson.banco.negocio.TransferenciaBO;
+import org.itson.banco.persistencia.ConexionBD;
+import org.itson.banco.persistencia.TransferenciaDAO;
 
 /**
  *
@@ -15,13 +18,33 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
 
     ControladorTransferencia controlador;
     ClienteDTO cliente;
+    TransferenciaDTO transferenciaDTO;
+    CuentaDTO cuentaOrigen;
     /**
      * Creates new form ConfirmarTransferenciaFORM
      */
-    public ConfirmarTransferenciaFORM(ControladorTransferencia controlador, ClienteDTO cliente) {
+    public ConfirmarTransferenciaFORM(ControladorTransferencia controlador, ClienteDTO cliente, TransferenciaDTO transferenciaDTO, CuentaDTO cuentaOrigen) {
         this.controlador = controlador;
         this.cliente = cliente;
+        this.transferenciaDTO = transferenciaDTO;
+        this.cuentaOrigen = cuentaOrigen;
         initComponents();
+        mostrarCuentas();
+    }
+    
+    private void mostrarCuentas() {
+        String noCuentaOrigen = String.valueOf(transferenciaDTO.getCuentaOrigen());
+        lblNoCuentaOrigen.setText(noCuentaOrigen);
+        String noCuentaDestino = String.valueOf(transferenciaDTO.getCuentaDestino());
+        lblNoCuentaDestino.setText(noCuentaDestino);
+        String montoTransferir = String.valueOf(transferenciaDTO.getMonto());
+        lblMontoTansferir.setText(montoTransferir);
+        
+        String saldoDisponible = String.valueOf(cuentaOrigen.getSaldoCuenta());
+        lblPesosDisponibles.setText(saldoDisponible);
+        
+        String saldoRestante = String.valueOf((cuentaOrigen.getSaldoCuenta() - transferenciaDTO.getMonto()));
+        lblPesosRestantes.setText(saldoRestante);
     }
 
     /**
@@ -42,14 +65,14 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
         jpnCuentaDestino = new javax.swing.JPanel();
         lblCuentaDestino = new javax.swing.JLabel();
         lblNoCuenta2 = new javax.swing.JLabel();
-        lblNoCuenta4 = new javax.swing.JLabel();
+        lblNoCuentaDestino = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jpnCuentaOrigen = new javax.swing.JPanel();
         lblCuentaOrigen = new javax.swing.JLabel();
         lblNoCuenta1 = new javax.swing.JLabel();
-        lblNoCuenta3 = new javax.swing.JLabel();
+        lblNoCuentaOrigen = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        SaldoRestante = new javax.swing.JLabel();
+        lblSaldoRestante = new javax.swing.JLabel();
         lblMontoTansferir = new javax.swing.JLabel();
         lblPesosDisponibles = new javax.swing.JLabel();
         lblPesosRestantes = new javax.swing.JLabel();
@@ -91,8 +114,8 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
         lblNoCuenta2.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         lblNoCuenta2.setText("No. Cuenta");
 
-        lblNoCuenta4.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        lblNoCuenta4.setText("0000");
+        lblNoCuentaDestino.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        lblNoCuentaDestino.setText("0000");
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel3.setText("VOYAGE");
@@ -107,7 +130,7 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
                     .addGroup(jpnCuentaDestinoLayout.createSequentialGroup()
                         .addComponent(lblNoCuenta2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblNoCuenta4))
+                        .addComponent(lblNoCuentaDestino))
                     .addGroup(jpnCuentaDestinoLayout.createSequentialGroup()
                         .addGroup(jpnCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -123,7 +146,7 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpnCuentaDestinoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNoCuenta2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNoCuenta4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNoCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addContainerGap())
@@ -135,8 +158,8 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
         lblNoCuenta1.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         lblNoCuenta1.setText("No. Cuenta");
 
-        lblNoCuenta3.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        lblNoCuenta3.setText("0000");
+        lblNoCuentaOrigen.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        lblNoCuentaOrigen.setText("0000");
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setText("VOYAGE");
@@ -151,7 +174,7 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
                     .addGroup(jpnCuentaOrigenLayout.createSequentialGroup()
                         .addComponent(lblNoCuenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblNoCuenta3))
+                        .addComponent(lblNoCuentaOrigen))
                     .addGroup(jpnCuentaOrigenLayout.createSequentialGroup()
                         .addGroup(jpnCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCuentaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -167,14 +190,14 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpnCuentaOrigenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNoCuenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNoCuenta3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblNoCuentaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap())
         );
 
-        SaldoRestante.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        SaldoRestante.setText("Saldo Restante");
+        lblSaldoRestante.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        lblSaldoRestante.setText("Saldo Restante");
 
         lblMontoTansferir.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         lblMontoTansferir.setText("$00.00");
@@ -201,7 +224,7 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
                                     .addComponent(jpnCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(lblPesosRestantes, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(SaldoRestante))))
+                                        .addComponent(lblSaldoRestante))))
                             .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jpnCuentaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -243,7 +266,7 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
-                        .addComponent(SaldoRestante)
+                        .addComponent(lblSaldoRestante)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblPesosRestantes)
                         .addGap(27, 27, 27)
@@ -254,8 +277,7 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
                     .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
                         .addComponent(lblSaldoDisponible)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPesosDisponibles)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(lblPesosDisponibles)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -287,11 +309,6 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
         jButton1.setToolTipText("");
         jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButton1.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("VOYAGE");
@@ -340,10 +357,6 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         int opcion = JOptionPane.showConfirmDialog(
             this,
@@ -361,8 +374,16 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-
-        // control.confirmarTransferencia
+        
+        TransferenciaBO transferenciaBO = new TransferenciaBO(new TransferenciaDAO(new ConexionBD()));
+        try {
+            transferenciaBO.realizarTransferencia(transferenciaDTO);
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de transferencia", JOptionPane.ERROR_MESSAGE);
+        }
+        dispose();
+        controlador.abrirTransferenciaExitosa();
+        
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
@@ -371,7 +392,6 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel SaldoRestante;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton jButton1;
@@ -385,11 +405,12 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
     private javax.swing.JLabel lblMontoTansferir;
     private javax.swing.JLabel lblNoCuenta1;
     private javax.swing.JLabel lblNoCuenta2;
-    private javax.swing.JLabel lblNoCuenta3;
-    private javax.swing.JLabel lblNoCuenta4;
+    private javax.swing.JLabel lblNoCuentaDestino;
+    private javax.swing.JLabel lblNoCuentaOrigen;
     private javax.swing.JLabel lblPesosDisponibles;
     private javax.swing.JLabel lblPesosRestantes;
     private javax.swing.JLabel lblSaldoDisponible;
+    private javax.swing.JLabel lblSaldoRestante;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlBanner;
     private javax.swing.JPanel pnlDatos;

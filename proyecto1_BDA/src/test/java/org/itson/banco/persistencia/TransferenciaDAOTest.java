@@ -20,7 +20,7 @@ public class TransferenciaDAOTest {
     public void testeRealizarTransferenciaFuncionaOk(){
         
         // setup
-        TransferenciaDAO nuevaTransferenciaDAO = new TransferenciaDAO();
+        TransferenciaDAO nuevaTransferenciaDAO = new TransferenciaDAO(new ConexionBD());
         
         //Datos d prueba :D
         TransferenciaDTO TransferenciaDTO = new TransferenciaDTO(

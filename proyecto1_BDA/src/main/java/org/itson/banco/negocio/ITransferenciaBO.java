@@ -12,7 +12,7 @@ import org.itson.banco.dtos.TransferenciaDTO;
  */
 public interface ITransferenciaBO {
     
-    public abstract String realizarTransferencia(
+    public abstract boolean realizarTransferencia(
             TransferenciaDTO transferenciaDTO
     ) throws NegocioException;
 }

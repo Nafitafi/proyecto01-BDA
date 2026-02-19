@@ -100,7 +100,7 @@
                                           <Component id="jpnCuentaDestino" min="-2" max="-2" attributes="0"/>
                                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                               <Component id="lblPesosRestantes" min="-2" pref="80" max="-2" attributes="0"/>
-                                              <Component id="SaldoRestante" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblSaldoRestante" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -159,7 +159,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="SaldoRestante" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSaldoRestante" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lblPesosRestantes" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -172,7 +172,6 @@
                               <Component id="lblSaldoDisponible" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="lblPesosDisponibles" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -230,7 +229,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblNoCuenta2" min="-2" pref="105" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="lblNoCuenta4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNoCuentaDestino" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -252,7 +251,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblNoCuenta2" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="lblNoCuenta4" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="lblNoCuentaDestino" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="21" max="32767" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -278,7 +277,7 @@
                     <Property name="text" type="java.lang.String" value="No. Cuenta"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblNoCuenta4">
+                <Component class="javax.swing.JLabel" name="lblNoCuentaDestino">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Calibri Light" size="14" style="1"/>
@@ -307,7 +306,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="lblNoCuenta1" min="-2" pref="105" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="lblNoCuenta3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNoCuentaOrigen" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -329,7 +328,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="lblNoCuenta1" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                              <Component id="lblNoCuenta3" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                              <Component id="lblNoCuentaOrigen" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -355,7 +354,7 @@
                     <Property name="text" type="java.lang.String" value="No. Cuenta"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="lblNoCuenta3">
+                <Component class="javax.swing.JLabel" name="lblNoCuentaOrigen">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Calibri Light" size="14" style="1"/>
@@ -373,7 +372,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="SaldoRestante">
+            <Component class="javax.swing.JLabel" name="lblSaldoRestante">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Calibri Light" size="14" style="1"/>
@@ -466,9 +465,6 @@
               <Insets value="[2, 14, 0, 14]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>

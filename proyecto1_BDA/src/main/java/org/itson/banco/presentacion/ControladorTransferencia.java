@@ -1,16 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package org.itson.banco.presentacion;
 
 import org.itson.banco.dtos.ClienteDTO;
 import org.itson.banco.dtos.CuentaDTO;
 import org.itson.banco.dtos.TransferenciaDTO;
-import org.itson.banco.negocio.ITransferenciaBO;
-import org.itson.banco.negocio.TransferenciaBO;
-import org.itson.banco.persistencia.ITransferenciaDAO;
-import org.itson.banco.persistencia.TransferenciaDAO;
 
 /**
  *
@@ -50,16 +43,15 @@ public class ControladorTransferencia {
         trans.setVisible(true);
     }
     
-    public String realizarTransferencia(TransferenciaDTO dto) throws Exception {
-
-        ITransferenciaDAO transferenciaDAO = new TransferenciaDAO();
-        TransferenciaBO transferenciaBO = new TransferenciaBO(transferenciaDAO);
-        
-        return transferenciaBO.realizarTransferencia(dto);
-    }
-    
-    public void abrirConfirmarTransferencia(){
-        ConfirmarTransferenciaFORM confirmar = new ConfirmarTransferenciaFORM(this, clienteLogueado);
+    public void abrirConfirmarTransferencia(TransferenciaDTO transferenciaDTO){
+        ConfirmarTransferenciaFORM confirmar = new ConfirmarTransferenciaFORM(this, clienteLogueado, transferenciaDTO, cuentaOrigen);
         confirmar.setVisible(true);
     }
+    
+    public void abrirTransferenciaExitosa(){
+        TransferenciaExitosa transferenciaExitosa = new TransferenciaExitosa(this, clienteLogueado);
+        transferenciaExitosa.setVisible(true);
+    }
+
+    
 }

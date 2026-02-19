@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package org.itson.banco.persistencia.test;
+package org.itson.banco.persistencia;
 
 import org.itson.banco.entidades.Cliente;
 import org.itson.banco.persistencia.ClienteDAO;

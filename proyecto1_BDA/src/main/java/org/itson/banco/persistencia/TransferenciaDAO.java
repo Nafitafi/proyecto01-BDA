@@ -7,6 +7,7 @@ package org.itson.banco.persistencia;
 import java.sql.Connection;
 import java.util.logging.Logger;
 import java.sql.CallableStatement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.itson.banco.dtos.TransferenciaDTO;
@@ -18,18 +19,73 @@ import org.itson.banco.dtos.TransferenciaDTO;
 public class TransferenciaDAO implements ITransferenciaDAO{
     
     private static final Logger LOGGER = Logger.getLogger(TransferenciaDAO.class.getName());
+    private final ConexionBD conexion;
+    
+    public TransferenciaDAO(ConexionBD conexionBD){
+        this.conexion = conexionBD;
+    }
     
     @Override
-    public String realizarTransferencia(
-            TransferenciaDTO nuevaTransferencia
-    ) throws PersistenciaException{
+    public boolean realizarTransferencia(TransferenciaDTO transferenciaDTO) throws PersistenciaException {
+        
+        String sqlRetiro = """
+            UPDATE cuentas
+            SET saldo = saldo - ?
+            WHERE numero_cuenta = ?
+                            """;
+        String sqlIngreso = """
+            UPDATE cuentas
+            SET saldo = saldo + ?
+            WHERE numero_cuenta = ?;
+                                """;
+        
+        String insertOp = """
+            
+                          """;
+        
+        try (Connection conn = conexion.crearConexion()){
+            
+            conn.setAutoCommit(false);
+            
+            try (PreparedStatement comandoRetiro = conn.prepareStatement(sqlRetiro);
+                    PreparedStatement comandoIngreso = conn.prepareStatement(sqlIngreso);){
+                
+                comandoRetiro.setDouble(1, transferenciaDTO.getMonto());
+                comandoRetiro.setInt(2, transferenciaDTO.getCuentaOrigen());
+                comandoRetiro.executeUpdate();
+                
+                comandoIngreso.setDouble(1, transferenciaDTO.getMonto());
+                comandoIngreso.setInt(2, transferenciaDTO.getCuentaDestino());
+                comandoIngreso.executeUpdate();
+                
+                conn.commit();
+                
+            } catch (SQLException ex) {
+                conn.rollback();
+                LOGGER.severe(ex.getMessage());
+                throw new PersistenciaException("No fue posible realizar la transferencia", ex);
+            }
+            
+        } catch (SQLException ex) {
+            LOGGER.severe(ex.getMessage());
+            throw new PersistenciaException("No fue posible realizar la transferencia", ex);
+        } 
+        
+        
+        
+        LOGGER.fine("Se ha realizado la transferencia correctamente");
+        return true;
+        
+    }
+    
+    public String realizarTransferencia2(TransferenciaDTO nuevaTransferencia) throws PersistenciaException{
         try{
             // Código SQL del Sorted Procedure
             String comandoSQL = "{CALL sp_realizar_transferencia(?, ?, ?)}";
             
             // Probamos la conexión
-            Connection conexion = ConexionBD.crearConexion();
-            CallableStatement comando = conexion.prepareCall(comandoSQL);
+            Connection conn = conexion.crearConexion();
+            CallableStatement comando = conn.prepareCall(comandoSQL);
             
             comando.setInt(1, nuevaTransferencia.getCuentaOrigen());
             comando.setInt(2, nuevaTransferencia.getCuentaDestino());
@@ -44,7 +100,7 @@ public class TransferenciaDAO implements ITransferenciaDAO{
             }
             
             comando.close();
-            conexion.close();
+            conn.close();
             
             LOGGER.fine("Transferencia realizada con exito");
             

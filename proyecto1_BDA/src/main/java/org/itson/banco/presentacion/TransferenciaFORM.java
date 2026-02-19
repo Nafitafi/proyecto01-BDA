@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package org.itson.banco.presentacion;
 
 import java.util.logging.Logger;
@@ -9,7 +6,13 @@ import javax.swing.JOptionPane;
 import org.itson.banco.dtos.ClienteDTO;
 import org.itson.banco.dtos.CuentaDTO;
 import org.itson.banco.dtos.TransferenciaDTO;
+import org.itson.banco.negocio.CuentaBO;
+import org.itson.banco.negocio.NegocioException;
+import org.itson.banco.negocio.TransferenciaBO;
 import org.itson.banco.persistencia.ClienteDAO;
+import org.itson.banco.persistencia.ConexionBD;
+import org.itson.banco.persistencia.CuentaDAO;
+import org.itson.banco.persistencia.TransferenciaDAO;
 
 /**
  *
@@ -20,7 +23,7 @@ public class TransferenciaFORM extends javax.swing.JFrame {
     private static final Logger LOGGER = Logger.getLogger(TransferenciaFORM.class.getName());
     private final ControladorTransferencia controlador;
     private final CuentaDTO cuentaOrigen;
-    private ClienteDTO cliente;
+    private final ClienteDTO cliente;
     
     
     /**
@@ -72,11 +75,6 @@ public class TransferenciaFORM extends javax.swing.JFrame {
         jButton1.setToolTipText("");
         jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButton1.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("VOYAGE");
@@ -122,23 +120,6 @@ public class TransferenciaFORM extends javax.swing.JFrame {
         lblTitulo.setText("Realizar transferencia");
 
         txtCuentaOrigen.setEditable(false);
-        txtCuentaOrigen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCuentaOrigenActionPerformed(evt);
-            }
-        });
-
-        txtCuentaDestino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCuentaDestinoActionPerformed(evt);
-            }
-        });
-
-        txtMonto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMontoActionPerformed(evt);
-            }
-        });
 
         lblCuentaOrigen2.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         lblCuentaOrigen2.setText("Monto");
@@ -253,34 +234,43 @@ public class TransferenciaFORM extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-//        try{
-//            String cuentaDestino = txtCuentaDestino.getText();
-//            String monto = txtMonto.getText();
-//            
-//            if(cuentaDestino.isBlank() || m)
-//        }
+
+        TransferenciaBO transferenciaBO = new TransferenciaBO(new TransferenciaDAO(new ConexionBD()));
         
-        controlador.abrirConfirmarTransferencia();
-        this.dispose();
+        String numeroCuentaDestinoString = txtCuentaDestino.getText();
+        String montoString = txtMonto.getText();
+        
+        int cuentaDestino = 0;
+        double monto = 0;
+        
+        try {
+            cuentaDestino = Integer.parseInt(numeroCuentaDestinoString);
+        } catch (NumberFormatException ex) {
+            //TODO
+        }
+        
+        try {
+             monto = Double.parseDouble(montoString);
+        } catch (NumberFormatException ex) {
+            //TODO
+        }
+        
+        TransferenciaDTO transferenciaDTO = new TransferenciaDTO(
+                cuentaOrigen.getNumeroCuenta(),
+                cuentaDestino,
+                monto
+        );
+        
+        try {
+            transferenciaBO.confirmarTransferencia(transferenciaDTO, cuentaOrigen);
+            controlador.abrirConfirmarTransferencia(transferenciaDTO);
+            this.dispose();
+        } catch (NegocioException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de transferencia", JOptionPane.ERROR_MESSAGE);
+        }
         
     }//GEN-LAST:event_btnContinuarActionPerformed
-
-    private void txtCuentaDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentaDestinoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCuentaDestinoActionPerformed
-
-    private void txtMontoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMontoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMontoActionPerformed
-
-    private void txtCuentaOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCuentaOrigenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCuentaOrigenActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         int opcion = JOptionPane.showConfirmDialog(

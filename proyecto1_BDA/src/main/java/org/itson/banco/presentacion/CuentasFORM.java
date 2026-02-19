@@ -96,7 +96,7 @@ public class CuentasFORM extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlBanner = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnPaginaCuenta = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         pnlDatos = new javax.swing.JPanel();
         lblHola = new javax.swing.JLabel();
@@ -106,7 +106,7 @@ public class CuentasFORM extends javax.swing.JFrame {
         cbxCuentasUsuario = new javax.swing.JComboBox<>();
         lblNumCuenta = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        btnDatosCuenta = new javax.swing.JButton();
         lblSaldoDisponible = new javax.swing.JLabel();
         lblSignoDinero = new javax.swing.JLabel();
         btnTransferir = new javax.swing.JButton();
@@ -120,14 +120,14 @@ public class CuentasFORM extends javax.swing.JFrame {
         pnlBanner.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         pnlBanner.setAlignmentY(0.0F);
 
-        jButton1.setBackground(new java.awt.Color(86, 124, 141));
-        jButton1.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Cuentas");
-        jButton1.setToolTipText("");
-        jButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButton1.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        btnPaginaCuenta.setBackground(new java.awt.Color(86, 124, 141));
+        btnPaginaCuenta.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        btnPaginaCuenta.setForeground(new java.awt.Color(255, 255, 255));
+        btnPaginaCuenta.setText("Cuentas");
+        btnPaginaCuenta.setToolTipText("");
+        btnPaginaCuenta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnPaginaCuenta.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnPaginaCuenta.addActionListener(this::btnPaginaCuentaActionPerformed);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel1.setText("VOYAGE");
@@ -140,13 +140,13 @@ public class CuentasFORM extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(353, Short.MAX_VALUE))
         );
         pnlBannerLayout.setVerticalGroup(
             pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
                 .addComponent(jLabel1))
         );
 
@@ -171,9 +171,9 @@ public class CuentasFORM extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel2.setText("VOYAGE");
 
-        jButton3.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        jButton3.setText("Datos de la cuenta");
-        jButton3.addActionListener(this::jButton3ActionPerformed);
+        btnDatosCuenta.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        btnDatosCuenta.setText("Datos de la cuenta");
+        btnDatosCuenta.addActionListener(this::btnDatosCuentaActionPerformed);
 
         javax.swing.GroupLayout pnlCuentasLayout = new javax.swing.GroupLayout(pnlCuentas);
         pnlCuentas.setLayout(pnlCuentasLayout);
@@ -185,7 +185,7 @@ public class CuentasFORM extends javax.swing.JFrame {
                     .addGroup(pnlCuentasLayout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                        .addComponent(jButton3))
+                        .addComponent(btnDatosCuenta))
                     .addGroup(pnlCuentasLayout.createSequentialGroup()
                         .addComponent(lblNumCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -202,7 +202,7 @@ public class CuentasFORM extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlCuentasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jButton3))
+                    .addComponent(btnDatosCuenta))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -306,9 +306,9 @@ public class CuentasFORM extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnPaginaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuentaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnPaginaCuentaActionPerformed
 
     private void btnTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirActionPerformed
         Object seleccionado = cbxCuentasUsuario.getSelectedItem();
@@ -324,16 +324,16 @@ public class CuentasFORM extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnTransferirActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void btnDatosCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCuentaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_btnDatosCuentaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDatosCuenta;
+    private javax.swing.JButton btnPaginaCuenta;
     private javax.swing.JButton btnTransferir;
     private javax.swing.JComboBox<String> cbxCuentasUsuario;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblHola;

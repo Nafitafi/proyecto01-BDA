@@ -15,4 +15,7 @@ import org.itson.banco.entidades.Cuenta;
  */
 public interface ICuentaDAO {
     List<Cuenta> consultarCuentasPorCliente(int idCliente) throws PersistenciaException;
+    
+    Cuenta consultarCuentaPorNumero(int numeroCuenta) throws PersistenciaException;
+    
 }

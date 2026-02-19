@@ -4,6 +4,7 @@
  */
 package org.itson.banco.negocio;
 
+import org.itson.banco.dtos.CuentaDTO;
 import org.itson.banco.dtos.TransferenciaDTO;
 import org.itson.banco.persistencia.ITransferenciaDAO;
 import org.itson.banco.persistencia.PersistenciaException;
@@ -19,47 +20,46 @@ public class TransferenciaBO implements ITransferenciaBO {
     
     
     public TransferenciaBO(ITransferenciaDAO transfrenciaDAO){
-            this.transferenciaDAO = transferenciaDAO;
-    }
+            this.transferenciaDAO = transfrenciaDAO
+;    }
     
     @Override
-    public String realizarTransferencia(
-            TransferenciaDTO nuevaTransferencia
-    ) throws NegocioException{
-        
-        if(nuevaTransferencia.getMonto() <= 0){
-            throw new NegocioException("El monto debe ser mayor a $0.00", null);
-        }
-        
-        if(nuevaTransferencia.getCuentaOrigen() <= 0){
-            throw new NegocioException("La cuenta origen es obligatoria.", null); 
-        }
-        
-        if(nuevaTransferencia.getCuentaDestino() <= 0){
-            throw new NegocioException("La cuenta destino es obligatoria.", null);
-        }
-        
-        if(nuevaTransferencia.getCuentaOrigen() == nuevaTransferencia.getCuentaDestino()){
-            throw new NegocioException("La cuenta origen y la cuenta destino NO pueden ser la misma", null);
-        }
+    public boolean realizarTransferencia(TransferenciaDTO transferenciaDTO) throws NegocioException{
         
         try{
-            String resultado = transferenciaDAO.realizarTransferencia(nuevaTransferencia);
-            
-            if("Saldo insuficiente".equalsIgnoreCase(resultado)){
-                throw new NegocioException("No cuenta con el saldo suficiente", null);
-            }
-            
-            if(!"Transferencia realizada con exito".equalsIgnoreCase(resultado)){
-                throw new NegocioException("No fue posible realizar la transferencia", null);
-            }
-            
+            boolean resultado = transferenciaDAO.realizarTransferencia(transferenciaDTO);
             return resultado;
-            
         } catch(PersistenciaException e){
             throw new NegocioException("Error al realizar la transferencia", e);
         }
         
+    }
+    
+    public boolean confirmarTransferencia(TransferenciaDTO transferenciaDTO, CuentaDTO cuentaOrigen) throws NegocioException {
+        
+        if(transferenciaDTO.getMonto() <= 0){
+            throw new NegocioException("El monto debe ser mayor a $0.00", null);
+        }
+        
+        if(cuentaOrigen.getSaldoCuenta() < transferenciaDTO.getMonto()) {
+            throw new NegocioException("El monto no puede ser mayor a su saldo actual.", null);
+        }
+        
+        if(transferenciaDTO.getCuentaOrigen() <= 0){
+            throw new NegocioException("La cuenta origen es obligatoria.", null); 
+        }
+        
+        if(transferenciaDTO.getCuentaDestino() <= 0){
+            throw new NegocioException("La cuenta destino es obligatoria.", null);
+        }
+        
+        if(transferenciaDTO.getCuentaOrigen() == transferenciaDTO.getCuentaDestino()){
+            throw new NegocioException("La cuenta origen y la cuenta destino NO pueden ser la misma", null);
+        }
+        
+        // Hacer la comprobacion de saldo suficiente
+        
+        return true;
     }
     
 }
