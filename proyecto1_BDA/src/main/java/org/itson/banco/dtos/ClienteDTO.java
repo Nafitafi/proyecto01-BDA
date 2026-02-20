@@ -17,6 +17,9 @@ public class ClienteDTO {
     private String apellidoPaterno;
     private String apellidoMaterno;
 
+    /**
+     * Constructor por defecto de la clase ClienteDTO
+     */
     public ClienteDTO() {
     }
 

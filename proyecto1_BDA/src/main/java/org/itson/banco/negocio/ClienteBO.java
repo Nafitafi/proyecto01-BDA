@@ -12,18 +12,28 @@ import org.itson.banco.persistencia.IClienteDAO;
 import org.itson.banco.persistencia.PersistenciaException;
 
 /**
- *
+ * Clase ClienteBO.
+ * Objeto de negocio cliente, se encarga de la lógica de validación 
+ * para los clientes al iniciar sesión.
  * @author Nahomi Figueroa, Emily Lara y Oliver Robles
  */
 public class ClienteBO implements IClienteBO {
 
     private final IClienteDAO clienteDAO;
 
+    /**
+     * Constructor de cliente BO.
+     * 
+     * @param clienteDAO ClienteDAO para el acceso del Cliente en cuestión.
+     */
     public ClienteBO(IClienteDAO clienteDAO) {
         this.clienteDAO = clienteDAO;
     }
     
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public ClienteDTO login(String correo, String contrasena) throws NegocioException {
         if (correo == null || correo.trim().isEmpty()) {

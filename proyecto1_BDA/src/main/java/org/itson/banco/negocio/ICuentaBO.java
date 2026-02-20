@@ -10,7 +10,7 @@ import org.itson.banco.entidades.Cuenta;
 
 /**
  * Interfaz CuentaBO.
- * 
+ * Contrato de la clase CuentaBO.
  * @author Nahomi Figueroa, Emily Lara y Oliver Robles
  */
 public interface ICuentaBO {
@@ -18,6 +18,15 @@ public interface ICuentaBO {
     
     public abstract Cuenta crearNuevaCuenta(CuentaDTO nuevaCuenta, int idClienteLogueado) throws NegocioException;
     
+    /**
+     * Método obtenerCuentas.
+     * 
+     * Se encarga de obtener las cuentas asociadas a un 
+     * 
+     * @param idCliente
+     * @return
+     * @throws NegocioException 
+     */
     List<CuentaDTO> obtenerCuentas(int idCliente) throws NegocioException;
     
 }

@@ -14,7 +14,18 @@ import org.itson.banco.entidades.Cuenta;
  * @author Nahomi Figueroa, Emily Lara y Oliver Robles
  */
 public interface IClienteBO {
-    
+
+    /**
+     * Método login.
+     * 
+     * Ejectuta la acción de login segun su correo y contraseña, valida los campos
+     * solicitados.
+     * 
+     * @param correo Correo del cliente.
+     * @param contrasena Contraseña del cliente.
+     * @return Cliente DTO para transportarlo entre capas.
+     * @throws NegocioException 
+     */
     ClienteDTO login(String correo, String contrasena) throws NegocioException;
     
 }
