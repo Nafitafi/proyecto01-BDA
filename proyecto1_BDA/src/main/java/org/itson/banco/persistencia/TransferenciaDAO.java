@@ -51,11 +51,11 @@ public class TransferenciaDAO implements ITransferenciaDAO{
                     PreparedStatement comandoIngreso = conn.prepareStatement(sqlIngreso);){
                 
                 comandoRetiro.setDouble(1, transferenciaDTO.getMonto());
-                comandoRetiro.setInt(2, transferenciaDTO.getCuentaOrigen());
+                comandoRetiro.setString(2, transferenciaDTO.getCuentaOrigen());
                 comandoRetiro.executeUpdate();
                 
                 comandoIngreso.setDouble(1, transferenciaDTO.getMonto());
-                comandoIngreso.setInt(2, transferenciaDTO.getCuentaDestino());
+                comandoIngreso.setString(2, transferenciaDTO.getCuentaDestino());
                 comandoIngreso.executeUpdate();
                 
                 conn.commit();
@@ -87,8 +87,8 @@ public class TransferenciaDAO implements ITransferenciaDAO{
             Connection conn = conexion.crearConexion();
             CallableStatement comando = conn.prepareCall(comandoSQL);
             
-            comando.setInt(1, nuevaTransferencia.getCuentaOrigen());
-            comando.setInt(2, nuevaTransferencia.getCuentaDestino());
+            comando.setString(1, nuevaTransferencia.getCuentaOrigen());
+            comando.setString(2, nuevaTransferencia.getCuentaDestino());
             comando.setDouble(3, nuevaTransferencia.getMonto());
             
             ResultSet resultado = comando.executeQuery();

@@ -238,27 +238,21 @@ public class TransferenciaFORM extends javax.swing.JFrame {
 
         TransferenciaBO transferenciaBO = new TransferenciaBO(new TransferenciaDAO(new ConexionBD()));
         
-        String numeroCuentaDestinoString = txtCuentaDestino.getText();
+        String numeroCuentaDestino = txtCuentaDestino.getText();
         String montoString = txtMonto.getText();
         
-        int cuentaDestino = 0;
         double monto = 0;
         
-        try {
-            cuentaDestino = Integer.parseInt(numeroCuentaDestinoString);
-        } catch (NumberFormatException ex) {
-            //TODO
-        }
         
         try {
              monto = Double.parseDouble(montoString);
         } catch (NumberFormatException ex) {
-            //TODO
+            throw new IllegalArgumentException("Error al capturar monto", ex);
         }
         
         TransferenciaDTO transferenciaDTO = new TransferenciaDTO(
                 cuentaOrigen.getNumeroCuenta(),
-                cuentaDestino,
+                numeroCuentaDestino,
                 monto
         );
         
@@ -289,9 +283,11 @@ public class TransferenciaFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void cargarCuentaOrigen() {
-    txtCuentaOrigen.setText(String.valueOf(cuentaOrigen.getNumeroCuenta()));
-    txtCuentaOrigen.setEditable(false);
-}
+        txtCuentaOrigen.setText(String.valueOf(cuentaOrigen.getNumeroCuenta()));
+        txtCuentaOrigen.setEditable(false);
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -301,12 +297,18 @@ public class TransferenciaFORM extends javax.swing.JFrame {
     private javax.swing.JButton btnContinuar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblCuentaDestino;
     private javax.swing.JLabel lblCuentaOrigen;
     private javax.swing.JLabel lblCuentaOrigen2;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlBanner;
+    private javax.swing.JPanel pnlBanner1;
+    private javax.swing.JPanel pnlBanner2;
     private javax.swing.JPanel pnlDatos;
     private javax.swing.JPanel pnlDatosCuenta;
     private javax.swing.JTextField txtCuentaDestino;

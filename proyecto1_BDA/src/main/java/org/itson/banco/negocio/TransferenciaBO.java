@@ -45,15 +45,15 @@ public class TransferenciaBO implements ITransferenciaBO {
             throw new NegocioException("El monto no puede ser mayor a su saldo actual.", null);
         }
         
-        if(transferenciaDTO.getCuentaOrigen() <= 0){
+        if(transferenciaDTO.getCuentaOrigen() == null){
             throw new NegocioException("La cuenta origen es obligatoria.", null); 
         }
         
-        if(transferenciaDTO.getCuentaDestino() <= 0){
+        if(transferenciaDTO.getCuentaDestino() == null){
             throw new NegocioException("La cuenta destino es obligatoria.", null);
         }
         
-        if(transferenciaDTO.getCuentaOrigen() == transferenciaDTO.getCuentaDestino()){
+        if(transferenciaDTO.getCuentaOrigen().equalsIgnoreCase(transferenciaDTO.getCuentaDestino()) || transferenciaDTO.getCuentaDestino().equalsIgnoreCase(transferenciaDTO.getCuentaOrigen()) ){
             throw new NegocioException("La cuenta origen y la cuenta destino NO pueden ser la misma", null);
         }
         

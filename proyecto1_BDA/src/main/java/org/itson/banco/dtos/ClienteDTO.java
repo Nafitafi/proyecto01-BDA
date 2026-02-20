@@ -66,4 +66,8 @@ public class ClienteDTO {
         this.apellidoMaterno = apellidoMaterno;
     }
 
+    public String toString(){
+        return nombres + " " + " " + apellidoPaterno + " " + apellidoMaterno;
+    }
+    
 }

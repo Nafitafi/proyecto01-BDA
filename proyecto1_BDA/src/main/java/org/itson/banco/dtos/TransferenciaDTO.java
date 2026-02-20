@@ -10,21 +10,21 @@ package org.itson.banco.dtos;
  */
 public class TransferenciaDTO {
     
-    private int cuentaOrigen;
-    private int cuentaDestino;
+    private String cuentaOrigen;
+    private String cuentaDestino;
     private double monto;
 
-    public TransferenciaDTO(int cuentaOrigen, int cuentaDestino, double monto) {
+    public TransferenciaDTO(String cuentaOrigen, String cuentaDestino, double monto) {
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;
         this.monto = monto;
     }
 
-    public int getCuentaOrigen() {
+    public String getCuentaOrigen() {
         return cuentaOrigen;
     }
 
-    public int getCuentaDestino() {
+    public String getCuentaDestino() {
         return cuentaDestino;
     }
 

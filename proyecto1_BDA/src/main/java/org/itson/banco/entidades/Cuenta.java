@@ -4,14 +4,16 @@
  */
 package org.itson.banco.entidades;
 
+import java.util.GregorianCalendar;
+
 /**
  *
  * @author nafbr
  */
 public class Cuenta {
 
-    private int numeroCuenta; // Primary Key
-    private String fechaApertura; //Calendario gregoriano aqui
+    private String numeroCuenta; // Primary Key
+    private GregorianCalendar fechaApertura; //Calendario gregoriano aqui
     private double saldo;
     private String estado; 
     private int idCliente; 
@@ -21,7 +23,7 @@ public class Cuenta {
     }
 
    
-    public Cuenta(int numeroCuenta, String fechaApertura, double saldo, String estado, int idCliente) {
+    public Cuenta(String numeroCuenta, GregorianCalendar fechaApertura, double saldo, String estado, int idCliente) {
         this.numeroCuenta = numeroCuenta;
         this.fechaApertura = fechaApertura;
         this.saldo = saldo;
@@ -30,19 +32,19 @@ public class Cuenta {
     }
 
     
-    public int getNumeroCuenta() {
+    public String getNumeroCuenta() {
         return numeroCuenta;
     }
 
-    public void setNumeroCuenta(int numeroCuenta) {
+    public void setNumeroCuenta(String numeroCuenta) {
         this.numeroCuenta = numeroCuenta;
     }
 
-    public String getFechaApertura() {
+    public GregorianCalendar getFechaApertura() {
         return fechaApertura;
     }
 
-    public void setFechaApertura(String fechaApertura) {
+    public void setFechaApertura(GregorianCalendar fechaApertura) {
         this.fechaApertura = fechaApertura;
     }
 

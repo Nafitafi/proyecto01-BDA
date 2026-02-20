@@ -30,8 +30,9 @@ public class ClienteBOTest {
 
     @Test
     public void testObtenerCuentasClienteExistente() {
-        ConexionBD conexion = new ConexionBD();
-        ICuentaDAO cuentaDAO = new CuentaDAO(conexion);
+        
+        CuentaDTO dto = new CuentaDTO();
+        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
 
         ICuentaBO cuentaBO = new CuentaBO(cuentaDAO);
 
@@ -53,8 +54,8 @@ public class ClienteBOTest {
      */
     @Test
     void testObtenerCuentasClienteInexistente() {
-        ConexionBD conexion = new ConexionBD();
-        ICuentaDAO cuentaDAO = new CuentaDAO(conexion);
+        CuentaDTO dto = new CuentaDTO();
+        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
         ICuentaBO cuentaBO = new CuentaBO(cuentaDAO);
 
         int idFantasma = 999;
@@ -74,8 +75,8 @@ public class ClienteBOTest {
      */
     @Test
     void testObtenerCuentasIdInvalido() {
-        ConexionBD conexion = new ConexionBD();
-        ICuentaDAO cuentaDAO = new CuentaDAO(conexion);
+        CuentaDTO dto = new CuentaDTO();
+        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
         ICuentaBO cuentaBO = new CuentaBO(cuentaDAO);
 
         int idInvalido = -5; // Un ID negativo no tiene sentido je

@@ -51,7 +51,7 @@ public class TransferenciaExitosa extends javax.swing.JFrame {
         pnlDatosCuenta.setBackground(new java.awt.Color(255, 255, 255));
 
         lblOperacionExitosa.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
-        lblOperacionExitosa.setText("Operacion exitosa");
+        lblOperacionExitosa.setText("Operacion éxitosa");
 
         btnVolver.setBackground(new java.awt.Color(47, 65, 86));
         btnVolver.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
@@ -61,7 +61,7 @@ public class TransferenciaExitosa extends javax.swing.JFrame {
         btnVolver.addActionListener(this::btnVolverActionPerformed);
 
         lblNoOperacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblNoOperacion.setText("No. Operacion");
+        lblNoOperacion.setText("Número de operación");
 
         lblOperacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblOperacion.setText(".");
@@ -77,13 +77,13 @@ public class TransferenciaExitosa extends javax.swing.JFrame {
                         .addComponent(lblOperacionExitosa)
                         .addGap(181, 181, 181))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
-                        .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(lblNoOperacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblOperacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(233, 233, 233))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
                         .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(173, 173, 173))))
+                        .addGap(173, 173, 173))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
+                        .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNoOperacion))
+                        .addGap(197, 197, 197))))
         );
         pnlDatosCuentaLayout.setVerticalGroup(
             pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

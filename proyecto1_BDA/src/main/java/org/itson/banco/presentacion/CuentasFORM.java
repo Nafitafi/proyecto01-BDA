@@ -23,16 +23,19 @@ public class CuentasFORM extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CuentasFORM.class.getName());
     private final ControladorTransferencia controlador;
     private final ClienteDTO cliente;
+    private final ICuentaBO cuentaBO;
     
     /**
      * Creates new form CuentasFORM
      */
-    public CuentasFORM(ControladorTransferencia controlador, ClienteDTO cliente) {
+    public CuentasFORM(ControladorTransferencia controlador, ClienteDTO cliente, ICuentaBO cuentaBO) {
         this.controlador = controlador;
         this.cliente = cliente;
+        this.cuentaBO = cuentaBO;
         initComponents();
         setLocationRelativeTo(null);
         configurarVentana();
+        
     }
 
     private void configurarVentana() {
@@ -53,7 +56,6 @@ public class CuentasFORM extends javax.swing.JFrame {
     
     private void cargarCuentas() {
         try {
-            ICuentaBO cuentaBO = new CuentaBO(new CuentaDAO(new ConexionBD()));
             List<CuentaDTO> cuentas = cuentaBO.obtenerCuentas(cliente.getId());
 
             DefaultComboBoxModel model = new DefaultComboBoxModel();
@@ -111,6 +113,7 @@ public class CuentasFORM extends javax.swing.JFrame {
         lblSignoDinero = new javax.swing.JLabel();
         btnTransferir = new javax.swing.JButton();
         lblSaldoCuenta = new javax.swing.JLabel();
+        btnAgregarCuenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cuentas del usuario");
@@ -164,6 +167,7 @@ public class CuentasFORM extends javax.swing.JFrame {
 
         cbxCuentasUsuario.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         cbxCuentasUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbxCuentasUsuario.addActionListener(this::cbxCuentasUsuarioActionPerformed);
 
         lblNumCuenta.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         lblNumCuenta.setText("No. Cuenta");
@@ -220,6 +224,11 @@ public class CuentasFORM extends javax.swing.JFrame {
         lblSaldoCuenta.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         lblSaldoCuenta.setText("0");
 
+        btnAgregarCuenta.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnAgregarCuenta.setText("Agregar Cuenta Nueva");
+        btnAgregarCuenta.setBorder(null);
+        btnAgregarCuenta.addActionListener(this::btnAgregarCuentaActionPerformed);
+
         javax.swing.GroupLayout pnlDatosCuentaLayout = new javax.swing.GroupLayout(pnlDatosCuenta);
         pnlDatosCuenta.setLayout(pnlDatosCuentaLayout);
         pnlDatosCuentaLayout.setHorizontalGroup(
@@ -227,15 +236,20 @@ public class CuentasFORM extends javax.swing.JFrame {
             .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSaldoDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlDatosCuentaLayout.createSequentialGroup()
-                            .addComponent(lblSignoDinero)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lblSaldoCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(btnTransferir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                .addComponent(pnlCuentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
+                        .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblSaldoDisponible, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlDatosCuentaLayout.createSequentialGroup()
+                                    .addComponent(lblSignoDinero)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(lblSaldoCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnTransferir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                        .addComponent(pnlCuentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnAgregarCuenta)))
                 .addContainerGap())
         );
         pnlDatosCuentaLayout.setVerticalGroup(
@@ -252,7 +266,9 @@ public class CuentasFORM extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnTransferir))
                     .addComponent(pnlCuentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(btnAgregarCuenta)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
@@ -280,7 +296,7 @@ public class CuentasFORM extends javax.swing.JFrame {
                     .addComponent(lblNombreCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlDatosCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -292,7 +308,7 @@ public class CuentasFORM extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnlBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,7 +316,7 @@ public class CuentasFORM extends javax.swing.JFrame {
                 .addComponent(pnlBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -328,8 +344,18 @@ public class CuentasFORM extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDatosCuentaActionPerformed
 
+    private void btnAgregarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCuentaActionPerformed
+        controlador.abrirCrearNuevaCuenta(controlador, cliente);
+        this.dispose();
+    }//GEN-LAST:event_btnAgregarCuentaActionPerformed
+
+    private void cbxCuentasUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxCuentasUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxCuentasUsuarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarCuenta;
     private javax.swing.JButton btnDatosCuenta;
     private javax.swing.JButton btnPaginaCuenta;
     private javax.swing.JButton btnTransferir;

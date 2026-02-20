@@ -4,16 +4,18 @@
  */
 package org.itson.banco.dtos;
 
+import java.util.GregorianCalendar;
+
 /**
  * Clase CuentaDTO.
  * Se encarga de transportar los datos de una cuenta entre capas.
  * @author Nahomi Figueroa, Emily Lara y Oliver Robles
  */
 public class CuentaDTO {
-    private int numeroCuenta;
+    private String numeroCuenta;
     private double saldoCuenta;
     private String estado;
-    private String fechaApertura;
+    private GregorianCalendar fechaApertura;
 
     /**
      * Constructor de la clase CuentaDTO
@@ -21,7 +23,7 @@ public class CuentaDTO {
      * @param saldoCuenta
      * @param estado 
      */
-    public CuentaDTO(int numeroCuenta, double saldoCuenta, String estado, String fechaApertura) {
+    public CuentaDTO(String numeroCuenta, double saldoCuenta, String estado, GregorianCalendar fechaApertura) {
         this.numeroCuenta = numeroCuenta;
         this.saldoCuenta = saldoCuenta;
         this.estado = estado;
@@ -31,11 +33,11 @@ public class CuentaDTO {
     public CuentaDTO() {
     }
 
-    public int getNumeroCuenta() {
+    public String getNumeroCuenta() {
         return numeroCuenta;
     }
 
-    public void setNumeroCuenta(int numeroCuenta) {
+    public void setNumeroCuenta(String numeroCuenta) {
         this.numeroCuenta = numeroCuenta;
     }
 
@@ -55,17 +57,18 @@ public class CuentaDTO {
         this.estado = estado;
     }
 
-    public String getFechaApertura() {
+    public GregorianCalendar getFechaApertura() {
         return fechaApertura;
     }
 
-    public void setFechaApertura(String fechaApertura) {
+    public void setFechaApertura(GregorianCalendar fechaApertura) {
         this.fechaApertura = fechaApertura;
     }
 
     @Override
     public String toString() {
-        return Integer.toString(numeroCuenta);
+        return numeroCuenta;
     }
+    
     
 }

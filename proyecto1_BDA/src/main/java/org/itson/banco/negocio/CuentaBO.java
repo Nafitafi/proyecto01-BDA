@@ -22,6 +22,48 @@ public class CuentaBO implements ICuentaBO {
     public CuentaBO(ICuentaDAO cuentaDAO) {
         this.cuentaDAO = cuentaDAO;
     }
+    
+    /** 
+     * Este método se encargara de validar lo necesario para poder crear una nueva cuenta
+     * @param nuevaCuenta
+     * @param idClienteLogueado
+     * @return
+     * @throws NegocioException 
+     */
+    @Override
+    public Cuenta crearNuevaCuenta(
+            CuentaDTO nuevaCuenta, 
+            int idClienteLogueado
+    ) throws NegocioException{
+        try{
+            String numCuenta;
+            /** En este bloque, le pedimos al flujo que CONTINUE creando numeros aleatoriamente
+            *   mientras no se esté duplicado (cosa que es dificil que suceda pero no imposible)
+            *   Cabe recalcar que esta válidación se apoya de otra validación de CuentaDAO
+            **/
+            do{
+                numCuenta = generarNumeroCuenta();
+            } while(cuentaDAO.validarNumeroCuenta(numCuenta)); 
+            
+            nuevaCuenta.setNumeroCuenta(numCuenta); // Una vez validado, se setea el numero de cuenta aleatorio
+            
+            /**
+             * Se envia un objeto Cuenta DAO acompañado de los datos para la creación de la cuenta
+             * Ojo que se envía el id del cliente que inicio sesión directamente, de esta forma se evita suplantación de identidad
+             * Tambien se envia el numero de cuenta q se acaba de generar.
+             * 
+            **/ 
+            return cuentaDAO.crearNuevaCuenta(
+                    nuevaCuenta, 
+                    idClienteLogueado, 
+                    numCuenta
+            );
+
+        } catch (PersistenciaException e){
+            throw new NegocioException("Error al crear nueva cuenta", e);
+        }
+       
+    }
 
     @Override
     public List<CuentaDTO> obtenerCuentas(int idCliente) throws NegocioException {
@@ -51,5 +93,19 @@ public class CuentaBO implements ICuentaBO {
         } catch (PersistenciaException ex) {
             throw new NegocioException("Error en el sistema al obtener cuentas.", ex);
         }
+    }
+    
+    
+    /**
+     * Método privado para generar el número de cuenta aleatorio
+     * Solo es utilizado en esta clase :3
+     * @return 
+     */
+    private String generarNumeroCuenta() {
+        int parte1 = (int) (Math.random() * 900) + 100;   
+        int parte2 = (int) (Math.random() * 900) + 100;   
+        int parte3 = (int) (Math.random() * 9000) + 1000; 
+
+        return parte1 + "-" + parte2 + "-" + parte3;
     }
 }

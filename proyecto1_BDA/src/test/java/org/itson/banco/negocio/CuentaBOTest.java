@@ -35,8 +35,8 @@ public class CuentaBOTest {
     public void testObtenerCuentasValidas() {
 
         // Preparación de dependencias
-        ConexionBD conexion = new ConexionBD();
-        ICuentaDAO cuentaDAO = new CuentaDAO(conexion);
+        CuentaDTO dto = new CuentaDTO();
+        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
         ICuentaBO cuentaBO = new CuentaBO(cuentaDAO); 
         
         int idClienteValido = 1;
@@ -60,8 +60,8 @@ public class CuentaBOTest {
     @Test
     public void testObtenerCuentasIdInvalido() {
 
-        ConexionBD conexion = new ConexionBD();
-        ICuentaDAO cuentaDAO = new CuentaDAO(conexion);
+        CuentaDTO dto = new CuentaDTO();
+        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
         ICuentaBO cuentaBO = new CuentaBO(cuentaDAO);
         
         int idNegativo = -5;

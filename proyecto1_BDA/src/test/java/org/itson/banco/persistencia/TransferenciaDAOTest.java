@@ -16,20 +16,20 @@ public class TransferenciaDAOTest {
     public TransferenciaDAOTest(){
     }
     
-    @Test
-    public void testeRealizarTransferenciaFuncionaOk(){
-        
-        // setup
-        TransferenciaDAO nuevaTransferenciaDAO = new TransferenciaDAO(new ConexionBD());
-        
-        //Datos d prueba :D
-        TransferenciaDTO TransferenciaDTO = new TransferenciaDTO(
-                1, // -> Cuenta de origen (la mia)
-                2, // -> Cuenta destino (oliver)
-                100.00 // -> monto 
-        );
-        
-        // Ejecución y afirmación
-        
-    }
+//    @Test
+//    public void testeRealizarTransferenciaFuncionaOk(){
+//        
+//        // setup
+//        TransferenciaDAO nuevaTransferenciaDAO = new TransferenciaDAO(new ConexionBD());
+//        
+//        //Datos d prueba :D
+//        TransferenciaDTO TransferenciaDTO = new TransferenciaDTO(
+//                1, // -> Cuenta de origen (la mia)
+//                2, // -> Cuenta destino (oliver)
+//                100.00 // -> monto 
+//        );
+//        
+//        // Ejecución y afirmación
+//        
+//    }
 }

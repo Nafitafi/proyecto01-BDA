@@ -15,13 +15,13 @@ public class Transferencia {
     private int idTransferencia;
     private double monto;
     private LocalDateTime fechaTransferencia;
-    private int cuentaOrigen;
-    private int cuentaDestino;
+    private String cuentaOrigen;
+    private String cuentaDestino;
 
     public Transferencia() {
     }
 
-    public Transferencia(int idTransferencia, double monto, LocalDateTime fechaTransferencia, int cuentaOrigen, int cuentaDestino) {
+    public Transferencia(int idTransferencia, double monto, LocalDateTime fechaTransferencia, String cuentaOrigen, String cuentaDestino) {
         this.idTransferencia = idTransferencia;
         this.monto = monto;
         this.fechaTransferencia = fechaTransferencia;
@@ -53,19 +53,19 @@ public class Transferencia {
         this.fechaTransferencia = fechaTransferencia;
     }
 
-    public int getCuentaOrigen() {
+    public String getCuentaOrigen() {
         return cuentaOrigen;
     }
 
-    public void setCuentaOrigen(int cuentaOrigen) {
+    public void setCuentaOrigen(String cuentaOrigen) {
         this.cuentaOrigen = cuentaOrigen;
     }
 
-    public int getCuentaDestino() {
+    public String getCuentaDestino() {
         return cuentaDestino;
     }
 
-    public void setCuentaDestino(int cuentaDestino) {
+    public void setCuentaDestino(String cuentaDestino) {
         this.cuentaDestino = cuentaDestino;
     }
     

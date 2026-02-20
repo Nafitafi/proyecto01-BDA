@@ -5,6 +5,7 @@
 package org.itson.banco.persistencia;
 
 import java.util.List;
+import org.itson.banco.dtos.CuentaDTO;
 import org.itson.banco.entidades.Cuenta;
 import org.itson.banco.persistencia.ConexionBD;
 import org.itson.banco.persistencia.CuentaDAO;
@@ -31,8 +32,8 @@ public class CuentaDAOTest {
     @Test
     public void testConsultarCuentasClienteExistente() {
         
-        ConexionBD conexion = new ConexionBD();
-        ICuentaDAO cuentaDAO = new CuentaDAO(conexion);
+        CuentaDTO dto = new CuentaDTO();
+        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
         int idClienteValido = 1; 
         List<Cuenta> cuentas = assertDoesNotThrow(() -> {
             return cuentaDAO.consultarCuentasPorCliente(idClienteValido);
@@ -51,8 +52,8 @@ public class CuentaDAOTest {
     @Test
     void testConsultarCuentasClienteInexistente() {
         
-        ConexionBD conexion = new ConexionBD();
-        ICuentaDAO cuentaDAO = new CuentaDAO(conexion);
+        CuentaDTO dto = new CuentaDTO();
+        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
         int idFantasma = 99999;
 
         List<Cuenta> cuentas = assertDoesNotThrow(() -> {
@@ -70,9 +71,9 @@ public class CuentaDAOTest {
     @Test
     void testConsultarCuentaPorNumeroExistente() {
         
-        ConexionBD conexion = new ConexionBD();
-        ICuentaDAO cuentaDAO = new CuentaDAO(conexion);
-        int numeroCuentaValido = 2;
+        CuentaDTO dto = new CuentaDTO();
+        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
+        String numeroCuentaValido = "123-234-1234";
         
         Cuenta cuenta = assertDoesNotThrow(() -> {
             return cuentaDAO.consultarCuentaPorNumero(numeroCuentaValido);
@@ -80,7 +81,7 @@ public class CuentaDAOTest {
         
         assertNotNull(cuenta);
         assertTrue(cuenta instanceof Cuenta);
-        assertTrue(cuenta.getNumeroCuenta() == numeroCuentaValido);
+        assertTrue(cuenta.getNumeroCuenta().equalsIgnoreCase(numeroCuentaValido));
         
     }
     
@@ -91,9 +92,9 @@ public class CuentaDAOTest {
     @Test
     void testConsultarCuentaPorNumeroInexistente() {
         
-        ConexionBD conexion = new ConexionBD();
-        ICuentaDAO cuentaDAO = new CuentaDAO(conexion);
-        int NumeroCuentaInexistente = 50;
+        CuentaDTO dto = new CuentaDTO();
+        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
+        String NumeroCuentaInexistente = "123-456-7890";
         
         Cuenta cuenta = assertDoesNotThrow(() -> {
             return cuentaDAO.consultarCuentaPorNumero(NumeroCuentaInexistente);

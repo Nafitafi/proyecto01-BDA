@@ -26,6 +26,7 @@ public class ClienteDAO implements IClienteDAO {
     public ClienteDAO(ConexionBD conexion) {
         this.conexion = conexion;
     }
+    
 
     /**
      * Método bucarPorCredenciales. Se encarga de buscar que en la base de datos
