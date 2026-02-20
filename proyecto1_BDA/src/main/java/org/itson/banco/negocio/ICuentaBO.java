@@ -15,7 +15,6 @@ import org.itson.banco.entidades.Cuenta;
  */
 public interface ICuentaBO {
 
-    
     public abstract Cuenta crearNuevaCuenta(CuentaDTO nuevaCuenta, int idClienteLogueado) throws NegocioException;
     
     /**
