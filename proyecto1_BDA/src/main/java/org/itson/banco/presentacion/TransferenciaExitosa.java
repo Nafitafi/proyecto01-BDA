@@ -15,14 +15,22 @@ public class TransferenciaExitosa extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TransferenciaExitosa.class.getName());
     private final ControladorTransferencia controlador;
     private final ClienteDTO cliente;
+    private final int folio;
 
     /**
      * Creates new form TransferenciaExitosa
      */
-    public TransferenciaExitosa(ControladorTransferencia controlador, ClienteDTO cliente) {
+    public TransferenciaExitosa(ControladorTransferencia controlador, ClienteDTO cliente, int folio) {
         this.controlador = controlador;
         this.cliente = cliente;
+        this.folio = folio;
         initComponents();
+        cargarDatos();
+    }
+    
+    public void cargarDatos(){
+        String folioString = String.valueOf(folio);
+        lblFolio.setText(folioString);
     }
 
     /**
@@ -38,8 +46,8 @@ public class TransferenciaExitosa extends javax.swing.JFrame {
         pnlDatosCuenta = new javax.swing.JPanel();
         lblOperacionExitosa = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
-        lblNoOperacion = new javax.swing.JLabel();
-        lblOperacion = new javax.swing.JLabel();
+        lblFolioOperacion = new javax.swing.JLabel();
+        lblFolio = new javax.swing.JLabel();
         pnlBanner = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -60,11 +68,12 @@ public class TransferenciaExitosa extends javax.swing.JFrame {
         btnVolver.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnVolver.addActionListener(this::btnVolverActionPerformed);
 
-        lblNoOperacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblNoOperacion.setText("Número de operación");
+        lblFolioOperacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblFolioOperacion.setText("Folio de operación");
 
-        lblOperacion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblOperacion.setText(".");
+        lblFolio.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblFolio.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFolio.setText(".");
 
         javax.swing.GroupLayout pnlDatosCuentaLayout = new javax.swing.GroupLayout(pnlDatosCuenta);
         pnlDatosCuenta.setLayout(pnlDatosCuentaLayout);
@@ -74,16 +83,16 @@ public class TransferenciaExitosa extends javax.swing.JFrame {
                 .addContainerGap(178, Short.MAX_VALUE)
                 .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
-                        .addComponent(lblOperacionExitosa)
-                        .addGap(181, 181, 181))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
                         .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(173, 173, 173))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
-                        .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNoOperacion))
-                        .addGap(197, 197, 197))))
+                        .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblFolioOperacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblFolio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(219, 219, 219))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
+                        .addComponent(lblOperacionExitosa)
+                        .addGap(188, 188, 188))))
         );
         pnlDatosCuentaLayout.setVerticalGroup(
             pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,9 +100,9 @@ public class TransferenciaExitosa extends javax.swing.JFrame {
                 .addGap(75, 75, 75)
                 .addComponent(lblOperacionExitosa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblNoOperacion)
+                .addComponent(lblFolioOperacion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblOperacion)
+                .addComponent(lblFolio)
                 .addGap(18, 18, 18)
                 .addComponent(btnVolver)
                 .addContainerGap(120, Short.MAX_VALUE))
@@ -185,8 +194,8 @@ public class TransferenciaExitosa extends javax.swing.JFrame {
     private javax.swing.JButton btnVolver;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lblNoOperacion;
-    private javax.swing.JLabel lblOperacion;
+    private javax.swing.JLabel lblFolio;
+    private javax.swing.JLabel lblFolioOperacion;
     private javax.swing.JLabel lblOperacionExitosa;
     private javax.swing.JPanel pnlBanner;
     private javax.swing.JPanel pnlDatos;

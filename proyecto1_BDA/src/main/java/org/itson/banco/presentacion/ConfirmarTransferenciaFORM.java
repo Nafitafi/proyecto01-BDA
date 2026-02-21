@@ -361,6 +361,7 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -382,13 +383,14 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         
         TransferenciaBO transferenciaBO = new TransferenciaBO(new TransferenciaDAO(new ConexionBD()));
+        int folio = 0;
         try {
-            transferenciaBO.realizarTransferencia(transferenciaDTO);
+            folio = transferenciaBO.realizarTransferencia(transferenciaDTO);
         } catch (NegocioException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error de transferencia", JOptionPane.ERROR_MESSAGE);
         }
         dispose();
-        controlador.abrirTransferenciaExitosa();
+        controlador.abrirTransferenciaExitosa(folio);
         
     }//GEN-LAST:event_btnConfirmarActionPerformed
 

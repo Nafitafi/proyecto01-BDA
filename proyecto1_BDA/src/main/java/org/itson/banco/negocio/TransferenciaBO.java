@@ -8,7 +8,6 @@ import org.itson.banco.dtos.CuentaDTO;
 import org.itson.banco.dtos.TransferenciaDTO;
 import org.itson.banco.persistencia.ITransferenciaDAO;
 import org.itson.banco.persistencia.PersistenciaException;
-import org.itson.banco.persistencia.TransferenciaDAO;
 
 /**
  *
@@ -20,15 +19,14 @@ public class TransferenciaBO implements ITransferenciaBO {
     
     
     public TransferenciaBO(ITransferenciaDAO transfrenciaDAO){
-            this.transferenciaDAO = transfrenciaDAO
-;    }
+            this.transferenciaDAO = transfrenciaDAO;
+    }
     
     @Override
-    public boolean realizarTransferencia(TransferenciaDTO transferenciaDTO) throws NegocioException{
+    public int realizarTransferencia(TransferenciaDTO transferenciaDTO) throws NegocioException{
         
         try{
-            boolean resultado = transferenciaDAO.realizarTransferencia(transferenciaDTO);
-            return resultado;
+            return transferenciaDAO.realizarTransferencia(transferenciaDTO);
         } catch(PersistenciaException e){
             throw new NegocioException("Error al realizar la transferencia", e);
         }

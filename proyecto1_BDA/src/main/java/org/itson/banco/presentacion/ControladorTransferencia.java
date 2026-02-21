@@ -37,6 +37,7 @@ public class ControladorTransferencia {
         LoginFORM login = new LoginFORM(this);
         login.setVisible(true);
     }
+    
     public void loginExitoso(ClienteDTO cliente) {
         this.clienteLogueado = cliente;
         CuentaDTO cuentaDTO = new CuentaDTO();
@@ -77,8 +78,8 @@ public class ControladorTransferencia {
         confirmar.setVisible(true);
     }
     
-    public void abrirTransferenciaExitosa(){
-        TransferenciaExitosa transferenciaExitosa = new TransferenciaExitosa(this, clienteLogueado);
+    public void abrirTransferenciaExitosa(int folio){
+        TransferenciaExitosa transferenciaExitosa = new TransferenciaExitosa(this, clienteLogueado, folio);
         transferenciaExitosa.setVisible(true);
     }
 

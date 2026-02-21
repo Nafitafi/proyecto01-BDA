@@ -12,6 +12,6 @@ import org.itson.banco.dtos.TransferenciaDTO;
  */
 public interface ITransferenciaDAO {
     
-    public abstract boolean realizarTransferencia(TransferenciaDTO nuevaTransferencia) throws PersistenciaException;
+    public abstract int realizarTransferencia(TransferenciaDTO nuevaTransferencia) throws PersistenciaException;
     
 }
