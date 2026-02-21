@@ -20,12 +20,14 @@ public class LoginFORM extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(LoginFORM.class.getName());
     private final ControladorTransferencia controlador;
+    private final IClienteBO clienteBO;
     
     /**
      * Creates new form LoginFORM
      */
-    public LoginFORM(ControladorTransferencia controlador) {
+    public LoginFORM(ControladorTransferencia controlador, IClienteBO clienteBO) {
         this.controlador = controlador;
+        this.clienteBO = clienteBO;
         initComponents();
         setLocationRelativeTo(null); // Centrar ventana
     }
@@ -51,7 +53,7 @@ public class LoginFORM extends javax.swing.JFrame {
         btnSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Login");
+        setTitle("Iniciar sesión");
         setBackground(new java.awt.Color(217, 217, 217));
 
         pnlBanner.setBackground(new java.awt.Color(245, 239, 235));
@@ -85,7 +87,7 @@ public class LoginFORM extends javax.swing.JFrame {
 
         lblCorreoElectronico.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         lblCorreoElectronico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblCorreoElectronico.setText("Correo electronico");
+        lblCorreoElectronico.setText("Correo electrónico");
 
         lblContrasena.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         lblContrasena.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -176,11 +178,7 @@ public class LoginFORM extends javax.swing.JFrame {
         String contra = txtContrasenia.getText();
 
         try {
-            IClienteBO clienteBO = new ClienteBO(new ClienteDAO(new ConexionBD()));
-            
-            // Intentamos entrar
-            ClienteDTO cliente = clienteBO.login(correo, contra);
-            
+            ClienteDTO cliente = this.clienteBO.login(correo, contra);
             // Si no hubo error, avisamos al controlador
             this.dispose(); // Cerramos login
             controlador.abrirInicioCliente(cliente);

@@ -26,12 +26,6 @@ import org.itson.banco.entidades.Cuenta;
 public class CuentaDAO implements ICuentaDAO {
 
     private static final Logger LOGGER = Logger.getLogger(CuentaDAO.class.getName());
-    private final CuentaDTO cuentaDTO;
-
-    
-    public CuentaDAO(CuentaDTO cuentaDTO){
-        this.cuentaDTO = cuentaDTO;
-    }
     
     /**
      * Método crearNuevaCuenta. Este método es el que se comunica directamente con la base de datos

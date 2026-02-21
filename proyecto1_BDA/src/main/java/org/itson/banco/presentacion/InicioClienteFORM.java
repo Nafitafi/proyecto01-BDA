@@ -35,38 +35,41 @@ public class InicioClienteFORM extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlBanner = new javax.swing.JPanel();
-        btnPaginaCuenta = new javax.swing.JButton();
-        lblVoyage = new javax.swing.JLabel();
-        btnOperaciones = new javax.swing.JButton();
-        btnAyuda = new javax.swing.JButton();
-        lblIcono = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         scbScroll = new javax.swing.JScrollBar();
+        pnlBanner1 = new javax.swing.JPanel();
+        lblVoyage1 = new javax.swing.JLabel();
+        btnOperaciones = new javax.swing.JButton();
+        btnAyuda = new javax.swing.JButton();
+        lblIcono = new javax.swing.JLabel();
+        btnPaginaCuenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(245, 239, 235));
 
-        pnlBanner.setBackground(new java.awt.Color(255, 255, 255));
-        pnlBanner.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        pnlBanner.setAlignmentY(0.0F);
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel2.setText("BANCO VOYAGE");
 
-        btnPaginaCuenta.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnPaginaCuenta.setText("Cuentas");
-        btnPaginaCuenta.setToolTipText("");
-        btnPaginaCuenta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnPaginaCuenta.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        btnPaginaCuenta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPaginaCuentaActionPerformed(evt);
-            }
-        });
+        jScrollPane1.setBorder(null);
 
-        lblVoyage.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lblVoyage.setText("VOYAGE");
+        jTextArea1.setEditable(false);
+        jTextArea1.setBackground(new java.awt.Color(245, 239, 235));
+        jTextArea1.setColumns(20);
+        jTextArea1.setLineWrap(true);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed vulputate purus, nec congue \nmetus. In quis euismod dui, iaculis fringilla mi. Cras dignissim lorem at consectetur laoreet. Curabitur \net mattis sapien. Nulla feugiat id enim non semper. Vestibulum erat tortor, viverra nec posuere in, \ngravida et ligula. Etiam pulvinar, arcu et dignissim venenatis, felis libero vehicula mi, ac hendrerit \nligula lectus eget justo. Vivamus tempor libero ac ante accumsan ultrices. Aliquam ultrices, augue \ngravida malesuada lacinia, tortor metus luctus sem, nec molestie ipsum magna nec arcu. Donec \naugue nibh, tincidunt vel risus vitae, aliquet auctor lacus. Praesent maximus orci eleifend lacus \nfinibus ");
+        jTextArea1.setWrapStyleWord(true);
+        jTextArea1.setBorder(null);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        pnlBanner1.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBanner1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlBanner1.setAlignmentY(0.0F);
+
+        lblVoyage1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lblVoyage1.setText("VOYAGE");
 
         btnOperaciones.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
         btnOperaciones.setText("Operaciones");
@@ -90,54 +93,49 @@ public class InicioClienteFORM extends javax.swing.JFrame {
             }
         });
 
+        lblIcono.setBackground(new java.awt.Color(255, 255, 255));
         lblIcono.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
         lblIcono.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblIcono.setText("Usuario...");
+        lblIcono.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/org/itson/banco/presentacion/cuenta.png"))); // NOI18N
+        btnPaginaCuenta.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        btnPaginaCuenta.setText("Cuentas");
+        btnPaginaCuenta.setToolTipText("");
+        btnPaginaCuenta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnPaginaCuenta.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnPaginaCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPaginaCuentaActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout pnlBannerLayout = new javax.swing.GroupLayout(pnlBanner);
-        pnlBanner.setLayout(pnlBannerLayout);
-        pnlBannerLayout.setHorizontalGroup(
-            pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBannerLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlBanner1Layout = new javax.swing.GroupLayout(pnlBanner1);
+        pnlBanner1.setLayout(pnlBanner1Layout);
+        pnlBanner1Layout.setHorizontalGroup(
+            pnlBanner1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBanner1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(lblVoyage, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addComponent(lblVoyage1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addComponent(btnPaginaCuenta)
+                .addGap(45, 45, 45)
                 .addComponent(btnOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(13, 13, 13))
+                .addGap(21, 21, 21))
         );
-        pnlBannerLayout.setVerticalGroup(
-            pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblVoyage)
+        pnlBanner1Layout.setVerticalGroup(
+            pnlBanner1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBanner1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(lblVoyage1)
                 .addComponent(btnOperaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblIcono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel1)
+                .addComponent(lblIcono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel2.setText("BANCO VOYAGE");
-
-        jTextArea1.setEditable(false);
-        jTextArea1.setBackground(new java.awt.Color(245, 239, 235));
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed vulputate purus, nec congue \nmetus. In quis euismod dui, iaculis fringilla mi. Cras dignissim lorem at consectetur laoreet. Curabitur \net mattis sapien. Nulla feugiat id enim non semper. Vestibulum erat tortor, viverra nec posuere in, \ngravida et ligula. Etiam pulvinar, arcu et dignissim venenatis, felis libero vehicula mi, ac hendrerit \nligula lectus eget justo. Vivamus tempor libero ac ante accumsan ultrices. Aliquam ultrices, augue \ngravida malesuada lacinia, tortor metus luctus sem, nec molestie ipsum magna nec arcu. Donec \naugue nibh, tincidunt vel risus vitae, aliquet auctor lacus. Praesent maximus orci eleifend lacus \nfinibus ");
-        jTextArea1.setWrapStyleWord(true);
-        jTextArea1.setBorder(null);
-        jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,22 +143,23 @@ public class InicioClienteFORM extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlBanner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                    .addComponent(pnlBanner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addComponent(scbScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(5, 5, 5)
+                .addComponent(pnlBanner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGap(30, 116, Short.MAX_VALUE))
             .addComponent(scbScroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -185,13 +184,12 @@ public class InicioClienteFORM extends javax.swing.JFrame {
     private javax.swing.JButton btnAyuda;
     private javax.swing.JButton btnOperaciones;
     private javax.swing.JButton btnPaginaCuenta;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblIcono;
-    private javax.swing.JLabel lblVoyage;
-    private javax.swing.JPanel pnlBanner;
+    private javax.swing.JLabel lblVoyage1;
+    private javax.swing.JPanel pnlBanner1;
     private javax.swing.JScrollBar scbScroll;
     // End of variables declaration//GEN-END:variables
 }

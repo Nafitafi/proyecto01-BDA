@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 /**
  * Clase Transferencia POJO
- * @author emyla
+ * @author Emily Lara
  */
 public class Transferencia {
     

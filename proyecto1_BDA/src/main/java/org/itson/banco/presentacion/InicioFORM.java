@@ -39,6 +39,7 @@ public class InicioFORM extends javax.swing.JFrame {
         btnRetiroSinCuenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Inicio");
 
         pnlBanner.setBackground(new java.awt.Color(245, 239, 235));
 
@@ -66,7 +67,7 @@ public class InicioFORM extends javax.swing.JFrame {
         btnIniciar.setBackground(new java.awt.Color(47, 65, 86));
         btnIniciar.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         btnIniciar.setForeground(new java.awt.Color(255, 255, 255));
-        btnIniciar.setText("Iniciar");
+        btnIniciar.setText("Inicio");
         btnIniciar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

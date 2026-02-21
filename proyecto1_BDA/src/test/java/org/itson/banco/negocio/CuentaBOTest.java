@@ -20,25 +20,12 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author nafbr
  */
 public class CuentaBOTest {
-    
-    public CuentaBOTest() {
-    }
 
-    @Test
-    public void testSomeMethod() {
-    }
-    /**
-     * Prueba testObtenerCuentasValidas().
-     * Verifica que el BO devuelva DTOs listos para la pantalla.
-     */
+    private final ICuentaDAO cuentaDAO = new CuentaDAO();
+    private final ICuentaBO cuentaBO = new CuentaBO(cuentaDAO);
+
     @Test
     public void testObtenerCuentasValidas() {
-
-        // Preparación de dependencias
-        CuentaDTO dto = new CuentaDTO();
-        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
-        ICuentaBO cuentaBO = new CuentaBO(cuentaDAO); 
-        
         int idClienteValido = 1;
 
         List<CuentaDTO> cuentas = assertDoesNotThrow(() -> {
@@ -47,28 +34,28 @@ public class CuentaBOTest {
 
         assertNotNull(cuentas);
         assertFalse(cuentas.isEmpty());
-        
-        // Confirmar que son DTOs
         assertTrue(cuentas.get(0) instanceof CuentaDTO);
         System.out.println("Saldo recuperado en DTO: " + cuentas.get(0).getSaldoCuenta());
     }
 
-    /**
-     * Prueba testObtenerCuentasIdInvalido().
-     * No permitir IDs negativos o cero.
-     */
     @Test
-    public void testObtenerCuentasIdInvalido() {
+    void testObtenerCuentasClienteInexistente() {
+        int idFantasma = 999;
 
-        CuentaDTO dto = new CuentaDTO();
-        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
-        ICuentaBO cuentaBO = new CuentaBO(cuentaDAO);
-        
-        int idNegativo = -5;
+        List<CuentaDTO> cuentas = assertDoesNotThrow(() -> {
+            return cuentaBO.obtenerCuentas(idFantasma);
+        });
 
-        // Debe lanzar NegocioException, NO debe llamar a la BD
+        assertNotNull(cuentas);
+        assertTrue(cuentas.isEmpty());
+    }
+
+    @Test
+    void testObtenerCuentasIdInvalido() {
+        int idInvalido = -5;
+
         assertThrows(NegocioException.class, () -> {
-            cuentaBO.obtenerCuentas(idNegativo);
+            cuentaBO.obtenerCuentas(idInvalido);
         });
     }
 }

@@ -19,12 +19,12 @@ import org.itson.banco.persistencia.CuentaDAO;
  * @author nafbr
  */
 public class CuentasFORM extends javax.swing.JFrame {
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CuentasFORM.class.getName());
     private final ControladorTransferencia controlador;
-    private final ClienteDTO cliente;
+    private final ClienteDTO cliente;//Para mover los datos del cliente loggeado
     private final ICuentaBO cuentaBO;
-    
+
     /**
      * Creates new form CuentasFORM
      */
@@ -35,59 +35,64 @@ public class CuentasFORM extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         configurarVentana();
-        
+
     }
 
     private void configurarVentana() {
         // Poner nombre del cliente
         lblNombreCliente.setText(cliente.getNombres() + " " + cliente.getApellidoPaterno());
-
-        // Cargar las cuentas en el ComboBox
-        cargarCuentas();
-
-        // Agregar el listener al ComboBox
-        // Cada vez que cambie la selección, se actualiza el saldo
         cbxCuentasUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 actualizarSaldo();
             }
         });
+        cargarCuentas();
     }
-    
+
     private void cargarCuentas() {
         try {
-            List<CuentaDTO> cuentas = cuentaBO.obtenerCuentas(cliente.getId());
-
-            DefaultComboBoxModel model = new DefaultComboBoxModel();
-            for (CuentaDTO cuenta : cuentas) {
-                model.addElement(cuenta);
-            }
-            cbxCuentasUsuario.setModel(model);
-
-            // Actualizar saldo de la primera cuenta seleccionada (si hay cuentas)
-            if (!cuentas.isEmpty()) {
-                actualizarSaldo();
-            } else {
+            controlador.cargarCuentasDelCliente(cliente.getId(), cuentaBO);
+            List<String> numerosCuenta = controlador.obtenerNumerosDeCuenta();
+            DefaultComboBoxModel modeloCombo = (DefaultComboBoxModel) this.cbxCuentasUsuario.getModel();
+            modeloCombo.removeAllElements();
+            
+            if (numerosCuenta.isEmpty()) {
+                modeloCombo.addElement("No tiene cuentas aún");
+                cbxCuentasUsuario.setEnabled(false); 
+                btnTransferir.setEnabled(false); 
                 lblSaldoCuenta.setText("0.00");
-                btnTransferir.setEnabled(false); // Desactivar si no hay cuentas
-            }
+                
+            } else {
+                for (String numero : numerosCuenta) {
+                    modeloCombo.addElement(numero);
+                }
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error al cargar cuentas: " + e.getMessage());
+                cbxCuentasUsuario.setEnabled(true);
+                btnTransferir.setEnabled(true);
+                cbxCuentasUsuario.setSelectedIndex(0); 
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al cargar cuentas: " + ex.getMessage());
         }
     }
-    
+
     private void actualizarSaldo() {
-        // Recuperamos el objeto seleccionado
         Object seleccionado = cbxCuentasUsuario.getSelectedItem();
 
-        if (seleccionado != null && seleccionado instanceof CuentaDTO) {
-            CuentaDTO cuenta = (CuentaDTO) seleccionado;
-            // Actualizamos el label del dinero
-            lblSaldoCuenta.setText(String.format("%.2f", cuenta.getSaldoCuenta()));
+        if (seleccionado != null) {
+            String numeroSeleccionado = seleccionado.toString();
+            
+            if (!numeroSeleccionado.equals("No tiene cuentas aún")) {
+                double saldo = controlador.obtenerSaldo(numeroSeleccionado);
+                lblSaldoCuenta.setText(String.format("%.2f", saldo));
+                return;
+            }
         }
+        
+        lblSaldoCuenta.setText("0.00");
     }
     
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -100,6 +105,9 @@ public class CuentasFORM extends javax.swing.JFrame {
         pnlBanner = new javax.swing.JPanel();
         btnPaginaCuenta = new javax.swing.JButton();
         lblVoyage = new javax.swing.JLabel();
+        lblIcono = new javax.swing.JLabel();
+        btnAyuda = new javax.swing.JButton();
+        btnOperaciones = new javax.swing.JButton();
         pnlDatos = new javax.swing.JPanel();
         lblHola = new javax.swing.JLabel();
         lblNombreCliente = new javax.swing.JLabel();
@@ -135,6 +143,24 @@ public class CuentasFORM extends javax.swing.JFrame {
         lblVoyage.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         lblVoyage.setText("VOYAGE");
 
+        lblIcono.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        lblIcono.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblIcono.setText("Usuario...");
+
+        btnAyuda.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        btnAyuda.setText("Ayuda");
+        btnAyuda.setToolTipText("");
+        btnAyuda.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnAyuda.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnAyuda.addActionListener(this::btnAyudaActionPerformed);
+
+        btnOperaciones.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        btnOperaciones.setText("Operaciones");
+        btnOperaciones.setToolTipText("");
+        btnOperaciones.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnOperaciones.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnOperaciones.addActionListener(this::btnOperacionesActionPerformed);
+
         javax.swing.GroupLayout pnlBannerLayout = new javax.swing.GroupLayout(pnlBanner);
         pnlBanner.setLayout(pnlBannerLayout);
         pnlBannerLayout.setHorizontalGroup(
@@ -144,13 +170,26 @@ public class CuentasFORM extends javax.swing.JFrame {
                 .addComponent(lblVoyage, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(353, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(btnOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
         pnlBannerLayout.setVerticalGroup(
             pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(lblVoyage))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBannerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnOperaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblIcono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pnlDatos.setBackground(new java.awt.Color(217, 217, 217));
@@ -316,7 +355,7 @@ public class CuentasFORM extends javax.swing.JFrame {
                 .addComponent(pnlBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -328,16 +367,19 @@ public class CuentasFORM extends javax.swing.JFrame {
 
     private void btnTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirActionPerformed
         Object seleccionado = cbxCuentasUsuario.getSelectedItem();
-
-        if (seleccionado == null) { // Aquí validamos que el usuario si seleccione una cuenta
-            JOptionPane.showMessageDialog(this, "Seleccione una cuenta");
+        // Validamos que sí haya seleccionado algo válido
+        if (seleccionado == null || seleccionado.toString().equals("No tiene cuentas aún")) { 
+            JOptionPane.showMessageDialog(this, "Seleccione una cuenta válida");
             return;
         }
-
-        CuentaDTO cuentaSeleccionada = (CuentaDTO) seleccionado;
-
-        controlador.irATransferencias(cuentaSeleccionada);
-        this.dispose();
+        String numeroCuentaSeleccionada = seleccionado.toString();
+        CuentaDTO cuentaSeleccionada = controlador.obtenerCuentaPorNumero(numeroCuentaSeleccionada);
+        if (cuentaSeleccionada != null) {
+            controlador.irATransferencias(cuentaSeleccionada);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Hubo un error al recuperar la cuenta.");
+        }
     }//GEN-LAST:event_btnTransferirActionPerformed
 
     private void btnDatosCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCuentaActionPerformed
@@ -345,7 +387,7 @@ public class CuentasFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDatosCuentaActionPerformed
 
     private void btnAgregarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCuentaActionPerformed
-        controlador.abrirCrearNuevaCuenta(controlador, cliente);
+        controlador.abrirCrearNuevaCuenta(cliente);
         this.dispose();
     }//GEN-LAST:event_btnAgregarCuentaActionPerformed
 
@@ -353,19 +395,30 @@ public class CuentasFORM extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxCuentasUsuarioActionPerformed
 
-    private void lblVoyageActionPerfomed(java.awt.event.ActionEvent evt){
+    private void btnOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionesActionPerformed
+        JOptionPane.showMessageDialog(this, "Chamba Nafi");
+    }//GEN-LAST:event_btnOperacionesActionPerformed
+
+    private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
+        JOptionPane.showMessageDialog(this, "Chamba quien sabe, hay q checar eso");
+    }//GEN-LAST:event_btnAyudaActionPerformed
+
+    private void lblVoyageActionPerfomed(java.awt.event.ActionEvent evt) {
         //controlador.abrirInicioCliente(controlador, cliente);
         //this.dispose();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarCuenta;
+    private javax.swing.JButton btnAyuda;
     private javax.swing.JButton btnDatosCuenta;
+    private javax.swing.JButton btnOperaciones;
     private javax.swing.JButton btnPaginaCuenta;
     private javax.swing.JButton btnTransferir;
     private javax.swing.JComboBox<String> cbxCuentasUsuario;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblHola;
+    private javax.swing.JLabel lblIcono;
     private javax.swing.JLabel lblNombreCliente;
     private javax.swing.JLabel lblNumCuenta;
     private javax.swing.JLabel lblSaldoCuenta;

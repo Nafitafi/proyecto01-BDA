@@ -10,8 +10,9 @@ import org.itson.banco.persistencia.ITransferenciaDAO;
 import org.itson.banco.persistencia.PersistenciaException;
 
 /**
- *
- * @author emyla
+ * Clase TransferenciaBO.
+ * Se encarga de realizar las validaciones necesarias en las transferencias.
+ * @author Emily Lara
  */
 public class TransferenciaBO implements ITransferenciaBO {
     

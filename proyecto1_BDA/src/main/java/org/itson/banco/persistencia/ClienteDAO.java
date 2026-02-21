@@ -20,13 +20,8 @@ import org.itson.banco.entidades.Cliente;
  */
 public class ClienteDAO implements IClienteDAO {
 
-    private ConexionBD conexion;
     private static final Logger LOGGER = Logger.getLogger(ClienteDAO.class.getName());
 
-    public ClienteDAO(ConexionBD conexion) {
-        this.conexion = conexion;
-    }
-    
 
     /**
      * Método bucarPorCredenciales. Se encarga de buscar que en la base de datos
@@ -41,10 +36,10 @@ public class ClienteDAO implements IClienteDAO {
     public Cliente buscarPorCorreo(String correo) throws PersistenciaException {
         String comandoSQL = "SELECT id_cliente, nombres, apellido_paterno, apellido_materno, correo, contrasena FROM clientes WHERE correo = ?";
 
-        try (Connection conn = conexion.crearConexion(); PreparedStatement comando = conn.prepareStatement(comandoSQL)) {
+        try (Connection conn = ConexionBD.crearConexion(); 
+             PreparedStatement comando = conn.prepareStatement(comandoSQL)) {
 
             comando.setString(1, correo); 
-
             ResultSet resultados = comando.executeQuery();
 
             if (resultados.next()) {

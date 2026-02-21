@@ -22,6 +22,7 @@ public class CuentaDTO {
      * @param numeroCuenta
      * @param saldoCuenta
      * @param estado 
+     * @param fechaApertura 
      */
     public CuentaDTO(String numeroCuenta, double saldoCuenta, String estado, GregorianCalendar fechaApertura) {
         this.numeroCuenta = numeroCuenta;
@@ -30,6 +31,9 @@ public class CuentaDTO {
         this.fechaApertura = fechaApertura;
     }
 
+    /**
+     * COnstructor por omisión.
+     */
     public CuentaDTO() {
     }
 
@@ -64,11 +68,5 @@ public class CuentaDTO {
     public void setFechaApertura(GregorianCalendar fechaApertura) {
         this.fechaApertura = fechaApertura;
     }
-
-    @Override
-    public String toString() {
-        return numeroCuenta;
-    }
-    
     
 }

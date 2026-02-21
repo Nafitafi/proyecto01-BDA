@@ -18,42 +18,23 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author nafbr
  */
 public class CuentaDAOTest {
-    
-    public CuentaDAOTest() {
-    }
+
+    private final ICuentaDAO cuentaDAO = new CuentaDAO();
 
     @Test
-    public void testSomeMethod() {
-    }
-    /**
-     * Prueba testConsultarCuentasClienteExistente().
-     * Asegura que el DAO recupere una lista de ENTIDADES Cuenta.
-     */
-    @Test
     public void testConsultarCuentasClienteExistente() {
-        
-        CuentaDTO dto = new CuentaDTO();
-        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
-        int idClienteValido = 1; 
+        int idClienteValido = 1;
         List<Cuenta> cuentas = assertDoesNotThrow(() -> {
             return cuentaDAO.consultarCuentasPorCliente(idClienteValido);
         });
 
         assertNotNull(cuentas);
         assertFalse(cuentas.isEmpty());
-        
-        // Verificar que el objeto dentro sea una Entidad
         assertTrue(cuentas.get(0) instanceof Cuenta);
     }
 
-    /**
-     * Prueba testConsultarCuentasClienteInexistente().
-     */
     @Test
     void testConsultarCuentasClienteInexistente() {
-        
-        CuentaDTO dto = new CuentaDTO();
-        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
         int idFantasma = 99999;
 
         List<Cuenta> cuentas = assertDoesNotThrow(() -> {
@@ -63,45 +44,28 @@ public class CuentaDAOTest {
         assertNotNull(cuentas);
         assertTrue(cuentas.isEmpty());
     }
-    
-    /**
-     * Prueba testConsultarCuentaPorNumeroExistente().
-     * Comprobar que el metodo regrese la cuenta pertinente
-     */
+
     @Test
     void testConsultarCuentaPorNumeroExistente() {
-        
-        CuentaDTO dto = new CuentaDTO();
-        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
-        String numeroCuentaValido = "123-234-1234";
-        
+        String numeroCuentaValido = "123-456-7890";
+
         Cuenta cuenta = assertDoesNotThrow(() -> {
             return cuentaDAO.consultarCuentaPorNumero(numeroCuentaValido);
         });
-        
+
         assertNotNull(cuenta);
         assertTrue(cuenta instanceof Cuenta);
         assertTrue(cuenta.getNumeroCuenta().equalsIgnoreCase(numeroCuentaValido));
-        
     }
-    
-    /***
-     * Prueba testConsultarCuentaPorNumeroInexistente()
-     * Comprobar que si no se encuentra la cuenta regrese una Cuenta nula
-     */
+
     @Test
     void testConsultarCuentaPorNumeroInexistente() {
-        
-        CuentaDTO dto = new CuentaDTO();
-        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
-        String NumeroCuentaInexistente = "123-456-7890";
-        
+        String numeroCuentaInexistente = "1";
+
         Cuenta cuenta = assertDoesNotThrow(() -> {
-            return cuentaDAO.consultarCuentaPorNumero(NumeroCuentaInexistente);
+            return cuentaDAO.consultarCuentaPorNumero(numeroCuentaInexistente);
         });
-        
+
         assertNull(cuenta);
-        
     }
-    
 }

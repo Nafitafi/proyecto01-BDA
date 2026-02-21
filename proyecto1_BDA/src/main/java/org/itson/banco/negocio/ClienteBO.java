@@ -48,9 +48,8 @@ public class ClienteBO implements IClienteBO {
         Cliente clienteEntidad = null;
         try {
             clienteEntidad = clienteDAO.buscarPorCorreo(correo);
-        } catch (PersistenciaException e) {
-            //TODO
-            throw new NegocioException("Error en el sistema. Intente más tarde.", e);
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Error en el sistema. Intente más tarde.", ex);
         }
 
         if (clienteEntidad == null) {

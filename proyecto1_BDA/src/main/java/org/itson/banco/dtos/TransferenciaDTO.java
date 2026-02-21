@@ -5,8 +5,9 @@
 package org.itson.banco.dtos;
 
 /**
- * Clase Transferencia DTO
- * @author emyla
+ * Clase Transferencia DTO.
+ * Clase encargada de transportar los datos de una transferencia entre capas.
+ * @author Emily Lara
  */
 public class TransferenciaDTO {
     
@@ -14,6 +15,12 @@ public class TransferenciaDTO {
     private String cuentaDestino;
     private double monto;
 
+    /**
+     * Constructor de la clase.
+     * @param cuentaOrigen
+     * @param cuentaDestino
+     * @param monto 
+     */
     public TransferenciaDTO(String cuentaOrigen, String cuentaDestino, double monto) {
         this.cuentaOrigen = cuentaOrigen;
         this.cuentaDestino = cuentaDestino;

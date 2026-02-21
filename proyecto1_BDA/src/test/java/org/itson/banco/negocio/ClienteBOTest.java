@@ -5,12 +5,15 @@
 package org.itson.banco.negocio;
 
 import java.util.List;
+import org.itson.banco.dtos.ClienteDTO;
 import org.itson.banco.dtos.CuentaDTO;
 import org.itson.banco.negocio.CuentaBO;
 import org.itson.banco.negocio.ICuentaBO;
 import org.itson.banco.negocio.NegocioException;
+import org.itson.banco.persistencia.ClienteDAO;
 import org.itson.banco.persistencia.ConexionBD;
 import org.itson.banco.persistencia.CuentaDAO;
+import org.itson.banco.persistencia.IClienteDAO;
 import org.itson.banco.persistencia.ICuentaDAO;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,68 +24,65 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ClienteBOTest {
 
-    public ClienteBOTest() {
-    }
+    private final IClienteDAO clienteDAO = new ClienteDAO();
+    private final IClienteBO clienteBO = new ClienteBO(clienteDAO);
 
+    /**
+     * Prueba el happy path, un cliente que sí existe pone su contraseña
+     * correcta.
+     */
     @Test
-    public void testSomeMethod() {
-    }
+    public void testIniciarSesionCredencialesValidas() {
+        String correoReal = "emily@gmail.com";
+        String contrasenaReal = "123456"; 
 
-    @Test
-    public void testObtenerCuentasClienteExistente() {
-        
-        CuentaDTO dto = new CuentaDTO();
-        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
-
-        ICuentaBO cuentaBO = new CuentaBO(cuentaDAO);
-
-        int idClienteEmily = 1;
-
-        List<CuentaDTO> cuentas = assertDoesNotThrow(() -> {
-            return cuentaBO.obtenerCuentas(idClienteEmily);
+        ClienteDTO clienteLogueado = assertDoesNotThrow(() -> {
+            return clienteBO.login(correoReal, contrasenaReal);
         });
 
-        assertNotNull(cuentas);
-        assertFalse(cuentas.isEmpty());
-
-        System.out.println("Cuentas recuperadas por BO: " + cuentas.size());
+        assertNotNull(clienteLogueado);
     }
 
     /**
-     * Prueba testObtenerCuentasClienteInexistente(). Asegura que el BO retorne
-     * una lista vacía (y no null) si el cliente no existe.
+     * El cliente existe, pero se equivocó de contraseña.
+     * El BO debe bloquear el paso lanzando una NegocioException.
      */
     @Test
-    void testObtenerCuentasClienteInexistente() {
-        CuentaDTO dto = new CuentaDTO();
-        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
-        ICuentaBO cuentaBO = new CuentaBO(cuentaDAO);
-
-        int idFantasma = 999;
-
-        List<CuentaDTO> cuentas = assertDoesNotThrow(() -> {
-            return cuentaBO.obtenerCuentas(idFantasma);
-        });
-
-        assertNotNull(cuentas);
-        assertTrue(cuentas.isEmpty());
-    }
-
-    /**
-     * Prueba testObtenerCuentasIdInvalido().
-     * El BO debe impedir que busquemos IDs negativos o
-     * cero.
-     */
-    @Test
-    void testObtenerCuentasIdInvalido() {
-        CuentaDTO dto = new CuentaDTO();
-        ICuentaDAO cuentaDAO = new CuentaDAO(dto);
-        ICuentaBO cuentaBO = new CuentaBO(cuentaDAO);
-
-        int idInvalido = -5; // Un ID negativo no tiene sentido je
+    public void testIniciarSesionContrasenaIncorrecta() {
+        String correoReal = "emily@gmail.com";
+        String contrasenaFalsa = "contrasenaEquivocada123";
 
         assertThrows(NegocioException.class, () -> {
-            cuentaBO.obtenerCuentas(idInvalido);
+            clienteBO.login(correoReal, contrasenaFalsa);
+        });
+    }
+
+    /**
+     * Alguien intenta entrar con un correo que no está
+     * registrado. El BO debe lanzar una NegocioException diciendo que el
+     * usuario no existe.
+     */
+    @Test
+    public void testIniciarSesionCorreoInexistente() {
+        String correoFalso = "fantasma@banco.com";
+        String contrasenaCualquiera = "123456";
+
+        assertThrows(NegocioException.class, () -> {
+            clienteBO.login(correoFalso, contrasenaCualquiera);
+        });
+    }
+
+    /**
+     * EL usuario no escribió nadota. El BO debería rechazarlo antes de siquiera ir a la Base de
+     * Datos.
+     */
+    @Test
+    public void testIniciarSesionCamposVacios() {
+        String correoVacio = "";
+        String contrasenaVacia = "";
+
+        assertThrows(NegocioException.class, () -> {
+            clienteBO.login(correoVacio, contrasenaVacia);
         });
     }
 }

@@ -5,7 +5,8 @@
 package org.itson.banco.dtos;
 
 /**
- * Clase ClienteDTO. Clase encargada de transferir los datos de un cliente entre
+ * Clase ClienteDTO.
+ * Clase encargada de transferir los datos de un cliente entre
  * capas.
  *
  * @author Nahomi Figueroa, Emily Lara y Oliver Robles
@@ -27,7 +28,8 @@ public class ClienteDTO {
      * Constructor de la clase ClienteDTO
      *
      * @param id
-     * @param nombre
+     * @param nombres
+     * @param apellidoMaterno
      * @param apellidoPaterno
      */
     public ClienteDTO(int id, String nombres, String apellidoPaterno, String apellidoMaterno) {

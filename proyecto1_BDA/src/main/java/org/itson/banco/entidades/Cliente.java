@@ -5,8 +5,9 @@
 package org.itson.banco.entidades;
 
 /**
- *
- * @author nafbr
+ * Clase cliente.
+ * Clase entidad Cliente, encargada de crear objetos molde.
+ * @author Nahomi Figueroa
  */
 public class Cliente {
     private int id;
@@ -17,7 +18,11 @@ public class Cliente {
     private String contrasena; // SOLO PARA LA BD
     private int idDireccion;
 
-    public Cliente() {}
+    /**
+     * Constructor por omisión.
+     */
+    public Cliente() {
+    }
 
     public int getId() {
         return id;

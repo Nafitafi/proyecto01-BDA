@@ -7,22 +7,32 @@ package org.itson.banco.entidades;
 import java.util.GregorianCalendar;
 
 /**
- *
- * @author nafbr
+ * Clase entidad Cuenta. 
+ * Representa una cuenta de las varias que puede tener el cliente.
+ * @author Nahomi Figueroa
  */
 public class Cuenta {
 
     private String numeroCuenta; // Primary Key
-    private GregorianCalendar fechaApertura; //Calendario gregoriano aqui
+    private GregorianCalendar fechaApertura;
     private double saldo;
     private String estado; 
     private int idCliente; 
 
-    
+    /**
+     * COnstructor por omisión.
+     */
     public Cuenta() {
     }
 
-   
+    /**
+     * Constructor de la clase con sus atributos.
+     * @param numeroCuenta
+     * @param fechaApertura
+     * @param saldo
+     * @param estado
+     * @param idCliente 
+     */
     public Cuenta(String numeroCuenta, GregorianCalendar fechaApertura, double saldo, String estado, int idCliente) {
         this.numeroCuenta = numeroCuenta;
         this.fechaApertura = fechaApertura;
@@ -70,10 +80,5 @@ public class Cuenta {
 
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
-    }
-
-    @Override
-    public String toString() {
-        return "Cuenta{" + "numeroCuenta=" + numeroCuenta + ", saldo=" + saldo + ", estado=" + estado + '}';
     }
 }
