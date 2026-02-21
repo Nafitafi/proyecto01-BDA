@@ -5,10 +5,16 @@
 package org.itson.banco.persistencia;
 
 import org.itson.banco.dtos.TransferenciaDTO;
+import org.itson.banco.negocio.NegocioException;
+import org.itson.banco.negocio.TransferenciaBO;
+import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 /**
- *
+ * Cuentas de prueba:
+ * Cuenta origen 123-456-7890
+ * Cuenta destino 234-567-8901
  * @author emyla
  */
 public class TransferenciaDAOTest {
@@ -16,20 +22,48 @@ public class TransferenciaDAOTest {
     public TransferenciaDAOTest(){
     }
     
-//    @Test
-//    public void testeRealizarTransferenciaFuncionaOk(){
-//        
-//        // setup
-//        TransferenciaDAO nuevaTransferenciaDAO = new TransferenciaDAO(new ConexionBD());
-//        
-//        //Datos d prueba :D
-//        TransferenciaDTO TransferenciaDTO = new TransferenciaDTO(
-//                1, // -> Cuenta de origen (la mia)
-//                2, // -> Cuenta destino (oliver)
-//                100.00 // -> monto 
-//        );
-//        
-//        // Ejecución y afirmación
-//        
-//    }
+    /***
+     * Test testRealizarTransferenciaFuncionaOK()
+     */
+    @Test
+    void testRealizarTransferenciaFuncionaOK(){
+        
+        // Cuenta origen 123-456-7890
+        // Cuenta destino 234-567-8901
+        TransferenciaDTO transferenciaDTO = new TransferenciaDTO("123-456-7890", "234-567-8901", 100);
+        TransferenciaBO transferenciaBO = new TransferenciaBO(new TransferenciaDAO(new ConexionBD()));
+        
+        int folio = Assertions.assertDoesNotThrow(() -> {
+            return transferenciaBO.realizarTransferencia(transferenciaDTO);
+        });
+        
+        assertNotNull(folio); 
+        
+    }
+
+    @Test
+    void testRealizarTransferenciaCuentaInvalida() {
+        // Cuenta origen 123-456-7890
+        // Cuenta destino 000-000-0000 invalida
+        TransferenciaDTO transferenciaDTO = new TransferenciaDTO("123-456-7890", "000-000-0000", 100);
+        TransferenciaBO transferenciaBO = new TransferenciaBO(new TransferenciaDAO(new ConexionBD()));
+        
+        Assertions.assertThrows(NegocioException.class, () -> {
+            transferenciaBO.realizarTransferencia(transferenciaDTO);
+        });
+        
+    }
+    
+    @Test
+    void testRealizarTransferenciaMontoInvalido() {
+        // Cuenta origen 123-456-7890
+        // Cuenta destino 234-567-8901 
+        TransferenciaDTO transferenciaDTO = new TransferenciaDTO("123-456-7890", "000-000-0000", 10000000);
+        TransferenciaBO transferenciaBO = new TransferenciaBO(new TransferenciaDAO(new ConexionBD()));
+        
+        Assertions.assertThrows(NegocioException.class, () -> {
+            transferenciaBO.realizarTransferencia(transferenciaDTO);
+        });
+        
+    }
 }

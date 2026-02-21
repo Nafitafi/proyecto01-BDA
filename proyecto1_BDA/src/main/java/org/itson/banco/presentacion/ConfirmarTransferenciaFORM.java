@@ -40,9 +40,6 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
         String montoTransferir = String.valueOf(transferenciaDTO.getMonto());
         lblMontoTansferir.setText(montoTransferir);
         
-        String saldoDisponible = String.valueOf(cuentaOrigen.getSaldoCuenta());
-        lblPesosDisponibles.setText(saldoDisponible);
-        
         String saldoRestante = String.valueOf((cuentaOrigen.getSaldoCuenta() - transferenciaDTO.getMonto()));
         lblPesosRestantes.setText(saldoRestante);
     }
@@ -60,7 +57,6 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
         pnlDatosCuenta = new javax.swing.JPanel();
         btnConfirmar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
-        lblSaldoDisponible = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         jpnCuentaDestino = new javax.swing.JPanel();
         lblCuentaDestino = new javax.swing.JLabel();
@@ -74,7 +70,6 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         lblSaldoRestante = new javax.swing.JLabel();
         lblMontoTansferir = new javax.swing.JLabel();
-        lblPesosDisponibles = new javax.swing.JLabel();
         lblPesosRestantes = new javax.swing.JLabel();
         pnlBanner = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -98,9 +93,6 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
 
         lblTitulo.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         lblTitulo.setText("Realizar transferencia");
-
-        lblSaldoDisponible.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        lblSaldoDisponible.setText("Saldo Disponible");
 
         btnCancelar.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -203,10 +195,8 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
         lblSaldoRestante.setText("Saldo Restante");
 
         lblMontoTansferir.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        lblMontoTansferir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMontoTansferir.setText("$00.00");
-
-        lblPesosDisponibles.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        lblPesosDisponibles.setText("$00.00");
 
         lblPesosRestantes.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         lblPesosRestantes.setText("$00.00");
@@ -218,20 +208,10 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
             .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
                 .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jpnCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
-                                .addComponent(lblSaldoDisponible)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jpnCuentaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
-                                            .addComponent(lblPesosRestantes, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(10, 10, 10)))
-                                    .addComponent(lblSaldoRestante, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jpnCuentaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(lblMontoTansferir, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -248,11 +228,15 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
             .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
                 .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblPesosDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
                         .addGap(235, 235, 235)
-                        .addComponent(btnCancelar)))
+                        .addComponent(btnCancelar))
+                    .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
+                                .addComponent(lblPesosRestantes, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10))
+                            .addComponent(lblSaldoRestante))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         pnlDatosCuentaLayout.setVerticalGroup(
@@ -270,21 +254,14 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
                         .addGap(21, 21, 21)
                         .addComponent(lblMontoTansferir)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
-                        .addComponent(lblSaldoRestante)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPesosRestantes)
-                        .addGap(27, 27, 27)
-                        .addComponent(btnConfirmar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCancelar)
-                        .addGap(56, 56, 56))
-                    .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
-                        .addComponent(lblSaldoDisponible)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPesosDisponibles)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblSaldoRestante)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblPesosRestantes)
+                .addGap(27, 27, 27)
+                .addComponent(btnConfirmar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCancelar)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
@@ -300,7 +277,7 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
             pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDatosLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(pnlDatosCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlDatosCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(25, Short.MAX_VALUE))
         );
 
@@ -415,9 +392,7 @@ public class ConfirmarTransferenciaFORM extends javax.swing.JFrame {
     private javax.swing.JLabel lblNoCuenta2;
     private javax.swing.JLabel lblNoCuentaDestino;
     private javax.swing.JLabel lblNoCuentaOrigen;
-    private javax.swing.JLabel lblPesosDisponibles;
     private javax.swing.JLabel lblPesosRestantes;
-    private javax.swing.JLabel lblSaldoDisponible;
     private javax.swing.JLabel lblSaldoRestante;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnlBanner;
