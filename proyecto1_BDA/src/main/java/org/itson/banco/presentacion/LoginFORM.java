@@ -183,7 +183,7 @@ public class LoginFORM extends javax.swing.JFrame {
             
             // Si no hubo error, avisamos al controlador
             this.dispose(); // Cerramos login
-            controlador.loginExitoso(cliente);
+            controlador.abrirInicioCliente(cliente);
 
         } catch (NegocioException e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Error de Login", JOptionPane.ERROR_MESSAGE);

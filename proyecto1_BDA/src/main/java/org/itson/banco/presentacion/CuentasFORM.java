@@ -99,7 +99,7 @@ public class CuentasFORM extends javax.swing.JFrame {
 
         pnlBanner = new javax.swing.JPanel();
         btnPaginaCuenta = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblVoyage = new javax.swing.JLabel();
         pnlDatos = new javax.swing.JPanel();
         lblHola = new javax.swing.JLabel();
         lblNombreCliente = new javax.swing.JLabel();
@@ -132,8 +132,8 @@ public class CuentasFORM extends javax.swing.JFrame {
         btnPaginaCuenta.setMargin(new java.awt.Insets(2, 14, 0, 14));
         btnPaginaCuenta.addActionListener(this::btnPaginaCuentaActionPerformed);
 
-        jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel1.setText("VOYAGE");
+        lblVoyage.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        lblVoyage.setText("VOYAGE");
 
         javax.swing.GroupLayout pnlBannerLayout = new javax.swing.GroupLayout(pnlBanner);
         pnlBanner.setLayout(pnlBannerLayout);
@@ -141,7 +141,7 @@ public class CuentasFORM extends javax.swing.JFrame {
             pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBannerLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblVoyage, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(353, Short.MAX_VALUE))
@@ -150,7 +150,7 @@ public class CuentasFORM extends javax.swing.JFrame {
             pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
-                .addComponent(jLabel1))
+                .addComponent(lblVoyage))
         );
 
         pnlDatos.setBackground(new java.awt.Color(217, 217, 217));
@@ -353,6 +353,10 @@ public class CuentasFORM extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxCuentasUsuarioActionPerformed
 
+    private void lblVoyageActionPerfomed(java.awt.event.ActionEvent evt){
+        //controlador.abrirInicioCliente(controlador, cliente);
+        //this.dispose();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarCuenta;
@@ -360,7 +364,6 @@ public class CuentasFORM extends javax.swing.JFrame {
     private javax.swing.JButton btnPaginaCuenta;
     private javax.swing.JButton btnTransferir;
     private javax.swing.JComboBox<String> cbxCuentasUsuario;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblHola;
     private javax.swing.JLabel lblNombreCliente;
@@ -368,6 +371,7 @@ public class CuentasFORM extends javax.swing.JFrame {
     private javax.swing.JLabel lblSaldoCuenta;
     private javax.swing.JLabel lblSaldoDisponible;
     private javax.swing.JLabel lblSignoDinero;
+    private javax.swing.JLabel lblVoyage;
     private javax.swing.JPanel pnlBanner;
     private javax.swing.JPanel pnlCuentas;
     private javax.swing.JPanel pnlDatos;

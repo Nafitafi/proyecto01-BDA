@@ -33,7 +33,7 @@ public class TransferenciaDAOTest {
         TransferenciaDTO transferenciaDTO = new TransferenciaDTO("123-456-7890", "234-567-8901", 100);
         TransferenciaBO transferenciaBO = new TransferenciaBO(new TransferenciaDAO(new ConexionBD()));
         
-        int folio = Assertions.assertDoesNotThrow(() -> {
+        boolean folio = Assertions.assertDoesNotThrow(() -> {
             return transferenciaBO.realizarTransferencia(transferenciaDTO);
         });
         

@@ -38,6 +38,13 @@ public class ControladorTransferencia {
         login.setVisible(true);
     }
     
+    public void abrirInicioCliente(ClienteDTO cliente){
+        this.clienteLogueado = cliente;
+        
+        InicioClienteFORM inicio = new InicioClienteFORM(this, clienteLogueado);
+        inicio.setVisible(true);
+    }
+    
     public void loginExitoso(ClienteDTO cliente) {
         this.clienteLogueado = cliente;
         CuentaDTO cuentaDTO = new CuentaDTO();

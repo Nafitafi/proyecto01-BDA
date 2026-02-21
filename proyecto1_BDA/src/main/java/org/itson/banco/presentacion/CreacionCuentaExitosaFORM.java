@@ -56,6 +56,7 @@ public class CreacionCuentaExitosaFORM extends javax.swing.JFrame {
         txtNombreCompleto = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(245, 239, 235));
         setPreferredSize(new java.awt.Dimension(620, 424));
 
         pnlBanner.setBackground(new java.awt.Color(255, 255, 255));
@@ -231,6 +232,7 @@ public class CreacionCuentaExitosaFORM extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         controlador.loginExitoso(cliente);
+        this.dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void cargarNombreCompleto(){
