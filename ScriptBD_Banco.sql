@@ -36,9 +36,8 @@ CREATE TABLE cuentas (
 
 CREATE TABLE operaciones (
     folio_operacion INT AUTO_INCREMENT PRIMARY KEY,
-    tipo_operacion ENUM('transferencia', 'retiro sin cuenta') NOT NULL,
+    tipo_operacion ENUM('transferencia', 'retiro sin cuenta', 'alta de cuenta') NOT NULL,
     fecha_operacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    monto DECIMAL(10,2) NOT NULL CHECK (monto > 0),
     descripcion VARCHAR(100),
     numero_cuenta VARCHAR(12) NOT NULL,
     FOREIGN KEY (numero_cuenta) REFERENCES cuentas(numero_cuenta)
@@ -47,6 +46,7 @@ CREATE TABLE operaciones (
 CREATE TABLE transferencias (
 	folio_operacion INT PRIMARY KEY,
     cuenta_destino VARCHAR(12) NOT NULL,
+    monto DECIMAL(10,2) NOT NULL CHECK (monto > 0),
     fecha_transferencia DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (folio_operacion) REFERENCES operaciones(folio_operacion),
     FOREIGN KEY (cuenta_destino) REFERENCES cuentas(numero_cuenta)
@@ -55,6 +55,7 @@ CREATE TABLE transferencias (
 CREATE TABLE retiros_sin_cuenta (
     folio_operacion INT PRIMARY KEY,
     contrasena_retiro VARCHAR(8) NOT NULL,
+    monto DECIMAL(10,2) NOT NULL CHECK (monto > 0),
     fecha_retiro DATETIME NOT NULL,
     estado_retiro ENUM('pendiente', 'cobrado', 'cancelado') NOT NULL,
     FOREIGN KEY (folio_operacion) REFERENCES operaciones(folio_operacion)
@@ -110,14 +111,14 @@ BEGIN
         
         -- Creamos el registro de la operacion 
         -- NOW proporciona fecha y la hora
-        INSERT INTO operaciones (tipo_operacion, fecha_operacion, monto, descripcion, numero_cuenta)
-        VALUES ('transferencia', NOW(), p_monto, CONCAT("Transferencia enviada a la cuenta: ", p_cuenta_destino), p_cuenta_origen);
+        INSERT INTO operaciones (tipo_operacion, fecha_operacion, descripcion, numero_cuenta)
+        VALUES ('transferencia', NOW(), CONCAT("Transferencia enviada a la cuenta: ", p_cuenta_destino), p_cuenta_origen);
         
         SET v_id_op = LAST_INSERT_ID();
         
         -- Creamos el registro de la transferencia
-        INSERT INTO transferencias (folio_operacion, cuenta_destino, fecha_transferencia)
-        VALUES (v_id_op, p_cuenta_destino, NOW());
+        INSERT INTO transferencias (folio_operacion, cuenta_destino, monto, fecha_transferencia)
+        VALUES (v_id_op, p_cuenta_destino, p_monto, NOW());
         
 	    -- Ejecutamos la sentencia completa
         COMMIT;
