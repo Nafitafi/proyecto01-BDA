@@ -18,6 +18,11 @@ public class ConexionBD {
     private static final String USER = "root";
     private static final String CONTRA = "Nugget94!";
 
+    /**
+     * Método estatico para crear una conexión.
+     * @return Objeto Connection para realizar la conexión como tal.
+     * @throws SQLException en caso de algún fallo
+     */
     public static Connection crearConexion() throws SQLException{
         Connection conexion = DriverManager.getConnection(ConexionBD.CADENACONEXION, ConexionBD.USER, ConexionBD.CONTRA);
         return conexion;

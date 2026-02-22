@@ -396,7 +396,8 @@ public class CuentasFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_cbxCuentasUsuarioActionPerformed
 
     private void btnOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionesActionPerformed
-        JOptionPane.showMessageDialog(this, "Chamba Nafi");
+        controlador.abrirHistorial();
+        this.dispose();
     }//GEN-LAST:event_btnOperacionesActionPerformed
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
