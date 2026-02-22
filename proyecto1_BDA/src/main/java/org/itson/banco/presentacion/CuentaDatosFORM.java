@@ -5,6 +5,8 @@
 package org.itson.banco.presentacion;
 
 import javax.swing.JOptionPane;
+import org.itson.banco.dtos.ClienteDTO;
+import org.itson.banco.dtos.CuentaDTO;
 
 /**
  *
@@ -14,11 +16,25 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CuentaDatosFORM.class.getName());
 
+    private final ControladorTransferencia controlador;
+    private final ClienteDTO clienteLogueado;
+    private final CuentaDTO cuentaSeleccionada;
+    
     /**
      * Creates new form CuentaDatosFORM
      */
-    public CuentaDatosFORM() {
+    public CuentaDatosFORM(ControladorTransferencia controlador, ClienteDTO cliente, CuentaDTO cuenta) {
+        this.controlador = controlador;
+        this.clienteLogueado = cliente;
+        this.cuentaSeleccionada = cuenta;
         initComponents();
+        cargarCuenta();
+    }
+    
+    private void cargarCuenta() {
+        lblNoCuenta.setText(cuentaSeleccionada.getNumeroCuenta());
+        String saldoString = String.valueOf(cuentaSeleccionada.getSaldoCuenta());
+        lblSaldo.setText(saldoString);
     }
 
     /**
@@ -42,12 +58,12 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         pnlCuenta = new javax.swing.JPanel();
         lblTextNoCuenta = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        lblTextNoCuenta2 = new javax.swing.JLabel();
+        lblNoCuenta = new javax.swing.JLabel();
         lblSaldo = new javax.swing.JLabel();
         lbltxtSaldo2 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btnVovler = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Datos de cuenta");
@@ -137,10 +153,10 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("VOYAGE");
 
-        lblTextNoCuenta2.setBackground(new java.awt.Color(0, 0, 0));
-        lblTextNoCuenta2.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lblTextNoCuenta2.setForeground(new java.awt.Color(0, 0, 0));
-        lblTextNoCuenta2.setText("*** *** *** ****");
+        lblNoCuenta.setBackground(new java.awt.Color(0, 0, 0));
+        lblNoCuenta.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        lblNoCuenta.setForeground(new java.awt.Color(0, 0, 0));
+        lblNoCuenta.setText("*** *** *** ****");
 
         javax.swing.GroupLayout pnlCuentaLayout = new javax.swing.GroupLayout(pnlCuenta);
         pnlCuenta.setLayout(pnlCuentaLayout);
@@ -155,7 +171,7 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCuentaLayout.createSequentialGroup()
                         .addComponent(lblTextNoCuenta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                        .addComponent(lblTextNoCuenta2)))
+                        .addComponent(lblNoCuenta)))
                 .addContainerGap())
         );
         pnlCuentaLayout.setVerticalGroup(
@@ -164,7 +180,7 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTextNoCuenta)
-                    .addComponent(lblTextNoCuenta2))
+                    .addComponent(lblNoCuenta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addContainerGap(19, Short.MAX_VALUE))
@@ -188,9 +204,9 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         jButton5.setText("<html><u>Generar retiro<br>sin cuenta</u></html>");
         jButton5.addActionListener(this::jButton5ActionPerformed);
 
-        jButton6.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        jButton6.setText("Volver");
-        jButton6.addActionListener(this::jButton6ActionPerformed);
+        btnVovler.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnVovler.setText("Volver");
+        btnVovler.addActionListener(this::btnVovlerActionPerformed);
 
         javax.swing.GroupLayout pnlFondo3Layout = new javax.swing.GroupLayout(pnlFondo3);
         pnlFondo3.setLayout(pnlFondo3Layout);
@@ -212,7 +228,7 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(52, 52, 52))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondo3Layout.createSequentialGroup()
-                        .addComponent(jButton6)
+                        .addComponent(btnVovler)
                         .addGap(173, 173, 173))))
         );
         pnlFondo3Layout.setVerticalGroup(
@@ -229,7 +245,7 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addComponent(jButton6)
+                .addComponent(btnVovler)
                 .addGap(34, 34, 34))
         );
 
@@ -304,22 +320,23 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void btnVovlerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVovlerActionPerformed
+        dispose();
+        controlador.loginExitoso(clienteLogueado);
+    }//GEN-LAST:event_btnVovlerActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAyuda;
     private javax.swing.JButton btnOperaciones;
     private javax.swing.JButton btnPaginaCuenta;
+    private javax.swing.JButton btnVovler;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblIcono;
+    private javax.swing.JLabel lblNoCuenta;
     private javax.swing.JLabel lblSaldo;
     private javax.swing.JLabel lblTextNoCuenta;
-    private javax.swing.JLabel lblTextNoCuenta2;
     private javax.swing.JLabel lblVoyage;
     private javax.swing.JLabel lbltxtSaldo2;
     private javax.swing.JPanel pnlBanner;

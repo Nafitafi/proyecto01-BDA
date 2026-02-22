@@ -9,10 +9,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import org.itson.banco.dtos.ClienteDTO;
 import org.itson.banco.dtos.CuentaDTO;
-import org.itson.banco.negocio.CuentaBO;
 import org.itson.banco.negocio.ICuentaBO;
-import org.itson.banco.persistencia.ConexionBD;
-import org.itson.banco.persistencia.CuentaDAO;
 
 /**
  *
@@ -366,14 +363,7 @@ public class CuentasFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPaginaCuentaActionPerformed
 
     private void btnTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirActionPerformed
-        Object seleccionado = cbxCuentasUsuario.getSelectedItem();
-        // Validamos que sí haya seleccionado algo válido
-        if (seleccionado == null || seleccionado.toString().equals("No tiene cuentas aún")) { 
-            JOptionPane.showMessageDialog(this, "Seleccione una cuenta válida");
-            return;
-        }
-        String numeroCuentaSeleccionada = seleccionado.toString();
-        CuentaDTO cuentaSeleccionada = controlador.obtenerCuentaPorNumero(numeroCuentaSeleccionada);
+        CuentaDTO cuentaSeleccionada = seleccionarCuenta();
         if (cuentaSeleccionada != null) {
             controlador.irATransferencias(cuentaSeleccionada);
             this.dispose();
@@ -383,7 +373,13 @@ public class CuentasFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTransferirActionPerformed
 
     private void btnDatosCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCuentaActionPerformed
-        // TODO add your handling code here:
+        CuentaDTO cuentaSeleccionada = seleccionarCuenta();
+        if (cuentaSeleccionada != null) {
+            controlador.AbrirCuentaDatos(cuentaSeleccionada);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Hubo un error al recuperar la cuenta.");
+        }
     }//GEN-LAST:event_btnDatosCuentaActionPerformed
 
     private void btnAgregarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCuentaActionPerformed
@@ -404,11 +400,16 @@ public class CuentasFORM extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Chamba quien sabe, hay q checar eso");
     }//GEN-LAST:event_btnAyudaActionPerformed
 
-    private void lblVoyageActionPerfomed(java.awt.event.ActionEvent evt) {
-        //controlador.abrirInicioCliente(controlador, cliente);
-        //this.dispose();
+    private CuentaDTO seleccionarCuenta() {
+        Object seleccionado = cbxCuentasUsuario.getSelectedItem();
+        if (seleccionado == null || seleccionado.toString().equals("No tiene cuentas aún")) { 
+            JOptionPane.showMessageDialog(this, "Seleccione una cuenta válida");
+            return null;
+        }
+        String numeroCuentaSeleccionada = seleccionado.toString();
+        return controlador.obtenerCuentaPorNumero(numeroCuentaSeleccionada);
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarCuenta;
     private javax.swing.JButton btnAyuda;

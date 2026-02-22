@@ -38,14 +38,20 @@ FROM cuentas;
 SELECT *
 FROM operaciones;
 
--- Prueba del stored procedured
+-- Prueba de los stored procedured
+-- realizar_transferencia
 SET @resultado_operacion = 0;
 CALL realizar_transferencia("123-456-7890", "234-567-8901", 300, @resultado_operacion);
 SELECT * FROM cuentas;
 SELECT * FROM operaciones;
 SELECT * FROM transferencias;
 
-SELECT saldo FROM cuentas WHERE numero_cuenta = "123-456-7890";
+-- registrar_retiro_sin_cuenta
+SET @resultado_operacion = 0;
+CALL registrar_retiro_sin_cuenta('234-567-8901', '12345678', 100,  @resultado_operacion);
+SELECT * FROM cuentas;
+SELECT * FROM operaciones;
+SELECT * FROM retiros_sin_cuenta;
 
 SELECT VERSION();
 

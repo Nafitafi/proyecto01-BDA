@@ -270,7 +270,7 @@
                                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jButton6" min="-2" max="-2" attributes="0"/>
+                                  <Component id="btnVovler" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -293,7 +293,7 @@
                               <Component id="jButton5" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="29" max="32767" attributes="0"/>
-                          <Component id="jButton6" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnVovler" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -320,7 +320,7 @@
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="lblTextNoCuenta" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace pref="86" max="32767" attributes="0"/>
-                                      <Component id="lblTextNoCuenta2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblNoCuenta" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -333,7 +333,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="lblTextNoCuenta" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblTextNoCuenta2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNoCuenta" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -371,7 +371,7 @@
                         <Property name="text" type="java.lang.String" value="VOYAGE"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="lblTextNoCuenta2">
+                    <Component class="javax.swing.JLabel" name="lblNoCuenta">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -437,7 +437,7 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton6">
+                <Component class="javax.swing.JButton" name="btnVovler">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Calibri Light" size="14" style="1"/>
@@ -445,7 +445,7 @@
                     <Property name="text" type="java.lang.String" value="Volver"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVovlerActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

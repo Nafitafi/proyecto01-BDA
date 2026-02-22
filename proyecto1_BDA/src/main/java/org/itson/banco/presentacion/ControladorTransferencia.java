@@ -148,4 +148,11 @@ public class ControladorTransferencia {
 
     }
 
+    public void AbrirCuentaDatos(CuentaDTO cuenta) {
+        
+        CuentaDatosFORM cuentaDatosFORM = new CuentaDatosFORM(this, clienteLogueado, cuenta);
+        cuentaDatosFORM.setVisible(true);
+        
+    }
+    
 }
