@@ -56,8 +56,8 @@ CREATE TABLE retiros_sin_cuenta (
     folio_operacion INT PRIMARY KEY,
     contrasena_retiro VARCHAR(8) NOT NULL,
     monto DECIMAL(10,2) NOT NULL CHECK (monto > 0),
-    fecha_retiro DATETIME NOT NULL,
-    estado_retiro ENUM('pendiente', 'cobrado', 'cancelado') NOT NULL,
+    fecha_retiro DATETIME,
+    estado_retiro ENUM('pendiente', 'cobrado', 'no cobrado') NOT NULL,
     FOREIGN KEY (folio_operacion) REFERENCES operaciones(folio_operacion)
 );
 
@@ -83,7 +83,7 @@ CREATE PROCEDURE realizar_transferencia (
 BEGIN
 	
     -- Declaramos las variables para uso local
-    DECLARE v_id_op INT;
+    DECLARE v_folio_op INT;
     DECLARE v_saldo_actual DECIMAL(10,2);
     
     -- En caso de fallo hacemos un rollback y seteamos el mensage de error
@@ -114,17 +114,17 @@ BEGIN
         INSERT INTO operaciones (tipo_operacion, fecha_operacion, descripcion, numero_cuenta)
         VALUES ('transferencia', NOW(), CONCAT("Transferencia enviada a la cuenta: ", p_cuenta_destino), p_cuenta_origen);
         
-        SET v_id_op = LAST_INSERT_ID();
+        SET v_folio_op = LAST_INSERT_ID();
         
         -- Creamos el registro de la transferencia
         INSERT INTO transferencias (folio_operacion, cuenta_destino, monto, fecha_transferencia)
-        VALUES (v_id_op, p_cuenta_destino, p_monto, NOW());
+        VALUES (v_folio_op, p_cuenta_destino, p_monto, NOW());
         
 	    -- Ejecutamos la sentencia completa
         COMMIT;
         
         -- Asignamos el folio al parametro de salida
-        SET p_folio_generado = v_id_op;
+        SET p_folio_generado = v_folio_op;
         
 	ELSE
 		SIGNAL SQLSTATE '45000';
@@ -132,4 +132,52 @@ BEGIN
     END IF;
 END$$
 DELIMITER ;
+
+-- stored procedure retiro_sin_cuenta
+DELIMITER $$
+CREATE PROCEDURE registrar_retiro_sin_cuenta (
+	IN p_cuenta_origen varchar(12),
+    IN p_contrasena_retiro varchar(8),
+    IN p_monto DECIMAL(10,2),
+    OUT p_folio INT
+)
+BEGIN
+	
+    DECLARE v_folio_operacion INT;
+    DECLARE v_saldo_actual DECIMAL(10,2);
+    
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = "ERROR: No fue posible registrar el retiro sin cuenta.";
+	END;
+    
+    START TRANSACTION;
+    
+    SELECT saldo INTO v_saldo_actual FROM cuentas WHERE numero_cuenta = p_cuenta_origen FOR UPDATE;
+    
+    IF v_saldo_actual >= p_monto THEN
+		
+        UPDATE cuentas SET saldo = saldo - p_monto WHERE numero_cuenta = p_cuenta_origen;
+        
+        INSERT INTO operaciones (tipo_operacion, fecha_operacion, descripcion, numero_cuenta)
+        VALUES ('retiro sin cuenta', NOW(), 'Nuevo retiro sin cuenta generado.', p_cuenta_origen);
+        
+        SET v_folio_operacion = LAST_INSERT_ID();
+        
+        INSERT INTO retiros_sin_cuenta (folio_operacion, contrasena_retiro, monto, estado_retiro)
+        VALUES (v_folio_operacion, p_contrasena_retiro, p_monto, 'pendiente');
+        
+        COMMIT;
+	
+		SET p_folio = v_folio_operacion;
+        
+    ELSE
+		SIGNAL SQLSTATE '45000';
+		ROLLBACK;
+    END IF;
+END $$
+DELIMITER ;
+
+
 
