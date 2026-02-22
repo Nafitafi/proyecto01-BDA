@@ -39,7 +39,8 @@ SELECT *
 FROM operaciones;
 
 -- Prueba del stored procedured
-CALL realizar_transferencia("123-456-7890", "234-567-8901", 300);
+SET @resultado_operacion = 0;
+CALL realizar_transferencia("123-456-7890", "234-567-8901", 300, @resultado_operacion);
 SELECT * FROM cuentas;
 SELECT * FROM operaciones;
 SELECT * FROM transferencias;
