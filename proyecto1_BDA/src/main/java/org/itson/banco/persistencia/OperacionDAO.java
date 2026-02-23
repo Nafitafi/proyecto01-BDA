@@ -36,15 +36,20 @@ public class OperacionDAO implements IOperacionDAO {
      */
     @Override
     public List<Operacion> consultarHistorial(int idCliente, String tipoOperacion, Date fechaInicio, Date fechaFin) throws PersistenciaException {
-        
+
         List<Operacion> historial = new ArrayList<>();
         StringBuilder comandoSQL = new StringBuilder("""
-            SELECT o.tipo_operacion, o.folio_operacion, o.monto, o.fecha_operacion
+            SELECT o.tipo_operacion, 
+                   o.folio_operacion, 
+                   o.fecha_operacion,
+                   COALESCE(t.monto, r.monto, 0.00) AS monto
             FROM operaciones o
             INNER JOIN cuentas c ON o.numero_cuenta = c.numero_cuenta
+            LEFT JOIN transferencias t ON o.folio_operacion = t.folio_operacion
+            LEFT JOIN retiros_sin_cuenta r ON o.folio_operacion = r.folio_operacion
             WHERE c.id_cliente = ?
         """);
-        
+
         if (tipoOperacion != null && !tipoOperacion.equals("Todas")) {
             comandoSQL.append(" AND o.tipo_operacion = ?");
         }
@@ -57,7 +62,7 @@ public class OperacionDAO implements IOperacionDAO {
             Connection conexion = ConexionBD.crearConexion();
             PreparedStatement comando = conexion.prepareStatement(comandoSQL.toString());
             int paramIndex = 1;
-            comando.setInt(paramIndex++, idCliente); 
+            comando.setInt(paramIndex++, idCliente);
 
             if (tipoOperacion != null && !tipoOperacion.equals("Todas")) {
                 comando.setString(paramIndex++, tipoOperacion);
@@ -66,7 +71,7 @@ public class OperacionDAO implements IOperacionDAO {
                 comando.setTimestamp(paramIndex++, new java.sql.Timestamp(fechaInicio.getTime()));
                 comando.setTimestamp(paramIndex++, new java.sql.Timestamp(fechaFin.getTime()));
             }
-            
+
             ResultSet resultados = comando.executeQuery();
 
             while (resultados.next()) {
@@ -95,9 +100,7 @@ public class OperacionDAO implements IOperacionDAO {
             LOGGER.severe(ex.getMessage());
             throw new PersistenciaException("Error al consultar el historial de operaciones: " + ex.getMessage(), ex);
         }
-        
+
         return historial;
     }
 }
-
-
