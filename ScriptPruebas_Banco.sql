@@ -16,17 +16,6 @@ INSERT INTO cuentas (numero_cuenta, fecha_apertura, saldo, estado, id_cliente) V
 ('234-567-8901', '2023-02-15', 300.50, 'activa', 2),
 ('345-678-9012', '2023-03-20', 10000.00, 'activa', 3);
 
--- Transferenecnias de prueba
-UPDATE cuentas
-SET saldo = saldo - 10
-WHERE numero_cuenta = '123-456-7890';
-
-UPDATE cuentas
-SET saldo = saldo + 10
-WHERE numero_cuenta = '345-678-9012';
-
-INSERT INTO operaciones (tipo_operacion, monto, descripcion, numero_cuenta)
-VALUES ("transferencia", 10, "Operacion exitosa",'234-567-8901');
 
 -- Busquedas de prueba
 SELECT numero_cuenta, saldo, estado, fecha_apertura, id_cliente
@@ -37,6 +26,13 @@ FROM cuentas;
 
 SELECT *
 FROM operaciones;
+
+SELECT *
+FROM clientes;
+
+SELECT *
+FROM retiros_sin_cuenta;
+
 
 -- Prueba de los stored procedured
 -- realizar_transferencia
@@ -49,6 +45,13 @@ SELECT * FROM transferencias;
 -- registrar_retiro_sin_cuenta
 SET @resultado_operacion = 0;
 CALL registrar_retiro_sin_cuenta('234-567-8901', '12345678', 100,  @resultado_operacion);
+SELECT * FROM cuentas;
+SELECT * FROM operaciones;
+SELECT * FROM retiros_sin_cuenta;
+
+-- realizar_retiro_sin_cuenta
+SET @resultado_operacion = 0;
+CALL realizar_retiro_sin_cuenta(10000000, 100, @resultado_operacion);
 SELECT * FROM cuentas;
 SELECT * FROM operaciones;
 SELECT * FROM retiros_sin_cuenta;

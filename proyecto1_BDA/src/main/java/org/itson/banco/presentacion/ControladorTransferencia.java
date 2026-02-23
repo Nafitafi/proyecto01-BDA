@@ -155,4 +155,9 @@ public class ControladorTransferencia {
         
     }
     
+    public void AbrirRetiroSinCuenta() {
+        RetiroSinCuentaFORM pantalla = new RetiroSinCuentaFORM(this);
+        pantalla.setVisible(true);
+    }
+    
 }

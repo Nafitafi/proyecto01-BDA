@@ -1,10 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package org.itson.banco.presentacion;
 
 import javax.swing.JOptionPane;
+import org.itson.banco.dtos.ClienteDTO;
+import org.itson.banco.dtos.CuentaDTO;
+import org.itson.banco.dtos.RetiroDTO;
+import org.itson.banco.negocio.NegocioException;
+import org.itson.banco.negocio.RetiroBO;
 
 /**
  *
@@ -14,11 +16,26 @@ public class GenerarRetiroSinCuentaFORM extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GenerarRetiroSinCuentaFORM.class.getName());
 
+    private final ControladorTransferencia controlador;
+    private final ClienteDTO clienteLogueado;
+    private final CuentaDTO cuentaSeleccionada;
+    
+    private final RetiroBO retiroBO;
+    
     /**
      * Creates new form GenrarRetiroSinCuentaFORM
      */
-    public GenerarRetiroSinCuentaFORM() {
+    public GenerarRetiroSinCuentaFORM(ControladorTransferencia controlador, ClienteDTO cliente, CuentaDTO cuenta) {
+        this.controlador = controlador;
+        this.clienteLogueado = cliente;
+        this.cuentaSeleccionada = cuenta;
+        this.retiroBO = new RetiroBO();
         initComponents();
+        cargarDatos();
+    }
+    
+    private void cargarDatos() {
+        lblNoCuenta.setText(cuentaSeleccionada.getNumeroCuenta());
     }
 
     /**
@@ -42,13 +59,14 @@ public class GenerarRetiroSinCuentaFORM extends javax.swing.JFrame {
         pnlCuenta = new javax.swing.JPanel();
         lblTextNoCuenta = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        lblTextNoCuenta2 = new javax.swing.JLabel();
-        btnContinuar = new javax.swing.JButton();
+        lblNoCuenta = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        btnContinuar1 = new javax.swing.JButton();
+        txtMonto = new javax.swing.JTextField();
+        btnGenerar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Generar retiro sin cuenta");
         setPreferredSize(new java.awt.Dimension(600, 450));
 
         pnlFondo.setBackground(new java.awt.Color(245, 239, 235));
@@ -136,10 +154,10 @@ public class GenerarRetiroSinCuentaFORM extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("VOYAGE");
 
-        lblTextNoCuenta2.setBackground(new java.awt.Color(0, 0, 0));
-        lblTextNoCuenta2.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lblTextNoCuenta2.setForeground(new java.awt.Color(0, 0, 0));
-        lblTextNoCuenta2.setText("*** *** *** ****");
+        lblNoCuenta.setBackground(new java.awt.Color(0, 0, 0));
+        lblNoCuenta.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        lblNoCuenta.setForeground(new java.awt.Color(0, 0, 0));
+        lblNoCuenta.setText("*** *** *** ****");
 
         javax.swing.GroupLayout pnlCuentaLayout = new javax.swing.GroupLayout(pnlCuenta);
         pnlCuenta.setLayout(pnlCuentaLayout);
@@ -154,7 +172,7 @@ public class GenerarRetiroSinCuentaFORM extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCuentaLayout.createSequentialGroup()
                         .addComponent(lblTextNoCuenta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                        .addComponent(lblTextNoCuenta2)))
+                        .addComponent(lblNoCuenta)))
                 .addContainerGap())
         );
         pnlCuentaLayout.setVerticalGroup(
@@ -163,24 +181,24 @@ public class GenerarRetiroSinCuentaFORM extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTextNoCuenta)
-                    .addComponent(lblTextNoCuenta2))
+                    .addComponent(lblNoCuenta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        btnContinuar.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        btnContinuar.setText("Volver");
-        btnContinuar.addActionListener(this::btnContinuarActionPerformed);
+        btnVolver.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(this::btnVolverActionPerformed);
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Monto");
 
-        btnContinuar1.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        btnContinuar1.setText("Generar");
-        btnContinuar1.addActionListener(this::btnContinuar1ActionPerformed);
+        btnGenerar.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnGenerar.setText("Generar");
+        btnGenerar.addActionListener(this::btnGenerarActionPerformed);
 
         javax.swing.GroupLayout pnlFondo3Layout = new javax.swing.GroupLayout(pnlFondo3);
         pnlFondo3.setLayout(pnlFondo3Layout);
@@ -197,13 +215,13 @@ public class GenerarRetiroSinCuentaFORM extends javax.swing.JFrame {
                         .addGap(184, 184, 184))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondo3Layout.createSequentialGroup()
                         .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlFondo3Layout.createSequentialGroup()
-                                .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(11, 11, 11)))
                         .addGap(141, 141, 141))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondo3Layout.createSequentialGroup()
-                        .addComponent(btnContinuar1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGenerar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(117, 117, 117))))
         );
         pnlFondo3Layout.setVerticalGroup(
@@ -214,11 +232,11 @@ public class GenerarRetiroSinCuentaFORM extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(btnContinuar1)
+                .addComponent(btnGenerar)
                 .addGap(18, 18, 18)
-                .addComponent(btnContinuar)
+                .addComponent(btnVolver)
                 .addGap(19, 19, 19))
         );
 
@@ -274,6 +292,7 @@ public class GenerarRetiroSinCuentaFORM extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPaginaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuentaActionPerformed
@@ -288,32 +307,54 @@ public class GenerarRetiroSinCuentaFORM extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Chamba Nafi");
     }//GEN-LAST:event_btnOperacionesActionPerformed
 
-    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnContinuarActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        controlador.loginExitoso(clienteLogueado);
+        // controlador.AbrirCuentaDatos(cuentaSeleccionada);
+        dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void btnContinuar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnContinuar1ActionPerformed
+    private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
+        
+        String montoString = txtMonto.getText();
+        
+        double monto = 0;
+        
+        try{
+            monto = Double.parseDouble(montoString);
+        } catch (NumberFormatException ex) {
+            throw new IllegalArgumentException("Error al capturar monto", ex);
+        }
+        
+        RetiroDTO retiroDTO = new RetiroDTO(monto, cuentaSeleccionada.getNumeroCuenta(), "");
+        
+        try {
+            retiroDTO = retiroBO.generarRetiroSinCuenta(retiroDTO);
+        } catch (NegocioException ex) {
+            System.err.println(ex.getMessage());
+        }
+        
+        
+        
+    }//GEN-LAST:event_btnGenerarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAyuda;
-    private javax.swing.JButton btnContinuar;
-    private javax.swing.JButton btnContinuar1;
+    private javax.swing.JButton btnGenerar;
     private javax.swing.JButton btnOperaciones;
     private javax.swing.JButton btnPaginaCuenta;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblIcono;
+    private javax.swing.JLabel lblNoCuenta;
     private javax.swing.JLabel lblTextNoCuenta;
-    private javax.swing.JLabel lblTextNoCuenta2;
     private javax.swing.JLabel lblVoyage;
     private javax.swing.JPanel pnlBanner;
     private javax.swing.JPanel pnlCuenta;
     private javax.swing.JPanel pnlFondo;
     private javax.swing.JPanel pnlFondo2;
     private javax.swing.JPanel pnlFondo3;
+    private javax.swing.JTextField txtMonto;
     // End of variables declaration//GEN-END:variables
 }

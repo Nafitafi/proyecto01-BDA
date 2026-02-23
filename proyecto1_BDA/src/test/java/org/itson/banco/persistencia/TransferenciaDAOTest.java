@@ -25,21 +25,21 @@ public class TransferenciaDAOTest {
     /***
      * Test testRealizarTransferenciaFuncionaOK()
      */
-//    @Test
-//    void testRealizarTransferenciaFuncionaOK(){
-//
-//        // Cuenta origen 123-456-7890
-//        // Cuenta destino 234-567-8901
-//        TransferenciaDTO transferenciaDTO = new TransferenciaDTO("123-456-7890", "234-567-8901", 100);
-//        TransferenciaBO transferenciaBO = new TransferenciaBO(new TransferenciaDAO(new ConexionBD()));
-//
-//        boolean folio = Assertions.assertDoesNotThrow(() -> {
-//            return transferenciaBO.realizarTransferencia(transferenciaDTO);
-//        });
-//
-//        assertNotNull(folio); 
-//
-//    }
+    @Test
+    void testRealizarTransferenciaFuncionaOK(){
+
+        // Cuenta origen 123-456-7890
+        // Cuenta destino 234-567-8901
+        TransferenciaDTO transferenciaDTO = new TransferenciaDTO("123-456-7890", "234-567-8901", 100);
+        TransferenciaBO transferenciaBO = new TransferenciaBO(new TransferenciaDAO(new ConexionBD()));
+
+        int folio = Assertions.assertDoesNotThrow(() -> {
+            return transferenciaBO.realizarTransferencia(transferenciaDTO);
+        });
+
+        assertNotNull(folio); 
+
+    }
 
     @Test
     void testRealizarTransferenciaCuentaInvalida() {

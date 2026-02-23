@@ -62,7 +62,7 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         lblSaldo = new javax.swing.JLabel();
         lbltxtSaldo2 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnRetiroSinCuenta = new javax.swing.JButton();
         btnVovler = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -200,9 +200,9 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         jButton4.setForeground(new java.awt.Color(255, 0, 0));
         jButton4.setText("<html><u>Dar de baja</u></html> ");
 
-        jButton5.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        jButton5.setText("<html><u>Generar retiro<br>sin cuenta</u></html>");
-        jButton5.addActionListener(this::jButton5ActionPerformed);
+        btnRetiroSinCuenta.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnRetiroSinCuenta.setText("<html><u>Generar retiro<br>sin cuenta</u></html>");
+        btnRetiroSinCuenta.addActionListener(this::btnRetiroSinCuentaActionPerformed);
 
         btnVovler.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         btnVovler.setText("Volver");
@@ -223,7 +223,7 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
                                 .addComponent(lblSaldo))
                             .addComponent(pnlCuenta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlFondo3Layout.createSequentialGroup()
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnRetiroSinCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(52, 52, 52))
@@ -243,7 +243,7 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnRetiroSinCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(btnVovler)
                 .addGap(34, 34, 34))
@@ -316,9 +316,11 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Chamba Nafi");
     }//GEN-LAST:event_btnOperacionesActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
+        ControladorRetirSinCuenta controladorRSC = new ControladorRetirSinCuenta(controlador, clienteLogueado, cuentaSeleccionada);
+        dispose();
+        controladorRSC.abrirGenerarRetiroSinCuenta();
+    }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
 
     private void btnVovlerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVovlerActionPerformed
         dispose();
@@ -329,9 +331,9 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
     private javax.swing.JButton btnAyuda;
     private javax.swing.JButton btnOperaciones;
     private javax.swing.JButton btnPaginaCuenta;
+    private javax.swing.JButton btnRetiroSinCuenta;
     private javax.swing.JButton btnVovler;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblIcono;
     private javax.swing.JLabel lblNoCuenta;

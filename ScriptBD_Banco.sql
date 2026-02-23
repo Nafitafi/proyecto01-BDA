@@ -157,8 +157,6 @@ BEGIN
     SELECT saldo INTO v_saldo_actual FROM cuentas WHERE numero_cuenta = p_cuenta_origen FOR UPDATE;
     
     IF v_saldo_actual >= p_monto THEN
-		
-        UPDATE cuentas SET saldo = saldo - p_monto WHERE numero_cuenta = p_cuenta_origen;
         
         INSERT INTO operaciones (tipo_operacion, fecha_operacion, descripcion, numero_cuenta)
         VALUES ('retiro sin cuenta', NOW(), 'Nuevo retiro sin cuenta generado.', p_cuenta_origen);
@@ -176,6 +174,53 @@ BEGIN
 		SIGNAL SQLSTATE '45000';
 		ROLLBACK;
     END IF;
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE PROCEDURE realizar_retiro_sin_cuenta (
+	IN p_folio_retiro INT,
+    IN p_monto DECIMAL(10,2),
+    OUT p_numero_cuenta VARCHAR(12)
+)
+BEGIN
+
+    DECLARE v_estado_actual varchar(20);
+    DECLARE v_saldo_actual DECIMAL(10,2);
+    DECLARE v_numero_cuenta VARCHAR(12);
+    DECLARE v_monto_retiro DECIMAL(10,2);
+    
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION
+    BEGIN
+		ROLLBACK;
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = "ERROR: No fue posible realizar el retiro sin cuenta";
+	END;
+    
+	START TRANSACTION;
+    SELECT estado_retiro INTO v_estado_actual FROM retiros_sin_cuenta WHERE folio_operacion = p_folio_retiro FOR UPDATE;
+    SELECT monto INTO v_monto_retiro FROM retiros_sin_cuenta WHERE folio_operacion = p_folio_retiro FOR UPDATE;
+    IF v_estado_actual = 'pendiente' THEN
+    
+		SELECT numero_cuenta INTO v_numero_cuenta FROM operaciones WHERE folio_operacion = p_folio_retiro;
+        SELECT saldo INTO v_saldo_actual FROM cuentas WHERE numero_cuenta = v_numero_cuenta FOR UPDATE;
+        
+        IF v_saldo_actual >= p_monto THEN
+        
+            UPDATE cuentas SET saldo = saldo - p_monto WHERE numero_cuenta = v_numero_cuenta;
+			UPDATE retiros_sin_cuenta SET estado_retiro = 'cobrado' WHERE folio_operacion = p_folio_retiro;
+            UPDATE retiros_sin_cuenta SET fecha_retiro = NOW() WHERE folio_operacion = p_folio_retiro;
+            COMMIT;
+            
+            SET p_numero_cuenta = v_numero_cuenta;
+            
+        ELSE
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = "ERROR: La cuenta no tiene el saldo necesario para completar el retiro";
+            ROLLBACK;
+        END IF;
+	ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = "ERROR: Retiro sin cuenta estado no valido";
+        ROLLBACK;
+	END IF;
 END $$
 DELIMITER ;
 

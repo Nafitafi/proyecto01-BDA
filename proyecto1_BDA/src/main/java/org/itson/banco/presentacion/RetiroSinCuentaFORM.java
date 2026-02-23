@@ -13,10 +13,13 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RetiroSinCuentaFORM.class.getName());
 
+    private final ControladorTransferencia controlador;
+    
     /**
      * Creates new form RetiroSinCuentaFORM
      */
-    public RetiroSinCuentaFORM() {
+    public RetiroSinCuentaFORM(ControladorTransferencia controlador) {
+        this.controlador = controlador;
         initComponents();
     }
 
@@ -38,13 +41,12 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
         lblFolio = new javax.swing.JLabel();
         txtFolio = new javax.swing.JTextField();
         lblContrasenia = new javax.swing.JLabel();
-        txtContrasenia = new javax.swing.JTextField();
+        txtcontrasena = new javax.swing.JTextField();
         btnContinuar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Retiro sin cuenta");
-        setPreferredSize(new java.awt.Dimension(600, 450));
 
         panelFondo.setBackground(new java.awt.Color(217, 217, 217));
         panelFondo.setForeground(new java.awt.Color(217, 217, 217));
@@ -83,7 +85,8 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
         btnContinuar.setText("Continuar");
         btnContinuar.addActionListener(this::btnContinuarActionPerformed);
 
-        jButton1.setText("Volver");
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(this::btnVolverActionPerformed);
 
         javax.swing.GroupLayout panelFromLayout = new javax.swing.GroupLayout(panelFrom);
         panelFrom.setLayout(panelFromLayout);
@@ -95,7 +98,7 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFromLayout.createSequentialGroup()
                         .addGroup(panelFromLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblContrasenia)
-                            .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtcontrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblFolio)
                             .addComponent(txtFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(111, 111, 111))
@@ -103,7 +106,7 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
                         .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(200, 200, 200))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFromLayout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(248, 248, 248))))
         );
         panelFromLayout.setVerticalGroup(
@@ -115,11 +118,11 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblContrasenia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtcontrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnContinuar)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnVolver)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -160,17 +163,33 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-
+        
+        String folioString = txtFolio.getText();
+        String contrasena = txtcontrasena.getText();
+        
+        int folio = 0;
+        
+        try{
+            folio = Integer.parseInt(folioString);
+        } catch (NumberFormatException ex) {
+            throw new IllegalArgumentException("Error al capturar el folio", ex);
+        }
         
     }//GEN-LAST:event_btnContinuarActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        dispose();
+        controlador.iniciar();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnContinuar;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel lblContrasenia;
     private javax.swing.JLabel lblFolio;
     private javax.swing.JLabel lblTitulo;
@@ -179,7 +198,7 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
     private javax.swing.JPanel panelFrom;
     private javax.swing.JPanel panelHorizontal;
     private javax.swing.JPanel panelTitulo;
-    private javax.swing.JTextField txtContrasenia;
     private javax.swing.JTextField txtFolio;
+    private javax.swing.JTextField txtcontrasena;
     // End of variables declaration//GEN-END:variables
 }

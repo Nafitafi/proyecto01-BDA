@@ -120,7 +120,8 @@ public class InicioFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
-        JOptionPane.showMessageDialog(this, "Chamba del Oliver");
+        controlador.AbrirRetiroSinCuenta();
+        this.dispose();
     }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
 
     /**
