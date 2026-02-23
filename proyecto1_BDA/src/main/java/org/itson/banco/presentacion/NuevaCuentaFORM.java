@@ -9,8 +9,11 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.itson.banco.dtos.ClienteDTO;
 import org.itson.banco.dtos.CuentaDTO;
+import org.itson.banco.negocio.CuentaBO;
 import org.itson.banco.negocio.ICuentaBO;
 import org.itson.banco.negocio.NegocioException;
+import org.itson.banco.persistencia.ConexionBD;
+import org.itson.banco.persistencia.CuentaDAO;
 
 /**
  *
@@ -21,14 +24,14 @@ public class NuevaCuentaFORM extends javax.swing.JFrame {
     private static final Logger LOGGER = Logger.getLogger(NuevaCuentaFORM.class.getName());
     private ControladorTransferencia controlador;
     private ClienteDTO cliente;
-    private ICuentaBO cuentaBO;
+    private CuentaBO cuentaBO;
     /**
      * Creates new form NuevaCuentaFORM
      */
-    public NuevaCuentaFORM(ControladorTransferencia controlador, ClienteDTO cliente, ICuentaBO cuentaBO) {
+    public NuevaCuentaFORM(ControladorTransferencia controlador, ClienteDTO cliente) {
         this.controlador = controlador;
         this.cliente = cliente;
-        this.cuentaBO = cuentaBO;
+        this.cuentaBO = new CuentaBO(new CuentaDAO(new ConexionBD()));
         setLocationRelativeTo(null);
         initComponents();
         cargarNombreCompleto();
@@ -348,54 +351,46 @@ public class NuevaCuentaFORM extends javax.swing.JFrame {
     /**
      * Método privado de confirmar. Este método se activa una vez el usuario confirme que quiere crear su cuenta
      */
-    private void confirmar(){
-        
-        try{
-            // Se salva el monto que el usuario aseguró tener (quien sabe si es cierto, viva la desviación de fondos I guess) 
-            String montoString = this.txtMonto.getText();
-            // Validamos que el usuario si haya ingresado un valor
-            if(montoString.isEmpty()){
-                JOptionPane.showMessageDialog(
-                    null, 
-                    "Por favor, ingrese una cantidad", 
-                    "Ingrese datos", 
-                    JOptionPane.ERROR_MESSAGE);
+    private void confirmar() {
+
+        try {
+            String montoString = txtMonto.getText();
+
+            if (montoString.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ingrese un monto");
+                return;
             }
-            // Casteamos el monto de String a Double (Porque así viene en la base y así nos conviene, es dinero, duuh)
+
             double monto;
             try {
                 monto = Double.parseDouble(montoString);
             } catch (NumberFormatException e) {
-                throw new IllegalArgumentException("Monto invalido");
+                JOptionPane.showMessageDialog(this, "Monto inválido");
+                return;
             }
-            // Validamos que el monto no sea una cantidad negativa
-            if(monto<=0){
-                JOptionPane.showMessageDialog(
-                    null, 
-                    "Debe ingresar al menos $1 peso(s)", 
-                    "Cantidad demasiado baja", 
-                    JOptionPane.ERROR_MESSAGE);
+
+            if (monto <= 0) {
+                JOptionPane.showMessageDialog(this, "El monto debe ser mayor a $0");
+                return;
             }
-            
-            // Ahora creamos la cuenta creando el objeto DTO.
+
             CuentaDTO cuentaDTO = new CuentaDTO();
-            cuentaDTO.setSaldoCuenta(monto); // tomamos el monto casteado
-            cuentaDTO.setEstado("Activa"); // activamos la cuenta
-            cuentaDTO.setFechaApertura(new GregorianCalendar()); // Establecemos la fecha a la del sistema
-          
-            /** 
-             * Llamamos al método de crear la nueva cuenta enviando como parametro la cuenta q acabamos de hacer y ademas 
-             * el id del cliente que logueo (lo rescatamos del inicio de sesión)
-             */
-            
+            cuentaDTO.setSaldoCuenta(monto);
+            cuentaDTO.setEstado("activa");
+            cuentaDTO.setFechaApertura(new GregorianCalendar());
+
             cuentaBO.crearNuevaCuenta(cuentaDTO, cliente.getId());
-            
-            // Si todo salió bien, enviamos al usuario a la pantalla de confirmación de q todo salió de chilorio
+
             controlador.abrirCreacionCuentaExitosa(cliente, cuentaDTO);
             this.dispose();
-            
-        } catch(NegocioException e){
-            JOptionPane.showMessageDialog(this, e.getMessage());
+
+        } catch (NegocioException e) {
+            JOptionPane.showMessageDialog(
+                this,
+                e.getMessage(),
+                "Error al crear cuenta",
+                JOptionPane.ERROR_MESSAGE
+            );
         }
     }
     

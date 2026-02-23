@@ -16,6 +16,8 @@ import org.itson.banco.entidades.Cuenta;
 public interface ICuentaDAO {
     public abstract Cuenta crearNuevaCuenta(CuentaDTO nuevaCuenta, int idClienteLogueado, String numeroCuenta) throws PersistenciaException;
     
+    public abstract void cancelarCuenta(CuentaDTO nuevaCuenta, int idClienteLogueado, String numeroCuenta)throws PersistenciaException;
+            
     List<Cuenta> consultarCuentasPorCliente(int idCliente) throws PersistenciaException;
     
     Cuenta consultarCuentaPorNumero(String numeroCuenta) throws PersistenciaException;

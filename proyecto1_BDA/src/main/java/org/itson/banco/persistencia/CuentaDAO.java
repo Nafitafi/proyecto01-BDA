@@ -5,6 +5,7 @@
 package org.itson.banco.persistencia;
 
 import com.mysql.cj.protocol.Resultset;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,6 +27,15 @@ import org.itson.banco.entidades.Cuenta;
 public class CuentaDAO implements ICuentaDAO {
 
     private static final Logger LOGGER = Logger.getLogger(CuentaDAO.class.getName());
+    private ConexionBD conexion;
+    
+    public CuentaDAO(ConexionBD conexion){
+        this.conexion = conexion;
+    }
+    
+    public CuentaDAO(){
+        
+    }
     
     /**
      * Método crearNuevaCuenta. Este método es el que se comunica directamente con la base de datos
@@ -43,58 +53,137 @@ public class CuentaDAO implements ICuentaDAO {
             String numeroCuenta // El numero de la cuenta que se generó automaticamente)
     )throws PersistenciaException{
         try{
-            
             String codigoSQL = """
                 INSERT INTO cuentas(numero_cuenta, fecha_apertura, saldo, estado, id_cliente)
                 VALUES (?, ?, ?, ?, ?);   
-             """; // Se crea el comando SQL 
+            """; // Se crea el comando SQL 
 
-             Connection conexion = ConexionBD.crearConexion(); // Se establece la conexión 
-             PreparedStatement comando = conexion.prepareStatement(codigoSQL); // Preparamos nuestro comando para que se ejecute
+            Connection conexion = ConexionBD.crearConexion(); // Se establece la conexión 
+            PreparedStatement comando = conexion.prepareStatement(codigoSQL); // Preparamos nuestro comando para que se ejecute
 
-             SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd"); // Creamos un formateador para la fecha y no
-             // agarrarnos a guamazos mas adelante
+            SimpleDateFormat formateador = new SimpleDateFormat("yyyy-MM-dd"); // Creamos un formateador para la fecha y no
+            // agarrarnos a guamazos mas adelante
 
-             /**
-              * Aquí se toma la fecha y con ayuda del formateador, le damos la forma que queremos q tome (en este caso: año-mes-dia) 
-              */
-             String fechaFormateada = formateador.format(nuevaCuenta.getFechaApertura().getTime()); 
+            /**
+             * Aquí se toma la fecha y con ayuda del formateador, le damos la forma que queremos q tome (en este caso: año-mes-dia) 
+             */
+            String fechaFormateada = formateador.format(nuevaCuenta.getFechaApertura().getTime()); 
 
-             /** Aquí sustituimos los signos de interrogación del comando SQL con los datos de la cuenta nos ofreció (y los datos 
-              * que nosotros tomamos automaticamente (como sus datos y la fecha)
-              */
-             comando.setString(1, numeroCuenta);
-             comando.setString(2, fechaFormateada);
-             comando.setDouble(3, nuevaCuenta.getSaldoCuenta());
-             comando.setString(4, nuevaCuenta.getEstado());
-             comando.setInt(5, idClienteLogueado);
+            /** Aquí sustituimos los signos de interrogación del comando SQL con los datos de la cuenta nos ofreció (y los datos 
+             * que nosotros tomamos automaticamente (como sus datos y la fecha)
+             */
+            comando.setString(1, numeroCuenta);
+            comando.setString(2, fechaFormateada);
+            comando.setDouble(3, nuevaCuenta.getSaldoCuenta());
+            comando.setString(4, nuevaCuenta.getEstado());
+            comando.setInt(5, idClienteLogueado);
 
-             boolean resultado = comando.execute(); // checamos q todo esté en orden
+            comando.executeUpdate(); // checamos q todo esté en orden
 
-             LOGGER.fine("Cuenta Registrada Con Éxito"); //Mensaje de éxito
+            registrarOperacionCuenta(
+                "alta de cuenta",
+                "Se registró una cuenta nueva",
+                numeroCuenta
+            );
+            
+            LOGGER.fine("Cuenta Registrada Con Éxito"); //Mensaje de éxito
+                             
 
-             /**
-              * Cerramos conexión y comandos
-              */
-             comando.close();
-             conexion.close();
+            /**
+             * Cerramos conexión y comandos
+             */
+            comando.close();
+            conexion.close();
              
-             // Enviamos OBJETO POJO con los datos que obtuvimos yipiii
-             return new Cuenta(
-                 nuevaCuenta.getNumeroCuenta(),
-                 nuevaCuenta.getFechaApertura(),
-                 nuevaCuenta.getSaldoCuenta(),
-                 nuevaCuenta.getEstado(),
-                 idClienteLogueado
-             );
-
-
+            // Enviamos OBJETO POJO con los datos que obtuvimos yipiii
+            return new Cuenta(
+                numeroCuenta,
+                nuevaCuenta.getFechaApertura(),
+                nuevaCuenta.getSaldoCuenta(),
+                nuevaCuenta.getEstado(),
+                idClienteLogueado
+            );
+            
             } catch(SQLException e){
                 LOGGER.severe(e.getMessage());
                 throw new PersistenciaException("Error al crear nueva cuenta", e);
             }
     }
+    
+    @Override
+    public void cancelarCuenta(
+            CuentaDTO nuevaCuenta,
+            int idClienteLogueado,
+            String numeroCuenta
+    ) throws PersistenciaException {
 
+        String sql = """
+            UPDATE cuentas
+            SET estado = 'cerrada'
+            WHERE numero_cuenta = ?
+              AND id_cliente = ?
+              AND estado = 'activa';
+        """;
+
+        try (Connection conn = ConexionBD.crearConexion();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setString(1, numeroCuenta);
+            stmt.setInt(2, idClienteLogueado);
+
+            int filas = stmt.executeUpdate();
+
+            if (filas == 0) {
+                throw new PersistenciaException(
+                    "La cuenta no pudo cancelarse o ya estaba cerrada",
+                    null
+                );
+            }
+
+            // registrar operación
+            registrarOperacionCuenta(
+                    "alta de cuenta",
+                    "Cuenta cancelada por el usuario",
+                    numeroCuenta
+            );
+
+        } catch (SQLException e) {
+            throw new PersistenciaException("Error al cancelar la cuenta", e);
+        }
+    }
+    
+
+    private int registrarOperacionCuenta(
+            String tipoOperacion,
+            String descripcion,
+            String numeroCuenta
+    ) throws PersistenciaException {
+
+        String sql = "CALL registrar_operacion_cuenta(?, ?, ?, ?);";
+        int folioGenerado;
+
+        try (
+            Connection conn = ConexionBD.crearConexion();
+            CallableStatement stmt = conn.prepareCall(sql);
+        ) {
+
+            stmt.setString(1, tipoOperacion);
+            stmt.setString(2, descripcion);
+            stmt.setString(3, numeroCuenta);
+            stmt.registerOutParameter(4, java.sql.Types.INTEGER);
+
+            stmt.execute();
+            folioGenerado = stmt.getInt(4);
+
+        } catch (SQLException e) {
+            LOGGER.severe(e.getMessage());
+            throw new PersistenciaException("Error al registrar operación", e);
+        }
+
+        return folioGenerado;
+    }
+   
+    
     @Override
     public List<Cuenta> consultarCuentasPorCliente(int idCliente) throws PersistenciaException {
         List<Cuenta> listaCuentas = new ArrayList<>();

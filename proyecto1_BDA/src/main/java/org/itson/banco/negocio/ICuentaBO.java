@@ -17,6 +17,9 @@ public interface ICuentaBO {
 
     public abstract Cuenta crearNuevaCuenta(CuentaDTO nuevaCuenta, int idClienteLogueado) throws NegocioException;
     
+    public abstract void cancelarCuenta(CuentaDTO cuenta, int idClienteLogueado) throws NegocioException;
+    
+    
     /**
      * Método obtenerCuentas.
      * 

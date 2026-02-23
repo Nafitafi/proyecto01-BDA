@@ -36,6 +36,7 @@ public class CuentaBO implements ICuentaBO {
             int idClienteLogueado
     ) throws NegocioException{
         try{
+            confirmarAltaCuenta(nuevaCuenta, idClienteLogueado);
             String numCuenta;
             /** En este bloque, le pedimos al flujo que CONTINUE creando numeros aleatoriamente
             *   mientras no se esté duplicado (cosa que es dificil que suceda pero no imposible)
@@ -58,13 +59,30 @@ public class CuentaBO implements ICuentaBO {
                     idClienteLogueado, 
                     numCuenta
             );
-
+            
         } catch (PersistenciaException e){
             throw new NegocioException("Error al crear nueva cuenta", e);
         }
        
     }
 
+    public void cancelarCuenta(CuentaDTO cuenta, int idClienteLogueado) throws NegocioException{
+        if (!"activa".equalsIgnoreCase(cuenta.getEstado())) {
+            throw new NegocioException("Solo se pueden cancelar cuentas activas", null);
+        }
+
+        try {
+            cuentaDAO.cancelarCuenta(
+                    cuenta,
+                    idClienteLogueado,
+                    cuenta.getNumeroCuenta()
+            );
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al cancelar la cuenta", e);
+        }
+    }
+    
+    
     @Override
     public List<CuentaDTO> obtenerCuentas(int idCliente) throws NegocioException {
         // Validación lógica
@@ -95,6 +113,38 @@ public class CuentaBO implements ICuentaBO {
         }
     }
     
+    private boolean confirmarAltaCuenta(CuentaDTO nuevaCuenta, int idClienteLogueado)
+        throws NegocioException {
+
+        if (nuevaCuenta == null) {
+            throw new NegocioException("Los datos de la cuenta son obligatorios.", null);
+        }
+
+        if (idClienteLogueado <= 0) {
+            throw new NegocioException("Cliente inválido.", null);
+        }
+
+        if (nuevaCuenta.getSaldoCuenta() < 0) {
+            throw new NegocioException("El saldo inicial no puede ser negativo.", null);
+        }
+
+        if (nuevaCuenta.getEstado() == null) {
+            throw new NegocioException("El estado de la cuenta es obligatorio.", null);
+        }
+
+        if (!nuevaCuenta.getEstado().equalsIgnoreCase("activa")
+            && !nuevaCuenta.getEstado().equalsIgnoreCase("bloqueada")
+            && !nuevaCuenta.getEstado().equalsIgnoreCase("cerrada")) {
+            throw new NegocioException("Estado de cuenta no válido.", null);
+        }
+
+        if (nuevaCuenta.getFechaApertura() == null) {
+            throw new NegocioException("La fecha de apertura es obligatoria.", null);
+        }
+
+        return true;
+    }
+    
     
     /**
      * Método privado para generar el número de cuenta aleatorio
@@ -106,6 +156,6 @@ public class CuentaBO implements ICuentaBO {
         int parte2 = (int) (Math.random() * 900) + 100;   
         int parte3 = (int) (Math.random() * 9000) + 1000; 
 
-        return parte1 + "-" + parte2 + "-" + parte3;
+        return "" + parte1 + parte2 + parte3;
     }
 }
