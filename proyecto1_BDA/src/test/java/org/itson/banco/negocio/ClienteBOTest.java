@@ -4,17 +4,8 @@
  */
 package org.itson.banco.negocio;
 
-import java.util.List;
 import org.itson.banco.dtos.ClienteDTO;
-import org.itson.banco.dtos.CuentaDTO;
-import org.itson.banco.negocio.CuentaBO;
-import org.itson.banco.negocio.ICuentaBO;
-import org.itson.banco.negocio.NegocioException;
-import org.itson.banco.persistencia.ClienteDAO;
-import org.itson.banco.persistencia.ConexionBD;
-import org.itson.banco.persistencia.CuentaDAO;
 import org.itson.banco.persistencia.IClienteDAO;
-import org.itson.banco.persistencia.ICuentaDAO;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 

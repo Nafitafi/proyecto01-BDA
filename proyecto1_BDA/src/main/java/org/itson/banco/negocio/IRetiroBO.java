@@ -11,4 +11,12 @@ public interface IRetiroBO {
     
     public abstract RetiroDTO generarRetiroSinCuenta(RetiroDTO retiroDTO) throws NegocioException;
     
+    public abstract void confirmarRetiroSinCuenta(int folio, String contrasena) throws NegocioException;
+    
+    public abstract void realizarRetiroSinCuenta() throws NegocioException;
+    
+    public abstract RetiroDTO consultarRetiro() throws NegocioException;
+    
+    public abstract int generarContrasena();
+    
 }

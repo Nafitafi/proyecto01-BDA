@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.itson.banco.dtos.ClienteDTO;
 import org.itson.banco.dtos.CuentaDTO;
+import org.itson.banco.dtos.RetiroDTO;
 import org.itson.banco.dtos.TransferenciaDTO;
 import org.itson.banco.negocio.ClienteBO;
 import org.itson.banco.negocio.CuentaBO;
@@ -11,6 +12,7 @@ import org.itson.banco.negocio.IClienteBO;
 import org.itson.banco.negocio.ICuentaBO;
 import org.itson.banco.negocio.IOperacionBO;
 import org.itson.banco.negocio.OperacionBO;
+import org.itson.banco.negocio.RetiroBO;
 import org.itson.banco.persistencia.ClienteDAO;
 import org.itson.banco.persistencia.CuentaDAO;
 import org.itson.banco.persistencia.IOperacionDAO;
@@ -110,7 +112,7 @@ public class ControladorTransferencia {
 
     public void abrirCrearNuevaCuenta(ClienteDTO cliente) {
         this.clienteLogueado = cliente;
-        NuevaCuentaFORM nuevaCuenta = new NuevaCuentaFORM(this, this.clienteLogueado, this.cuentaBO);
+        NuevaCuentaFORM nuevaCuenta = new NuevaCuentaFORM(this, this.clienteLogueado);
         nuevaCuenta.setVisible(true);
     }
 
@@ -148,15 +150,30 @@ public class ControladorTransferencia {
 
     }
 
-    public void AbrirCuentaDatos(CuentaDTO cuenta) {
+    public void abrirCuentaDatos(CuentaDTO cuenta) {
         
         CuentaDatosFORM cuentaDatosFORM = new CuentaDatosFORM(this, clienteLogueado, cuenta);
         cuentaDatosFORM.setVisible(true);
         
     }
     
-    public void AbrirRetiroSinCuenta() {
+    public void abrirRetiroSinCuenta() {
         RetiroSinCuentaFORM pantalla = new RetiroSinCuentaFORM(this);
+        pantalla.setVisible(true);
+    }
+    
+    public void abrirConfirmarRetiroSinCuenta(RetiroBO retiroBO) {
+        ConfirmarRetiroSinCuentaFORM pantalla = new ConfirmarRetiroSinCuentaFORM(this, retiroBO);
+        pantalla.setVisible(true);
+    }
+    
+    public void abrirRetiroSinCuentaGeneradoExitoFORM(RetiroDTO retiroDTO) {
+        RetiroSinCuentaGeneradoExitoFORM pantalla = new RetiroSinCuentaGeneradoExitoFORM(this, clienteLogueado, retiroDTO);
+        pantalla.setVisible(true);
+    }
+    
+    public void realizarRetiroSinCuentaExitoFORM() {
+        RealizarRetiroSinCuentaExitoFORM pantalla = new RealizarRetiroSinCuentaExitoFORM(this);
         pantalla.setVisible(true);
     }
     

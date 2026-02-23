@@ -369,31 +369,31 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_lblStatusAncestorAdded
 
     private void cancelarCuenta() {
-        try {
-            controlador.cancelarCuenta(
-                    cuentaSeleccionada,
-                    clienteLogueado.getId()
-            );
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "La cuenta fue cancelada correctamente",
-                    "Operación exitosa",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-
-            dispose();
-            controlador.loginExitoso(clienteLogueado);
-
-        } catch (NegocioException ex) {
-            JOptionPane.showMessageDialog(
-                    this,
-                    ex.getMessage(),
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE
-            );
-        }
-}
+//        try {
+//            controlador.cancelarCuenta(
+//                    cuentaSeleccionada,
+//                    clienteLogueado.getId()
+//            );
+//
+//            JOptionPane.showMessageDialog(
+//                    this,
+//                    "La cuenta fue cancelada correctamente",
+//                    "Operación exitosa",
+//                    JOptionPane.INFORMATION_MESSAGE
+//            );
+//
+//            dispose();
+//            controlador.loginExitoso(clienteLogueado);
+//
+//        } catch (NegocioException ex) {
+//            JOptionPane.showMessageDialog(
+//                    this,
+//                    ex.getMessage(),
+//                    "Error",
+//                    JOptionPane.ERROR_MESSAGE
+//            );
+//        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Dar;
     private javax.swing.JButton btnAyuda;

@@ -61,7 +61,37 @@ public class RetiroDAO implements IRetiroDAO {
                 String contrasena = resultado.getString("contrasena_retiro");
                 return contrasena;
             } else {
-                throw new PersistenciaException("No se ha encontrado ninfun retiro pendiente con ese folio.", null);
+                throw new PersistenciaException("No se ha encontrado ningun retiro pendiente con ese folio.", null);
+            }
+            
+        } catch (SQLException ex) {
+            LOGGER.severe(ex.getMessage());
+            throw new PersistenciaException("No fue posible encontrar la operacion de retiro sin cuenta.", ex);
+        } 
+        
+    }
+    
+    @Override
+    public RetiroDTO consultarRetiro(int folioRetiro) throws PersistenciaException {
+        
+        String comandoSQL = """
+            SELECT folio_operacion, monto FROM retiros_sin_cuenta WHERE folio_operacion = ?;
+                            """;
+        
+        try (Connection conn = ConexionBD.crearConexion(); CallableStatement comando = conn.prepareCall(comandoSQL);) {
+            
+            comando.setInt(1, folioRetiro);
+            ResultSet resultado = comando.executeQuery();
+            
+            if (resultado.next()) {
+               RetiroDTO retiroDTO = new RetiroDTO(
+                       folioRetiro, 
+                       resultado.getDouble("monto")
+               );
+               return retiroDTO;
+               
+            } else {
+                throw new PersistenciaException("No se ha encontrado ningun retiro.", null);
             }
             
         } catch (SQLException ex) {

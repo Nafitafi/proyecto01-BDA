@@ -4,6 +4,10 @@
  */
 package org.itson.banco.presentacion;
 
+import org.itson.banco.dtos.RetiroDTO;
+import org.itson.banco.negocio.NegocioException;
+import org.itson.banco.negocio.RetiroBO;
+
 
 /**
  *
@@ -14,12 +18,14 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RetiroSinCuentaFORM.class.getName());
 
     private final ControladorTransferencia controlador;
+    private final RetiroBO retiroBO;
     
     /**
      * Creates new form RetiroSinCuentaFORM
      */
     public RetiroSinCuentaFORM(ControladorTransferencia controlador) {
         this.controlador = controlador;
+        this.retiroBO = new RetiroBO();
         initComponents();
     }
 
@@ -76,7 +82,7 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
         panelFrom.setForeground(new java.awt.Color(217, 217, 217));
 
         lblFolio.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lblFolio.setText("Folio");
+        lblFolio.setText("Folio (numerico)");
 
         lblContrasenia.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
         lblContrasenia.setText("Contraseña");
@@ -176,8 +182,17 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
         try{
             folio = Integer.parseInt(folioString);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException("Error al capturar el folio", ex);
+            throw new IllegalArgumentException(ex.getMessage());
         }
+        
+        try {
+            retiroBO.confirmarRetiroSinCuenta(folio, contrasena);
+        } catch (NegocioException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        dispose();
+        controlador.abrirConfirmarRetiroSinCuenta(retiroBO);
         
     }//GEN-LAST:event_btnContinuarActionPerformed
 

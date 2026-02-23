@@ -180,7 +180,6 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE realizar_retiro_sin_cuenta (
 	IN p_folio_retiro INT,
-    IN p_monto DECIMAL(10,2),
     OUT p_numero_cuenta VARCHAR(12)
 )
 BEGIN
@@ -197,16 +196,18 @@ BEGIN
 	END;
     
 	START TRANSACTION;
+    
     SELECT estado_retiro INTO v_estado_actual FROM retiros_sin_cuenta WHERE folio_operacion = p_folio_retiro FOR UPDATE;
     SELECT monto INTO v_monto_retiro FROM retiros_sin_cuenta WHERE folio_operacion = p_folio_retiro FOR UPDATE;
+    
     IF v_estado_actual = 'pendiente' THEN
     
 		SELECT numero_cuenta INTO v_numero_cuenta FROM operaciones WHERE folio_operacion = p_folio_retiro;
         SELECT saldo INTO v_saldo_actual FROM cuentas WHERE numero_cuenta = v_numero_cuenta FOR UPDATE;
         
-        IF v_saldo_actual >= p_monto THEN
+        IF v_saldo_actual >= v_monto_retiro THEN
         
-            UPDATE cuentas SET saldo = saldo - p_monto WHERE numero_cuenta = v_numero_cuenta;
+            UPDATE cuentas SET saldo = saldo - v_monto_retiro WHERE numero_cuenta = v_numero_cuenta;
 			UPDATE retiros_sin_cuenta SET estado_retiro = 'cobrado' WHERE folio_operacion = p_folio_retiro;
             UPDATE retiros_sin_cuenta SET fecha_retiro = NOW() WHERE folio_operacion = p_folio_retiro;
             COMMIT;

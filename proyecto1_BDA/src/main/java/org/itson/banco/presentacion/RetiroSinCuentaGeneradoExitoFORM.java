@@ -4,6 +4,10 @@
  */
 package org.itson.banco.presentacion;
 
+import javax.swing.JOptionPane;
+import org.itson.banco.dtos.ClienteDTO;
+import org.itson.banco.dtos.RetiroDTO;
+
 /**
  *
  * @author oliro
@@ -12,13 +16,27 @@ public class RetiroSinCuentaGeneradoExitoFORM extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RetiroSinCuentaGeneradoExitoFORM.class.getName());
 
+    private final ControladorTransferencia controlador;
+    private final ClienteDTO clienteLogueado;
+    private final RetiroDTO retiroDTO;
+    
     /**
      * Creates new form RetiroSinCuentaGeneradoExitoFORM
      */
-    public RetiroSinCuentaGeneradoExitoFORM() {
+    public RetiroSinCuentaGeneradoExitoFORM(ControladorTransferencia controlador, ClienteDTO cliente, RetiroDTO retiroDTO) {
+        this.controlador = controlador;
+        this.clienteLogueado = cliente;
+        this.retiroDTO = retiroDTO;
         initComponents();
+        cargarDatos();
     }
 
+    private void cargarDatos(){
+        String folioString = String.valueOf(retiroDTO.getFolioRetiro());
+        lblFolio.setText(folioString);
+        lblContrasena.setText(retiroDTO.getContasena());
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,47 +46,176 @@ public class RetiroSinCuentaGeneradoExitoFORM extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlFondo = new javax.swing.JPanel();
+        pnlFondo2 = new javax.swing.JPanel();
+        pnlFondo3 = new javax.swing.JPanel();
+        btnVolver = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblContrasena = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        lblFolio = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        pnlFondo.setBackground(new java.awt.Color(245, 239, 235));
+        pnlFondo.setForeground(new java.awt.Color(245, 239, 235));
+        pnlFondo.setPreferredSize(new java.awt.Dimension(600, 450));
+
+        pnlFondo2.setBackground(new java.awt.Color(217, 217, 217));
+        pnlFondo2.setForeground(new java.awt.Color(217, 217, 217));
+
+        pnlFondo3.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnVolver.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(this::btnVolverActionPerformed);
+
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Contraseña: ");
+
+        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel2.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Retiro sin cuenta generado");
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("exitosamente");
+
+        lblContrasena.setBackground(new java.awt.Color(0, 0, 0));
+        lblContrasena.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        lblContrasena.setForeground(new java.awt.Color(0, 0, 0));
+        lblContrasena.setText("00000000");
+
+        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel5.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Folio: ");
+
+        lblFolio.setBackground(new java.awt.Color(0, 0, 0));
+        lblFolio.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        lblFolio.setForeground(new java.awt.Color(0, 0, 0));
+        lblFolio.setText("10000000");
+
+        javax.swing.GroupLayout pnlFondo3Layout = new javax.swing.GroupLayout(pnlFondo3);
+        pnlFondo3.setLayout(pnlFondo3Layout);
+        pnlFondo3Layout.setHorizontalGroup(
+            pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondo3Layout.createSequentialGroup()
+                .addContainerGap(117, Short.MAX_VALUE)
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(130, 130, 130))
+            .addGroup(pnlFondo3Layout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pnlFondo3Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblContrasena))
+                    .addGroup(pnlFondo3Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblFolio))
+                    .addComponent(jLabel2))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlFondo3Layout.createSequentialGroup()
+                    .addGap(161, 161, 161)
+                    .addComponent(jLabel3)
+                    .addContainerGap(161, Short.MAX_VALUE)))
+        );
+        pnlFondo3Layout.setVerticalGroup(
+            pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondo3Layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(lblFolio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(lblContrasena))
+                .addGap(44, 44, 44)
+                .addComponent(btnVolver)
+                .addGap(32, 32, 32))
+            .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlFondo3Layout.createSequentialGroup()
+                    .addGap(78, 78, 78)
+                    .addComponent(jLabel3)
+                    .addContainerGap(187, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout pnlFondo2Layout = new javax.swing.GroupLayout(pnlFondo2);
+        pnlFondo2.setLayout(pnlFondo2Layout);
+        pnlFondo2Layout.setHorizontalGroup(
+            pnlFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFondo2Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(pnlFondo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        pnlFondo2Layout.setVerticalGroup(
+            pnlFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFondo2Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(pnlFondo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
+        pnlFondo.setLayout(pnlFondoLayout);
+        pnlFondoLayout.setHorizontalGroup(
+            pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFondoLayout.createSequentialGroup()
+                .addGap(65, 65, 65)
+                .addComponent(pnlFondo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(70, Short.MAX_VALUE))
+        );
+        pnlFondoLayout.setVerticalGroup(
+            pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFondoLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(pnlFondo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 66, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(pnlFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new RetiroSinCuentaGeneradoExitoFORM().setVisible(true));
-    }
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        controlador.loginExitoso(clienteLogueado);
+        dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblContrasena;
+    private javax.swing.JLabel lblFolio;
+    private javax.swing.JPanel pnlFondo;
+    private javax.swing.JPanel pnlFondo2;
+    private javax.swing.JPanel pnlFondo3;
     // End of variables declaration//GEN-END:variables
 }

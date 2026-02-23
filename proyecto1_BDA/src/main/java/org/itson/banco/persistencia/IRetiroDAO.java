@@ -15,4 +15,6 @@ public interface IRetiroDAO {
     
     public abstract boolean realizarRetiroSinCuenta(int folioRetiro) throws PersistenciaException;
     
+    public abstract RetiroDTO consultarRetiro(int folioRetiro) throws PersistenciaException;
+    
 }

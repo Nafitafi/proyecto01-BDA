@@ -375,7 +375,7 @@ public class CuentasFORM extends javax.swing.JFrame {
     private void btnDatosCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatosCuentaActionPerformed
         CuentaDTO cuentaSeleccionada = seleccionarCuenta();
         if (cuentaSeleccionada != null) {
-            controlador.AbrirCuentaDatos(cuentaSeleccionada);
+            controlador.abrirCuentaDatos(cuentaSeleccionada);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Hubo un error al recuperar la cuenta.");

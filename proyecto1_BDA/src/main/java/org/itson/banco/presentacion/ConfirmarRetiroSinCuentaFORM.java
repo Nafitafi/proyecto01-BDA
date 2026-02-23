@@ -1,6 +1,10 @@
 
 package org.itson.banco.presentacion;
 
+import org.itson.banco.dtos.RetiroDTO;
+import org.itson.banco.negocio.NegocioException;
+import org.itson.banco.negocio.RetiroBO;
+
 /**
  *
  * @author oliro
@@ -9,13 +13,30 @@ public class ConfirmarRetiroSinCuentaFORM extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ConfirmarRetiroSinCuentaFORM.class.getName());
 
+    private final ControladorTransferencia controlador;
+    private final RetiroBO retiroBO;
+    
     /**
      * Creates new form ConfirmarRetiroSinCuentaFORM
      */
-    public ConfirmarRetiroSinCuentaFORM() {
+    public ConfirmarRetiroSinCuentaFORM(ControladorTransferencia controlador, RetiroBO retiroBO) {
+        this.controlador = controlador;
+        this.retiroBO = retiroBO;
         initComponents();
+        cargarDatos();
     }
 
+    private void cargarDatos(){
+        try {
+           RetiroDTO retiroDTO = retiroBO.consultarRetiro();
+           lblFolio.setText(String.valueOf(retiroDTO.getFolioRetiro()));
+           lblMonto.setText(String.valueOf(retiroDTO.getMonto()));
+        } catch (NegocioException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,12 +52,11 @@ public class ConfirmarRetiroSinCuentaFORM extends javax.swing.JFrame {
         pnlCuenta = new javax.swing.JPanel();
         lblTextNoCuenta = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        lblNoCuenta = new javax.swing.JLabel();
-        lblTextNoCuenta2 = new javax.swing.JLabel();
-        lblTextMontoRetirar = new javax.swing.JLabel();
+        lblFolio = new javax.swing.JLabel();
+        lblMonto = new javax.swing.JLabel();
         lblTextMontoRetirar1 = new javax.swing.JLabel();
         btnContinuar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
         panelHorizontal = new javax.swing.JPanel();
         lblRealizarRetiro = new javax.swing.JLabel();
 
@@ -63,28 +83,23 @@ public class ConfirmarRetiroSinCuentaFORM extends javax.swing.JFrame {
         lblTextNoCuenta.setBackground(new java.awt.Color(0, 0, 0));
         lblTextNoCuenta.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
         lblTextNoCuenta.setForeground(new java.awt.Color(0, 0, 0));
-        lblTextNoCuenta.setText("No. Cuenta");
+        lblTextNoCuenta.setText("Folio");
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("VOYAGE");
 
-        lblNoCuenta.setBackground(new java.awt.Color(0, 0, 0));
-        lblNoCuenta.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lblNoCuenta.setForeground(new java.awt.Color(0, 0, 0));
-        lblNoCuenta.setText("****");
+        lblFolio.setBackground(new java.awt.Color(0, 0, 0));
+        lblFolio.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        lblFolio.setForeground(new java.awt.Color(0, 0, 0));
+        lblFolio.setText("000000000000");
 
-        lblTextNoCuenta2.setBackground(new java.awt.Color(0, 0, 0));
-        lblTextNoCuenta2.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lblTextNoCuenta2.setForeground(new java.awt.Color(0, 0, 0));
-        lblTextNoCuenta2.setText("*** *** ***");
-
-        lblTextMontoRetirar.setBackground(new java.awt.Color(0, 0, 0));
-        lblTextMontoRetirar.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lblTextMontoRetirar.setForeground(new java.awt.Color(0, 0, 0));
-        lblTextMontoRetirar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTextMontoRetirar.setText("00.00");
+        lblMonto.setBackground(new java.awt.Color(0, 0, 0));
+        lblMonto.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        lblMonto.setForeground(new java.awt.Color(0, 0, 0));
+        lblMonto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblMonto.setText("00.00");
 
         lblTextMontoRetirar1.setBackground(new java.awt.Color(0, 0, 0));
         lblTextMontoRetirar1.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
@@ -104,13 +119,11 @@ public class ConfirmarRetiroSinCuentaFORM extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCuentaLayout.createSequentialGroup()
                         .addComponent(lblTextNoCuenta)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblTextNoCuenta2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNoCuenta))
+                        .addComponent(lblFolio))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCuentaLayout.createSequentialGroup()
                         .addComponent(lblTextMontoRetirar1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                        .addComponent(lblTextMontoRetirar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pnlCuentaLayout.setVerticalGroup(
@@ -119,21 +132,22 @@ public class ConfirmarRetiroSinCuentaFORM extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTextNoCuenta)
-                    .addComponent(lblNoCuenta)
-                    .addComponent(lblTextNoCuenta2))
+                    .addComponent(lblFolio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(pnlCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTextMontoRetirar1)
-                    .addComponent(lblTextMontoRetirar))
+                    .addComponent(lblMonto))
                 .addContainerGap())
         );
 
         btnContinuar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnContinuar.setText("Continuar");
+        btnContinuar.addActionListener(this::btnContinuarActionPerformed);
 
-        jButton1.setText("Cancelar");
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(this::btnCancelarActionPerformed);
 
         panelHorizontal.setBackground(new java.awt.Color(217, 217, 217));
         panelHorizontal.setForeground(new java.awt.Color(217, 217, 217));
@@ -164,7 +178,7 @@ public class ConfirmarRetiroSinCuentaFORM extends javax.swing.JFrame {
                         .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelFondoLayout.createSequentialGroup()
                         .addGap(263, 263, 263)
-                        .addComponent(jButton1)))
+                        .addComponent(btnCancelar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelFondoLayout.setVerticalGroup(
@@ -178,7 +192,7 @@ public class ConfirmarRetiroSinCuentaFORM extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(btnContinuar)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnCancelar)
                 .addContainerGap(101, Short.MAX_VALUE))
         );
 
@@ -195,17 +209,34 @@ public class ConfirmarRetiroSinCuentaFORM extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        dispose();
+        controlador.iniciar();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+        
+        try {
+            retiroBO.realizarRetiroSinCuenta();
+        } catch (NegocioException ex){
+            System.out.println(ex.getMessage());
+        }
+        
+        dispose();
+        controlador.realizarRetiroSinCuentaExitoFORM();
+        
+    }//GEN-LAST:event_btnContinuarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnContinuar;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel lblNoCuenta;
+    private javax.swing.JLabel lblFolio;
+    private javax.swing.JLabel lblMonto;
     private javax.swing.JLabel lblRealizarRetiro;
-    private javax.swing.JLabel lblTextMontoRetirar;
     private javax.swing.JLabel lblTextMontoRetirar1;
     private javax.swing.JLabel lblTextNoCuenta;
-    private javax.swing.JLabel lblTextNoCuenta2;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel panelFondo;
     private javax.swing.JPanel panelHorizontal;

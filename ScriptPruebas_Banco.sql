@@ -51,7 +51,7 @@ SELECT * FROM retiros_sin_cuenta;
 
 -- realizar_retiro_sin_cuenta
 SET @resultado_operacion = 0;
-CALL realizar_retiro_sin_cuenta(10000000, 100, @resultado_operacion);
+CALL realizar_retiro_sin_cuenta(10000000, @resultado_operacion);
 SELECT * FROM cuentas;
 SELECT * FROM operaciones;
 SELECT * FROM retiros_sin_cuenta;
