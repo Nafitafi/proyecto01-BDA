@@ -55,7 +55,6 @@ public class PerfilUsuarioFORM extends javax.swing.JFrame {
         lblFecha = new javax.swing.JLabel();
         lblHola4 = new javax.swing.JLabel();
         lblDireccion = new javax.swing.JLabel();
-        btnEditar = new javax.swing.JButton();
         lblHola5 = new javax.swing.JLabel();
         lblCorreo = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
@@ -180,17 +179,6 @@ public class PerfilUsuarioFORM extends javax.swing.JFrame {
         lblDireccion.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         lblDireccion.setText("direccion");
 
-        btnEditar.setBackground(new java.awt.Color(47, 65, 86));
-        btnEditar.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        btnEditar.setForeground(new java.awt.Color(255, 255, 255));
-        btnEditar.setText("Editar");
-        btnEditar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-
         lblHola5.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
         lblHola5.setText("Correo");
 
@@ -234,8 +222,7 @@ public class PerfilUsuarioFORM extends javax.swing.JFrame {
                                 .addGap(225, 225, 225)))
                         .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblHola2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblApellidoMat, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblApellidoMat, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27))))
         );
         pnlDatosLayout.setVerticalGroup(
@@ -258,8 +245,7 @@ public class PerfilUsuarioFORM extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFecha)
-                    .addComponent(lblDireccion)
-                    .addComponent(btnEditar))
+                    .addComponent(lblDireccion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblHola5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -308,7 +294,7 @@ public class PerfilUsuarioFORM extends javax.swing.JFrame {
                 .addComponent(btnVolver)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCerrarSesion)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -349,11 +335,6 @@ public class PerfilUsuarioFORM extends javax.swing.JFrame {
         this.dispose();
         controlador.abrirInicioCliente(clienteLogueado);
     }//GEN-LAST:event_btnPaginaCuenta23ActionPerformed
-
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        this.dispose();
-        controlador.abrirLogin();
-    }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         int opcion = JOptionPane.showConfirmDialog(
@@ -423,7 +404,6 @@ public class PerfilUsuarioFORM extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarSesion;
-    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEditarDatos11;
     private javax.swing.JButton btnOperaciones11;
     private javax.swing.JButton btnPaginaCuenta22;

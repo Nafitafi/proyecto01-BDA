@@ -304,7 +304,7 @@ public class HistorialFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionesActionPerformed
-        JOptionPane.showMessageDialog(this, "Chamba Nafi");
+        
     }//GEN-LAST:event_btnOperacionesActionPerformed
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
