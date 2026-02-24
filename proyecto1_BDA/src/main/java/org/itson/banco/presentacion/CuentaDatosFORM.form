@@ -68,7 +68,7 @@
                   <Component id="pnlBanner" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="pnlFondo2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="81" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="79" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -255,16 +255,16 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <Component id="lbltxtSaldo2" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="lbltxtSaldo" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="lblSaldo" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="pnlCuenta" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="1" attributes="0">
-                                          <Component id="btnRetiroSinCuenta" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnRetiroSinCue" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                                          <Component id="btnDarBajaCuenta" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
@@ -283,16 +283,16 @@
                           <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                           <Component id="pnlCuenta" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblSaldo" min="-2" max="-2" attributes="0"/>
-                              <Component id="lbltxtSaldo2" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lbltxtSaldo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSaldo" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButton4" min="-2" max="-2" attributes="0"/>
-                              <Component id="btnRetiroSinCuenta" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnDarBajaCuenta" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnRetiroSinCue" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="29" max="32767" attributes="0"/>
+                          <EmptySpace pref="31" max="32767" attributes="0"/>
                           <Component id="btnVovler" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
@@ -387,21 +387,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JLabel" name="lblSaldo">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Calibri Light" size="18" style="1"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="0000.00"/>
-                  </Properties>
-                </Component>
-                <Component class="javax.swing.JLabel" name="lbltxtSaldo2">
+                <Component class="javax.swing.JLabel" name="lbltxtSaldo">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
@@ -415,7 +401,7 @@
                     <Property name="text" type="java.lang.String" value="SALDO:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton4">
+                <Component class="javax.swing.JButton" name="btnDarBajaCuenta">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Calibri Light" size="14" style="1"/>
@@ -425,17 +411,17 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;u&gt;Dar de baja&lt;/u&gt;&lt;/html&gt; "/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDarBajaCuentaActionPerformed"/>
+                  </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="btnRetiroSinCuenta">
+                <Component class="javax.swing.JButton" name="btnRetiroSinCue">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Calibri Light" size="14" style="1"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;u&gt;Generar retiro&lt;br&gt;sin cuenta&lt;/u&gt;&lt;/html&gt;"/>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRetiroSinCuentaActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnVovler">
                   <Properties>
@@ -447,6 +433,20 @@
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVovlerActionPerformed"/>
                   </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblSaldo">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Calibri Light" size="18" style="1"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="0" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="0000.00"/>
+                  </Properties>
                 </Component>
               </SubComponents>
             </Container>

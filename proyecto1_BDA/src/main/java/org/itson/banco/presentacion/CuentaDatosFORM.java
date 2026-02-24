@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package org.itson.banco.presentacion;
 
 import javax.swing.JOptionPane;
 import org.itson.banco.dtos.ClienteDTO;
 import org.itson.banco.dtos.CuentaDTO;
-import org.itson.banco.negocio.NegocioException;
 
 /**
  *
@@ -36,7 +32,6 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         lblNoCuenta.setText(cuentaSeleccionada.getNumeroCuenta());
         String saldoString = String.valueOf(cuentaSeleccionada.getSaldoCuenta());
         lblSaldo.setText(saldoString);
-        lblStatus.setText(cuentaSeleccionada.getEstado());
     }
 
     /**
@@ -61,13 +56,11 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         lblTextNoCuenta = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblNoCuenta = new javax.swing.JLabel();
-        lblSaldo = new javax.swing.JLabel();
-        lbltxtSaldo2 = new javax.swing.JLabel();
-        Dar = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        lbltxtSaldo = new javax.swing.JLabel();
+        btnDarBajaCuenta = new javax.swing.JButton();
+        btnRetiroSinCue = new javax.swing.JButton();
         btnVovler = new javax.swing.JButton();
-        lbltxtSaldo3 = new javax.swing.JLabel();
-        lblStatus = new javax.swing.JLabel();
+        lblSaldo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Datos de cuenta");
@@ -149,14 +142,17 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
 
         lblTextNoCuenta.setBackground(new java.awt.Color(0, 0, 0));
         lblTextNoCuenta.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        lblTextNoCuenta.setForeground(new java.awt.Color(0, 0, 0));
         lblTextNoCuenta.setText("No. Cuenta");
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("VOYAGE");
 
         lblNoCuenta.setBackground(new java.awt.Color(0, 0, 0));
         lblNoCuenta.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        lblNoCuenta.setForeground(new java.awt.Color(0, 0, 0));
         lblNoCuenta.setText("*** *** *** ****");
 
         javax.swing.GroupLayout pnlCuentaLayout = new javax.swing.GroupLayout(pnlCuenta);
@@ -187,43 +183,27 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        lblSaldo.setBackground(new java.awt.Color(0, 0, 0));
-        lblSaldo.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lblSaldo.setText("0000.00");
+        lbltxtSaldo.setBackground(new java.awt.Color(0, 0, 0));
+        lbltxtSaldo.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        lbltxtSaldo.setForeground(new java.awt.Color(0, 0, 0));
+        lbltxtSaldo.setText("SALDO:");
 
-        lbltxtSaldo2.setBackground(new java.awt.Color(0, 0, 0));
-        lbltxtSaldo2.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lbltxtSaldo2.setText("SALDO:");
+        btnDarBajaCuenta.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnDarBajaCuenta.setForeground(new java.awt.Color(255, 0, 0));
+        btnDarBajaCuenta.setText("<html><u>Dar de baja</u></html> ");
+        btnDarBajaCuenta.addActionListener(this::btnDarBajaCuentaActionPerformed);
 
-        Dar.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        Dar.setForeground(new java.awt.Color(255, 0, 0));
-        Dar.setText("<html><u>Dar de baja</u></html> ");
-        Dar.addActionListener(this::DarActionPerformed);
-
-        jButton5.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        jButton5.setText("<html><u>Generar retiro<br>sin cuenta</u></html>");
-        jButton5.addActionListener(this::jButton5ActionPerformed);
+        btnRetiroSinCue.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnRetiroSinCue.setText("<html><u>Generar retiro<br>sin cuenta</u></html>");
 
         btnVovler.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         btnVovler.setText("Volver");
         btnVovler.addActionListener(this::btnVovlerActionPerformed);
 
-        lbltxtSaldo3.setBackground(new java.awt.Color(0, 0, 0));
-        lbltxtSaldo3.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lbltxtSaldo3.setText("ESTADO:");
-
-        lblStatus.setBackground(new java.awt.Color(0, 0, 0));
-        lblStatus.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lblStatus.setText("-");
-        lblStatus.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                lblStatusAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
+        lblSaldo.setBackground(new java.awt.Color(0, 0, 0));
+        lblSaldo.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        lblSaldo.setForeground(new java.awt.Color(0, 0, 0));
+        lblSaldo.setText("0000.00");
 
         javax.swing.GroupLayout pnlFondo3Layout = new javax.swing.GroupLayout(pnlFondo3);
         pnlFondo3.setLayout(pnlFondo3Layout);
@@ -233,24 +213,20 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
                 .addContainerGap(58, Short.MAX_VALUE)
                 .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondo3Layout.createSequentialGroup()
-                        .addComponent(btnVovler)
-                        .addGap(173, 173, 173))
+                        .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFondo3Layout.createSequentialGroup()
+                                .addComponent(lbltxtSaldo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblSaldo))
+                            .addComponent(pnlCuenta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlFondo3Layout.createSequentialGroup()
+                                .addComponent(btnRetiroSinCue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnDarBajaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(52, 52, 52))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondo3Layout.createSequentialGroup()
-                        .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pnlCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondo3Layout.createSequentialGroup()
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Dar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondo3Layout.createSequentialGroup()
-                                .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbltxtSaldo2)
-                                    .addComponent(lbltxtSaldo3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblSaldo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(52, 52, 52))))
+                        .addComponent(btnVovler)
+                        .addGap(173, 173, 173))))
         );
         pnlFondo3Layout.setVerticalGroup(
             pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -258,18 +234,14 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(pnlCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbltxtSaldo)
+                    .addComponent(lblSaldo))
+                .addGap(18, 18, 18)
                 .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblSaldo)
-                    .addComponent(lbltxtSaldo2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbltxtSaldo3)
-                    .addComponent(lblStatus))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Dar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(btnDarBajaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRetiroSinCue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(btnVovler)
                 .addGap(34, 34, 34))
         );
@@ -311,7 +283,7 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
                 .addComponent(pnlBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnlFondo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 73, Short.MAX_VALUE))
+                .addGap(0, 79, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -341,16 +313,12 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Chamba Nafi");
     }//GEN-LAST:event_btnOperacionesActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void btnVovlerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVovlerActionPerformed
         dispose();
         controlador.loginExitoso(clienteLogueado);
     }//GEN-LAST:event_btnVovlerActionPerformed
 
-    private void DarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DarActionPerformed
+    private void btnDarBajaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDarBajaCuentaActionPerformed
         int opcion = JOptionPane.showConfirmDialog(
             this,
             "¿Está seguro de querer cancelar esta cuenta?",
@@ -362,11 +330,7 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         if (opcion == JOptionPane.YES_OPTION) {
             cancelarCuenta();
         }
-    }//GEN-LAST:event_DarActionPerformed
-
-    private void lblStatusAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblStatusAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_lblStatusAncestorAdded
+    }//GEN-LAST:event_btnDarBajaCuentaActionPerformed
 
     private void cancelarCuenta() {
 //        try {
@@ -395,21 +359,19 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
 //        }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Dar;
     private javax.swing.JButton btnAyuda;
+    private javax.swing.JButton btnDarBajaCuenta;
     private javax.swing.JButton btnOperaciones;
     private javax.swing.JButton btnPaginaCuenta;
+    private javax.swing.JButton btnRetiroSinCue;
     private javax.swing.JButton btnVovler;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblIcono;
     private javax.swing.JLabel lblNoCuenta;
     private javax.swing.JLabel lblSaldo;
-    private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTextNoCuenta;
     private javax.swing.JLabel lblVoyage;
-    private javax.swing.JLabel lbltxtSaldo2;
-    private javax.swing.JLabel lbltxtSaldo3;
+    private javax.swing.JLabel lbltxtSaldo;
     private javax.swing.JPanel pnlBanner;
     private javax.swing.JPanel pnlCuenta;
     private javax.swing.JPanel pnlFondo;
