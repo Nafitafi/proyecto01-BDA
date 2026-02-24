@@ -66,6 +66,7 @@ public class CuentaBO implements ICuentaBO {
        
     }
 
+    @Override
     public void cancelarCuenta(CuentaDTO cuenta, int idClienteLogueado) throws NegocioException{
         if (!"activa".equalsIgnoreCase(cuenta.getEstado())) {
             throw new NegocioException("Solo se pueden cancelar cuentas activas", null);

@@ -4,7 +4,6 @@
  */
 package org.itson.banco.persistencia;
 
-import com.mysql.cj.protocol.Resultset;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

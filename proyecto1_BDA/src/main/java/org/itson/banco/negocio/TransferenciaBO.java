@@ -16,6 +16,7 @@ import org.itson.banco.persistencia.PersistenciaException;
  */
 public class TransferenciaBO implements ITransferenciaBO {
     
+    private static final double LIMITE_TRANSFERENCIA = 20000.00;
     private ITransferenciaDAO transferenciaDAO;
     
     
@@ -40,6 +41,14 @@ public class TransferenciaBO implements ITransferenciaBO {
             throw new NegocioException("El monto debe ser mayor a $0.00", null);
         }
         
+         if (transferenciaDTO.getMonto() > LIMITE_TRANSFERENCIA) {
+            throw new NegocioException(
+                "El monto excede el límite permitido por transferencia ($" 
+                + LIMITE_TRANSFERENCIA + ")",
+                null
+            );
+        }
+                
         if(cuentaOrigen.getSaldoCuenta() < transferenciaDTO.getMonto()) {
             throw new NegocioException("El monto no puede ser mayor a su saldo actual.", null);
         }

@@ -5,6 +5,7 @@
 package org.itson.banco.dtos;
 
 import java.util.GregorianCalendar;
+import org.itson.banco.dtos.DireccionDTO;
 
 /**
  * Clase ClienteDTO.
@@ -24,6 +25,7 @@ public class ClienteDTO {
     private String correo;
     private String constrasena;
     private Integer idDireccion;
+    private DireccionDTO direccion;
 
     /**
      * Constructor por defecto de la clase ClienteDTO
@@ -42,9 +44,17 @@ public class ClienteDTO {
      * @param edad
      * @param correo
      * @param constraseña
-     * @param idDireccion 
      */
-    public ClienteDTO(Integer id, String nombres, String apellidoPaterno, String apellidoMaterno, GregorianCalendar fechaNacimiento, Integer edad, String correo, String constrasena, Integer idDireccion) {
+    public ClienteDTO(
+            Integer id, 
+            String nombres, 
+            String apellidoPaterno, 
+            String apellidoMaterno, 
+            GregorianCalendar fechaNacimiento, 
+            Integer edad, 
+            String correo, 
+            String constrasena
+    ){
         this.id = id;
         this.nombres = nombres;
         this.apellidoPaterno = apellidoPaterno;
@@ -53,7 +63,7 @@ public class ClienteDTO {
         this.edad = edad;
         this.correo = correo;
         this.constrasena = constrasena;
-        this.idDireccion = idDireccion;
+        
     }
 
     public int getId() {
@@ -128,6 +138,14 @@ public class ClienteDTO {
         this.idDireccion = idDireccion;
     }
 
+    public DireccionDTO getDireccion() { 
+        return direccion; 
+    } 
+    
+    public void setDireccion(DireccionDTO direccion) { 
+        this.direccion = direccion; 
+    } 
+    
     public String toString(){
         return nombres + " " + " " + apellidoPaterno + " " + apellidoMaterno;
     }

@@ -47,10 +47,10 @@ public class LoginFORM extends javax.swing.JFrame {
         txtCorreoElectronico = new javax.swing.JTextField();
         lblCorreoElectronico = new javax.swing.JLabel();
         lblContrasena = new javax.swing.JLabel();
-        txtContrasenia = new javax.swing.JTextField();
         btnContinuar = new javax.swing.JButton();
         Registrarse = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
+        txtContrasenia = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Iniciar sesión");
@@ -66,10 +66,10 @@ public class LoginFORM extends javax.swing.JFrame {
         pnlBanner.setLayout(pnlBannerLayout);
         pnlBannerLayout.setHorizontalGroup(
             pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBannerLayout.createSequentialGroup()
-                .addContainerGap(112, Short.MAX_VALUE)
+            .addGroup(pnlBannerLayout.createSequentialGroup()
+                .addGap(110, 110, 110)
                 .addComponent(lblNombreBanco, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlBannerLayout.setVerticalGroup(
             pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,8 +93,6 @@ public class LoginFORM extends javax.swing.JFrame {
         lblContrasena.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblContrasena.setText("Contraseña");
 
-        txtContrasenia.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
         btnContinuar.setBackground(new java.awt.Color(47, 65, 86));
         btnContinuar.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         btnContinuar.setForeground(new java.awt.Color(255, 255, 255));
@@ -113,6 +111,8 @@ public class LoginFORM extends javax.swing.JFrame {
         btnSalir.setText("Salir");
         btnSalir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnSalir.addActionListener(this::btnSalirActionPerformed);
+
+        txtContrasenia.addActionListener(this::txtContraseniaActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -133,11 +133,11 @@ public class LoginFORM extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 110, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCorreoElectronico, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtCorreoElectronico, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                            .addComponent(txtContrasenia))
                         .addGap(113, 113, 113))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,6 +200,10 @@ public class LoginFORM extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void txtContraseniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseniaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContraseniaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Registrarse;
@@ -210,7 +214,7 @@ public class LoginFORM extends javax.swing.JFrame {
     private javax.swing.JLabel lblIniciarSesion;
     private javax.swing.JLabel lblNombreBanco;
     private javax.swing.JPanel pnlBanner;
-    private javax.swing.JTextField txtContrasenia;
+    private javax.swing.JPasswordField txtContrasenia;
     private javax.swing.JTextField txtCorreoElectronico;
     // End of variables declaration//GEN-END:variables
 }

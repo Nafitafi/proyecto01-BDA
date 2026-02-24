@@ -28,6 +28,7 @@ public class DireccionesDAO implements IDireccionesDAO {
     public DireccionesDAO(){
     }
     
+    @Override
     public Direccion registrarDireccion(DireccionDTO direccion)throws PersistenciaException{
         try{
             String codigoSQL = """
@@ -77,6 +78,7 @@ public class DireccionesDAO implements IDireccionesDAO {
         }
     }
     
+    @Override
     public Direccion consultarPorId(int idDireccion)
             throws PersistenciaException {
         try {

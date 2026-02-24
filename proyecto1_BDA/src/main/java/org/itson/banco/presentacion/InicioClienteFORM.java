@@ -4,9 +4,11 @@
  */
 package org.itson.banco.presentacion;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.itson.banco.dtos.ClienteDTO;
+import org.itson.banco.negocio.NegocioException;
 
 /**
  *
@@ -38,9 +40,9 @@ public class InicioClienteFORM extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
         pnlBanner1 = new javax.swing.JPanel();
         btnOperaciones = new javax.swing.JButton();
         btnPaginaCuenta = new javax.swing.JButton();
@@ -50,9 +52,6 @@ public class InicioClienteFORM extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(245, 239, 235));
-
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
-        jLabel2.setText("Bienvenido, ");
 
         jScrollPane1.setBorder(null);
 
@@ -66,6 +65,9 @@ public class InicioClienteFORM extends javax.swing.JFrame {
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setBorder(null);
         jScrollPane1.setViewportView(jTextArea1);
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel2.setText("Bienvenido, ");
 
         pnlBanner1.setBackground(new java.awt.Color(255, 255, 255));
         pnlBanner1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
@@ -178,17 +180,22 @@ public class InicioClienteFORM extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionesActionPerformed
-        controlador.abrirHistorial();
         this.dispose();
+        controlador.abrirHistorial();
     }//GEN-LAST:event_btnOperacionesActionPerformed
 
     private void btnPaginaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuentaActionPerformed
-        controlador.loginExitoso(cliente);
         this.dispose();
+        controlador.loginExitoso(cliente);
     }//GEN-LAST:event_btnPaginaCuentaActionPerformed
 
     private void btnEditarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDatosActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
+        try {
+            controlador.abrirPerfilUsuario(cliente);
+        } catch (NegocioException ex) {
+            Logger.getLogger(InicioClienteFORM.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnEditarDatosActionPerformed
 
     private void btnPaginaCuenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuenta1ActionPerformed

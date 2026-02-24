@@ -18,6 +18,9 @@ public interface IClienteDAO {
     
     public Cliente registrarNuevoCliente(ClienteDTO nuevoCliente) throws PersistenciaException;
      
+    public ClienteDTO consultarDatosClienteDTO(String correo) throws PersistenciaException;
+    
+    public ClienteDTO consultarPorId(int idCliente) throws PersistenciaException;
     
     /**
      * Método buscarPorCorreo().

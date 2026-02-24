@@ -113,5 +113,9 @@ public class Cliente {
         this.apellidoMaterno = apellidoMaterno;
     }
     
+    public void setDireccion(int idDireccion){
+        this.idDireccion = idDireccion;
+    }
     
+   
 }

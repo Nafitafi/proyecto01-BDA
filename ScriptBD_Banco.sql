@@ -114,7 +114,7 @@ BEGIN
     SELECT saldo INTO v_saldo_actual FROM cuentas WHERE numero_cuenta = p_cuenta_origen FOR UPDATE;
     
     -- Procedemos solo si la cuenta origen tiene el saldo suficiente para transferir.
-    IF v_saldo_actual >= p_monto THEN
+    IF v_saldo_actual >= p_monto AND p_monto <= v_limite_transferencia THEN
 		
         -- Restamos el monto a la cuenta origen. 
 		UPDATE cuentas SET saldo = saldo - p_monto WHERE numero_cuenta = p_cuenta_origen;
@@ -140,9 +140,15 @@ BEGIN
         SET p_folio_generado = v_folio_op;
         
 	ELSE
-		SIGNAL SQLSTATE '45000';
+		IF p_monto > v_limite_transferencia THEN
+			SIGNAL SQLSTATE '45000'
+			SET MESSAGE_TEXT = 'ERROR: El monto excede el límite permitido por transferencia.';
+		ELSE
+			SIGNAL SQLSTATE '45000'
+			SET MESSAGE_TEXT = 'ERROR: Saldo insuficiente para realizar la transferencia.';
+		END IF;
 		ROLLBACK;
-    END IF;
+	END IF;
 END$$
 DELIMITER ;
 
@@ -238,6 +244,30 @@ BEGIN
 	END IF;
 END $$
 DELIMITER ;
+
+-- Stored procedure Registrar cualquier operacion relacionada con la cuenta
+DELIMITER $$
+DROP PROCEDURE IF EXISTS registrar_operacion_cuenta;
+DELIMITER $$
+
+CREATE PROCEDURE registrar_operacion_cuenta (
+    IN p_tipo_operacion VARCHAR(30),
+    IN p_descripcion VARCHAR(100),
+    IN p_numero_cuenta VARCHAR(12),
+    OUT p_folio_generado INT
+)
+BEGIN
+    DECLARE v_folio_op INT;
+
+    INSERT INTO operaciones (tipo_operacion, fecha_operacion, descripcion, numero_cuenta)
+    VALUES (p_tipo_operacion, NOW(), p_descripcion, p_numero_cuenta);
+
+    SET v_folio_op = LAST_INSERT_ID();
+    SET p_folio_generado = v_folio_op;
+END$$
+DELIMITER ;
+
+
 
 
 

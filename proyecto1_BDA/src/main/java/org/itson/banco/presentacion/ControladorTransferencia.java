@@ -20,6 +20,7 @@ import org.itson.banco.persistencia.ConexionBD;
 import org.itson.banco.persistencia.CuentaDAO;
 import org.itson.banco.persistencia.IOperacionDAO;
 import org.itson.banco.persistencia.OperacionDAO;
+import org.itson.banco.persistencia.PersistenciaException;
 
 /**
  * Clase ControladorTransferencia. Es la clase orquestadora del caso de uso en
@@ -113,6 +114,31 @@ public class ControladorTransferencia {
         return 0.0;
     }
 
+    public void abrirPerfilUsuario(ClienteDTO clienteLogueado) throws NegocioException{
+        System.out.println("Correo del cliente logueado: " + clienteLogueado.getCorreo()); // Debug
+
+        ClienteDTO clienteCompleto = clienteBO.consultarDatosCliente(clienteLogueado.getCorreo());
+
+        System.out.println("Cliente completo recuperado: " + 
+            (clienteCompleto != null ? clienteCompleto.getNombres() : "null")); // Debug
+
+        this.clienteLogueado = clienteCompleto;
+        PerfilUsuarioFORM perfil = new PerfilUsuarioFORM(this, clienteCompleto);
+        perfil.setVisible(true);
+    }
+    
+    
+    public void cerrarSesion() {
+        this.clienteLogueado = null;
+        this.cuentaOrigen = null;
+        this.cuentaNueva = null;
+        this.cuentasCliente = null;
+
+        
+        InicioFORM inicio = new InicioFORM(this);
+        inicio.setVisible(true);
+    }
+    
     public void abrirCrearNuevaCuenta(ClienteDTO cliente) {
         this.clienteLogueado = cliente;
         CuentaBO cuentaBO = new CuentaBO(

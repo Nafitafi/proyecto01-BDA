@@ -4,6 +4,7 @@
  */
 package org.itson.banco.negocio;
 
+import java.util.GregorianCalendar;
 import org.itson.banco.dtos.ClienteDTO;
 import org.itson.banco.dtos.DireccionDTO;
 import org.itson.banco.entidades.Cliente;
@@ -11,6 +12,7 @@ import org.itson.banco.entidades.Direccion;
 import org.itson.banco.persistencia.ClienteDAO;
 import org.itson.banco.persistencia.DireccionesDAO;
 import org.itson.banco.persistencia.IClienteDAO;
+import org.itson.banco.persistencia.IDireccionesDAO;
 import org.itson.banco.persistencia.PersistenciaException;
 
 /**
@@ -22,7 +24,8 @@ import org.itson.banco.persistencia.PersistenciaException;
 public class ClienteBO implements IClienteBO {
 
     private final IClienteDAO clienteDAO;
-    private final DireccionesDAO direccionesDAO;
+    private final IDireccionesDAO direccionesDAO;
+    private DireccionesBO direccionesBO;
 
     /**
      * Constructor de cliente BO.
@@ -32,6 +35,7 @@ public class ClienteBO implements IClienteBO {
     public ClienteBO(IClienteDAO clienteDAO) {
         this.clienteDAO = new ClienteDAO();
         this.direccionesDAO = new DireccionesDAO();
+        this.direccionesBO = new DireccionesBO(direccionesDAO);
     }
     
 
@@ -69,10 +73,52 @@ public class ClienteBO implements IClienteBO {
         clienteDTO.setNombres(clienteEntidad.getNombres());
         clienteDTO.setApellidoPaterno(clienteEntidad.getApellidoPaterno());
         clienteDTO.setApellidoMaterno(clienteEntidad.getApellidoMaterno());
+        clienteDTO.setCorreo(clienteEntidad.getCorreo());
+        clienteDTO.setIdDireccion(clienteEntidad.getIdDireccion());
 
         return clienteDTO;
     }
     
+    public DireccionDTO obtenerDireccionCliente(int idCliente) throws NegocioException {
+        try {
+            // Primero obtener el cliente para saber su id_direccion
+            // Necesitarías un método para obtener cliente por ID
+            ClienteDTO cliente = clienteDAO.consultarPorId(idCliente);
+
+            if (cliente == null || cliente.getIdDireccion() <= 0) {
+                return null;
+            }
+
+            return direccionesBO.obtenerDireccion(cliente.getIdDireccion());
+
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al obtener dirección del cliente", e);
+        }
+    }
+   @Override
+    public ClienteDTO consultarDatosCliente(String correo) throws NegocioException {
+        try {
+            ClienteDTO clienteDTO = clienteDAO.consultarDatosClienteDTO(correo);
+
+            if (clienteDTO == null) {
+                throw new NegocioException("Cliente no encontrado", null);
+            }
+            
+            // Obtener la dirección usando el id_direccion
+            if (clienteDTO.getIdDireccion() > 0) {
+                DireccionDTO direccionDTO = direccionesBO.obtenerDireccion(clienteDTO.getIdDireccion());
+                clienteDTO.setDireccion(direccionDTO); // Necesitarás agregar este setter en ClienteDTO
+            }
+
+            return clienteDTO;
+
+        } catch (PersistenciaException e) {
+            e.printStackTrace(); // Debug
+            throw new NegocioException(
+                "No fue posible consultar los datos del cliente", e
+            );
+        }
+    }
     
     @Override
     public Cliente registrarCliente(

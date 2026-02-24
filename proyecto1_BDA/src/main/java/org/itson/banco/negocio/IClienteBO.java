@@ -40,4 +40,6 @@ public interface IClienteBO {
     public Cliente registrarCliente(ClienteDTO clienteDTO, DireccionDTO direccionDTO) throws NegocioException;
       
     
+    public ClienteDTO consultarDatosCliente(String correo) throws NegocioException;
+    
 }
