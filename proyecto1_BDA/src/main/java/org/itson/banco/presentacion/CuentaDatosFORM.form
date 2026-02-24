@@ -422,6 +422,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="&lt;html&gt;&lt;u&gt;Generar retiro&lt;br&gt;sin cuenta&lt;/u&gt;&lt;/html&gt;"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRetiroSinCueActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnVovler">
                   <Properties>

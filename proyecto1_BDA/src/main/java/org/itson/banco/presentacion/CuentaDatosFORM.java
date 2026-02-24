@@ -195,6 +195,7 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
 
         btnRetiroSinCue.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         btnRetiroSinCue.setText("<html><u>Generar retiro<br>sin cuenta</u></html>");
+        btnRetiroSinCue.addActionListener(this::btnRetiroSinCueActionPerformed);
 
         btnVovler.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         btnVovler.setText("Volver");
@@ -331,6 +332,12 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
             cancelarCuenta();
         }
     }//GEN-LAST:event_btnDarBajaCuentaActionPerformed
+
+    private void btnRetiroSinCueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCueActionPerformed
+        ControladorRetirSinCuenta controladorRSC = new ControladorRetirSinCuenta(controlador, clienteLogueado, cuentaSeleccionada);
+        dispose();
+        controladorRSC.abrirGenerarRetiroSinCuenta();
+    }//GEN-LAST:event_btnRetiroSinCueActionPerformed
 
     private void cancelarCuenta() {
 //        try {
