@@ -4,16 +4,20 @@
  */
 package org.itson.banco.entidades;
 
+import java.util.GregorianCalendar;
+
 /**
  * Clase cliente.
  * Clase entidad Cliente, encargada de crear objetos molde.
  * @author Nahomi Figueroa
  */
 public class Cliente {
-    private int id;
+   private int id;
     private String nombres;
     private String apellidoPaterno;
     private String apellidoMaterno;
+    private GregorianCalendar fechaNacimiento;
+    private Integer edad;
     private String correo;
     private String contrasena; // SOLO PARA LA BD
     private int idDireccion;
@@ -24,6 +28,18 @@ public class Cliente {
     public Cliente() {
     }
 
+    public Cliente(int id, String nombres, String apellidoPaterno, String apellidoMaterno, GregorianCalendar fechaNacimiento, Integer edad, String correo, String contrasena, int idDireccion) {
+        this.id = id;
+        this.nombres = nombres;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.fechaNacimiento = fechaNacimiento;
+        this.edad = edad;
+        this.correo = correo;
+        this.contrasena = contrasena;
+        this.idDireccion = idDireccion;
+    }
+    
     public int getId() {
         return id;
     }
@@ -48,6 +64,23 @@ public class Cliente {
         this.apellidoPaterno = apellidoPaterno;
     }
 
+    public GregorianCalendar getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(GregorianCalendar fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
+    }
+
+    
     public String getCorreo() {
         return correo;
     }
@@ -79,5 +112,6 @@ public class Cliente {
     public void setApellidoMaterno(String apellidoMaterno) {
         this.apellidoMaterno = apellidoMaterno;
     }
+    
     
 }

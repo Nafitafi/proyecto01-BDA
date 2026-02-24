@@ -6,6 +6,8 @@ package org.itson.banco.negocio;
 
 import org.itson.banco.dtos.ClienteDTO;
 import org.itson.banco.dtos.CuentaDTO;
+import org.itson.banco.dtos.DireccionDTO;
+import org.itson.banco.entidades.Cliente;
 import org.itson.banco.entidades.Cuenta;
 
 /**
@@ -27,5 +29,15 @@ public interface IClienteBO {
      * @throws NegocioException 
      */
     ClienteDTO login(String correo, String contrasena) throws NegocioException;
+    
+    /**
+     * Método registrarCliente. Valida los datos necesarios para registrar al cliente
+     * @param clienteDTO
+     * @param direccionDTO
+     * @return
+     * @throws NegocioException 
+     */
+    public Cliente registrarCliente(ClienteDTO clienteDTO, DireccionDTO direccionDTO) throws NegocioException;
+      
     
 }

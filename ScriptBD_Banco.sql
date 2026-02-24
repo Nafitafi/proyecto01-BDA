@@ -77,7 +77,11 @@ DELIMITER $$
 CREATE EVENT evento_cancelar_retiros_caducados
 ON SCHEDULE EVERY 1 MINUTE DO
 BEGIN
-   UPDATE retiro_sin_cuenta SET estado_retiro = 'no cobrado' WHERE estado = 'pendiente' AND fecha_registro <= NOW() - INTERVAL 10 MINUTE;
+   UPDATE retiros_sin_cuenta rsc
+   JOIN operaciones op ON rsc.folio_operacion = op.folio_operacion
+   SET rsc.estado_retiro = 'no cobrado' 
+   WHERE rsc.estado_retiro = 'pendiente' 
+   AND op.fecha_operacion <= NOW() - INTERVAL 10 MINUTE;
 END $$
 DELIMITER ;
 

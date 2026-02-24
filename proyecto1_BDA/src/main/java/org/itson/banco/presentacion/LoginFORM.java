@@ -191,7 +191,8 @@ public class LoginFORM extends javax.swing.JFrame {
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     private void RegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarseActionPerformed
-        JOptionPane.showMessageDialog(this, "Chamba Emy");
+        controlador.abrirRegistrarDatosClienteFORM();
+        this.dispose();
     }//GEN-LAST:event_RegistrarseActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

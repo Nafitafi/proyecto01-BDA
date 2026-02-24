@@ -5,9 +5,11 @@
 package org.itson.banco.negocio;
 
 import org.itson.banco.dtos.ClienteDTO;
-import org.itson.banco.dtos.CuentaDTO;
+import org.itson.banco.dtos.DireccionDTO;
 import org.itson.banco.entidades.Cliente;
-import org.itson.banco.entidades.Cuenta;
+import org.itson.banco.entidades.Direccion;
+import org.itson.banco.persistencia.ClienteDAO;
+import org.itson.banco.persistencia.DireccionesDAO;
 import org.itson.banco.persistencia.IClienteDAO;
 import org.itson.banco.persistencia.PersistenciaException;
 
@@ -20,6 +22,7 @@ import org.itson.banco.persistencia.PersistenciaException;
 public class ClienteBO implements IClienteBO {
 
     private final IClienteDAO clienteDAO;
+    private final DireccionesDAO direccionesDAO;
 
     /**
      * Constructor de cliente BO.
@@ -27,7 +30,8 @@ public class ClienteBO implements IClienteBO {
      * @param clienteDAO ClienteDAO para el acceso del Cliente en cuestión.
      */
     public ClienteBO(IClienteDAO clienteDAO) {
-        this.clienteDAO = clienteDAO;
+        this.clienteDAO = new ClienteDAO();
+        this.direccionesDAO = new DireccionesDAO();
     }
     
 
@@ -67,6 +71,30 @@ public class ClienteBO implements IClienteBO {
         clienteDTO.setApellidoMaterno(clienteEntidad.getApellidoMaterno());
 
         return clienteDTO;
+    }
+    
+    
+    @Override
+    public Cliente registrarCliente(
+            ClienteDTO clienteDTO,
+            DireccionDTO direccionDTO
+    ) throws NegocioException {
+
+        try {
+           
+            Direccion direccion = direccionesDAO.registrarDireccion(direccionDTO);
+            System.out.println("ID DIRECCION = " + direccion.getIdDireccion());
+            
+            clienteDTO.setIdDireccion(direccion.getIdDireccion());
+
+            
+            return clienteDAO.registrarNuevoCliente(clienteDTO);
+
+        } catch (PersistenciaException e) {
+            throw new NegocioException(
+                "No fue posible registrar el cliente", e
+            );
+        }
     }
 
 }

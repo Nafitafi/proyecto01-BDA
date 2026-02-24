@@ -22,18 +22,21 @@ import org.itson.banco.persistencia.CuentaDAO;
 public class NuevaCuentaFORM extends javax.swing.JFrame {
 
     private static final Logger LOGGER = Logger.getLogger(NuevaCuentaFORM.class.getName());
-    private ControladorTransferencia controlador;
-    private ClienteDTO cliente;
-    private CuentaBO cuentaBO;
-    /**
-     * Creates new form NuevaCuentaFORM
-     */
-    public NuevaCuentaFORM(ControladorTransferencia controlador, ClienteDTO cliente) {
+    private final ControladorTransferencia controlador;
+    private final ClienteDTO cliente;
+    private final CuentaBO cuentaBO;
+
+    public NuevaCuentaFORM(
+        ControladorTransferencia controlador,
+        ClienteDTO cliente,
+        CuentaBO cuentaBO
+    ) {
         this.controlador = controlador;
         this.cliente = cliente;
-        this.cuentaBO = new CuentaBO(new CuentaDAO(new ConexionBD()));
-        setLocationRelativeTo(null);
+        this.cuentaBO = cuentaBO;
+
         initComponents();
+        setLocationRelativeTo(null);
         cargarNombreCompleto();
     }
 

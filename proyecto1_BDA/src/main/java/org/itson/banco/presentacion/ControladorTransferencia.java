@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.itson.banco.dtos.ClienteDTO;
 import org.itson.banco.dtos.CuentaDTO;
+import org.itson.banco.dtos.DireccionDTO;
 import org.itson.banco.dtos.RetiroDTO;
 import org.itson.banco.dtos.TransferenciaDTO;
 import org.itson.banco.negocio.ClienteBO;
@@ -11,9 +12,11 @@ import org.itson.banco.negocio.CuentaBO;
 import org.itson.banco.negocio.IClienteBO;
 import org.itson.banco.negocio.ICuentaBO;
 import org.itson.banco.negocio.IOperacionBO;
+import org.itson.banco.negocio.NegocioException;
 import org.itson.banco.negocio.OperacionBO;
 import org.itson.banco.negocio.RetiroBO;
 import org.itson.banco.persistencia.ClienteDAO;
+import org.itson.banco.persistencia.ConexionBD;
 import org.itson.banco.persistencia.CuentaDAO;
 import org.itson.banco.persistencia.IOperacionDAO;
 import org.itson.banco.persistencia.OperacionDAO;
@@ -112,15 +115,26 @@ public class ControladorTransferencia {
 
     public void abrirCrearNuevaCuenta(ClienteDTO cliente) {
         this.clienteLogueado = cliente;
-        NuevaCuentaFORM nuevaCuenta = new NuevaCuentaFORM(this, this.clienteLogueado);
+        CuentaBO cuentaBO = new CuentaBO(
+            new CuentaDAO(new ConexionBD())
+        );
+
+        NuevaCuentaFORM nuevaCuenta = new NuevaCuentaFORM(this, this.clienteLogueado, cuentaBO);
         nuevaCuenta.setVisible(true);
     }
 
     public void abrirCreacionCuentaExitosa(ClienteDTO clienteLogueado, CuentaDTO cuentaNueva) {
         this.clienteLogueado = clienteLogueado;
         this.cuentaNueva = cuentaNueva;
-        CreacionCuentaExitosaFORM exito = new CreacionCuentaExitosaFORM(this, this.clienteLogueado, this.cuentaNueva);
+
+        CreacionCuentaExitosaFORM exito =
+            new CreacionCuentaExitosaFORM(this, clienteLogueado, cuentaNueva);
+
         exito.setVisible(true);
+    }
+    
+    public void cancelarCuenta(CuentaDTO cuenta, int idClienteLogueado) throws NegocioException {
+        cuentaBO.cancelarCuenta(cuenta, idClienteLogueado);
     }
 
     // Método para ir a transferencias (emy agarrate de aqui) (ok nafi gracias)
@@ -177,4 +191,12 @@ public class ControladorTransferencia {
         pantalla.setVisible(true);
     }
     
+    public void abrirRegistrarDatosClienteFORM(){
+        RegistrarDatosClienteFORM registro = new RegistrarDatosClienteFORM(this);
+        registro.setVisible(true);
+    }
+ 
+    public void registrarCliente(ClienteDTO clienteDTO, DireccionDTO direccionDTO) throws NegocioException {
+       clienteBO.registrarCliente(clienteDTO, direccionDTO);
+    }
 }

@@ -22,6 +22,69 @@ public class ClienteDAO implements IClienteDAO {
 
     private static final Logger LOGGER = Logger.getLogger(ClienteDAO.class.getName());
 
+    /**
+     * Método registrarNuevoCliente. Se encarga de registrar en la base de datos
+     * al cliente que desee registrarse
+     * @param nuevoCliente
+     * @return
+     * @throws PersistenciaException 
+     */
+    @Override
+    public Cliente registrarNuevoCliente(ClienteDTO nuevoCliente) throws PersistenciaException{
+        try{
+            String codigoSQL = """              
+               INSERT INTO clientes(nombres, apellido_paterno, apellido_materno, fecha_nacimiento, correo, contrasena, id_direccion)
+               VALUES (?, ?, ?, ?, ?, ?, ?)                        
+            """;
+            
+            Connection conexion = ConexionBD.crearConexion();
+            PreparedStatement comando = conexion.prepareStatement(
+                codigoSQL,
+                PreparedStatement.RETURN_GENERATED_KEYS
+            );
+            java.sql.Date fechaFormateada = new java.sql.Date(
+                nuevoCliente.getFechaNacimiento().getTimeInMillis()
+            );
+            
+            comando.setString(1, nuevoCliente.getNombres());
+            comando.setString(2, nuevoCliente.getApellidoPaterno());
+            comando.setString(3, nuevoCliente.getApellidoMaterno());
+            comando.setDate(4, fechaFormateada);
+            comando.setString(5, nuevoCliente.getCorreo());
+            comando.setString(6, nuevoCliente.getConstrasena());
+            comando.setInt(7, nuevoCliente.getIdDireccion());
+            
+            comando.executeUpdate(); 
+
+
+            ResultSet rs = comando.getGeneratedKeys();
+            int idGenerado = 0;
+            if (rs.next()) {
+                idGenerado = rs.getInt(1);
+            }
+
+            LOGGER.fine("Se registro la cuenta con éxito");
+            
+            comando.close();
+            conexion.close();
+            
+            return new Cliente(
+               idGenerado,
+               nuevoCliente.getNombres(),
+               nuevoCliente.getApellidoPaterno(),
+               nuevoCliente.getApellidoMaterno(),
+               nuevoCliente.getFechaNacimiento(),
+               null,
+               nuevoCliente.getCorreo(),
+               nuevoCliente.getConstrasena(),
+               nuevoCliente.getIdDireccion()            
+            );
+            
+            
+        } catch(SQLException e){
+            throw new PersistenciaException("Error al registrar al cliente", e);
+        }
+    }
 
     /**
      * Método bucarPorCredenciales. Se encarga de buscar que en la base de datos

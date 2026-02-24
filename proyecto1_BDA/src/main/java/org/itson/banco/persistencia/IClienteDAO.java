@@ -4,7 +4,10 @@
  */
 package org.itson.banco.persistencia;
 
+import org.itson.banco.dtos.ClienteDTO;
+import org.itson.banco.dtos.DireccionDTO;
 import org.itson.banco.entidades.Cliente;
+import org.itson.banco.negocio.NegocioException;
 
 /**
  * Interfaz IClienteDAO.
@@ -12,6 +15,10 @@ import org.itson.banco.entidades.Cliente;
  * @author Nahomi Figueroa, Emily lara y Oliver Robles
  */
 public interface IClienteDAO {
+    
+    public Cliente registrarNuevoCliente(ClienteDTO nuevoCliente) throws PersistenciaException;
+     
+    
     /**
      * Método buscarPorCorreo().
      * Busca los datos del cliente mediante su correo
