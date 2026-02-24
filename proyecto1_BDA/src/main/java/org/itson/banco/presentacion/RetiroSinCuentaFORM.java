@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package org.itson.banco.presentacion;
 
-import org.itson.banco.dtos.RetiroDTO;
+import javax.swing.JOptionPane;
 import org.itson.banco.negocio.NegocioException;
 import org.itson.banco.negocio.RetiroBO;
 
@@ -47,12 +44,13 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
         lblFolio = new javax.swing.JLabel();
         txtFolio = new javax.swing.JTextField();
         lblContrasenia = new javax.swing.JLabel();
-        txtcontrasena = new javax.swing.JTextField();
+        txtContrasena = new javax.swing.JTextField();
         btnContinuar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Retiro sin cuenta");
+        setPreferredSize(new java.awt.Dimension(600, 450));
 
         panelFondo.setBackground(new java.awt.Color(217, 217, 217));
         panelFondo.setForeground(new java.awt.Color(217, 217, 217));
@@ -63,7 +61,6 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
 
         lblTitulo.setBackground(new java.awt.Color(0, 0, 0));
         lblTitulo.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("VOYAGE");
         panelTitulo.add(lblTitulo);
@@ -73,7 +70,6 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
 
         lblTitulo1.setBackground(new java.awt.Color(0, 0, 0));
         lblTitulo1.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
-        lblTitulo1.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo1.setText("Retiro sin cuenta");
         panelHorizontal.add(lblTitulo1);
@@ -104,7 +100,7 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFromLayout.createSequentialGroup()
                         .addGroup(panelFromLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblContrasenia)
-                            .addComponent(txtcontrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblFolio)
                             .addComponent(txtFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(111, 111, 111))
@@ -124,7 +120,7 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(lblContrasenia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtcontrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addComponent(btnContinuar)
                 .addGap(18, 18, 18)
@@ -175,24 +171,34 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         
         String folioString = txtFolio.getText();
-        String contrasena = txtcontrasena.getText();
+        String contrasena = txtContrasena.getText();
         
         int folio = 0;
         
         try{
             folio = Integer.parseInt(folioString);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException(ex.getMessage());
+            JOptionPane.showMessageDialog(
+                    this,
+                    "El folio debe contener solo números.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            return;
         }
         
         try {
             retiroBO.confirmarRetiroSinCuenta(folio, contrasena);
+            controlador.abrirConfirmarRetiroSinCuenta(retiroBO);
+            dispose();
         } catch (NegocioException ex) {
-            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(
+                    this,
+                    ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
-        
-        dispose();
-        controlador.abrirConfirmarRetiroSinCuenta(retiroBO);
         
     }//GEN-LAST:event_btnContinuarActionPerformed
 
@@ -213,7 +219,7 @@ public class RetiroSinCuentaFORM extends javax.swing.JFrame {
     private javax.swing.JPanel panelFrom;
     private javax.swing.JPanel panelHorizontal;
     private javax.swing.JPanel panelTitulo;
+    private javax.swing.JTextField txtContrasena;
     private javax.swing.JTextField txtFolio;
-    private javax.swing.JTextField txtcontrasena;
     // End of variables declaration//GEN-END:variables
 }

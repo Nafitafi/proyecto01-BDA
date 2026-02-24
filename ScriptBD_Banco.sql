@@ -72,7 +72,16 @@ BEGIN
 END$$
 DELIMITER ;
 
--- Stored procedure realizar transferencia
+-- Eventos
+DELIMITER $$
+CREATE EVENT evento_cancelar_retiros_caducados
+ON SCHEDULE EVERY 1 MINUTE DO
+BEGIN
+   UPDATE retiro_sin_cuenta SET estado_retiro = 'no cobrado' WHERE estado = 'pendiente' AND fecha_registro <= NOW() - INTERVAL 10 MINUTE;
+END $$
+DELIMITER ;
+
+-- Stored procedure realizar_transferencia
 DELIMITER $$
 CREATE PROCEDURE realizar_transferencia (
 	IN p_cuenta_origen VARCHAR(12),
@@ -133,7 +142,7 @@ BEGIN
 END$$
 DELIMITER ;
 
--- stored procedure retiro_sin_cuenta
+-- stored procedure registrar_retiro_sin_cuenta
 DELIMITER $$
 CREATE PROCEDURE registrar_retiro_sin_cuenta (
 	IN p_cuenta_origen varchar(12),
@@ -177,6 +186,7 @@ BEGIN
 END $$
 DELIMITER ;
 
+-- stored procedure realizar_retiro_sin_cuenta
 DELIMITER $$
 CREATE PROCEDURE realizar_retiro_sin_cuenta (
 	IN p_folio_retiro INT,

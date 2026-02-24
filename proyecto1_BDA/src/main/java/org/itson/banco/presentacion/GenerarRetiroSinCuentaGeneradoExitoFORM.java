@@ -4,6 +4,7 @@
  */
 package org.itson.banco.presentacion;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import org.itson.banco.dtos.ClienteDTO;
 import org.itson.banco.dtos.RetiroDTO;
@@ -12,9 +13,9 @@ import org.itson.banco.dtos.RetiroDTO;
  *
  * @author oliro
  */
-public class RetiroSinCuentaGeneradoExitoFORM extends javax.swing.JFrame {
+public class GenerarRetiroSinCuentaGeneradoExitoFORM extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RetiroSinCuentaGeneradoExitoFORM.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(GenerarRetiroSinCuentaGeneradoExitoFORM.class.getName());
 
     private final ControladorTransferencia controlador;
     private final ClienteDTO clienteLogueado;
@@ -23,7 +24,7 @@ public class RetiroSinCuentaGeneradoExitoFORM extends javax.swing.JFrame {
     /**
      * Creates new form RetiroSinCuentaGeneradoExitoFORM
      */
-    public RetiroSinCuentaGeneradoExitoFORM(ControladorTransferencia controlador, ClienteDTO cliente, RetiroDTO retiroDTO) {
+    public GenerarRetiroSinCuentaGeneradoExitoFORM(ControladorTransferencia controlador, ClienteDTO cliente, RetiroDTO retiroDTO) {
         this.controlador = controlador;
         this.clienteLogueado = cliente;
         this.retiroDTO = retiroDTO;
@@ -33,8 +34,18 @@ public class RetiroSinCuentaGeneradoExitoFORM extends javax.swing.JFrame {
 
     private void cargarDatos(){
         String folioString = String.valueOf(retiroDTO.getFolioRetiro());
-        lblFolio.setText(folioString);
-        lblContrasena.setText(retiroDTO.getContasena());
+        txtFolio.setText(folioString);
+        txtContrasena.setText(retiroDTO.getContasena());
+        
+        txtFolio.setEditable(false);
+        txtFolio.setBorder(null);
+        txtFolio.setOpaque(false);
+        txtFolio.setBackground(new Color(0,0,0,0));
+        
+        txtContrasena.setEditable(false);
+        txtContrasena.setBorder(null);
+        txtContrasena.setOpaque(false);
+        txtContrasena.setBackground(new Color(0,0,0,0));
     }
     
     /**
@@ -53,9 +64,9 @@ public class RetiroSinCuentaGeneradoExitoFORM extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        lblContrasena = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        lblFolio = new javax.swing.JLabel();
+        txtContrasena = new javax.swing.JTextField();
+        txtFolio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -87,42 +98,41 @@ public class RetiroSinCuentaGeneradoExitoFORM extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("exitosamente");
 
-        lblContrasena.setBackground(new java.awt.Color(0, 0, 0));
-        lblContrasena.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lblContrasena.setForeground(new java.awt.Color(0, 0, 0));
-        lblContrasena.setText("00000000");
-
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Folio: ");
 
-        lblFolio.setBackground(new java.awt.Color(0, 0, 0));
-        lblFolio.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lblFolio.setForeground(new java.awt.Color(0, 0, 0));
-        lblFolio.setText("10000000");
+        txtContrasena.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        txtContrasena.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtContrasena.setText("00000000");
+
+        txtFolio.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
+        txtFolio.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtFolio.setText("00000000");
+        txtFolio.addActionListener(this::txtFolioActionPerformed);
 
         javax.swing.GroupLayout pnlFondo3Layout = new javax.swing.GroupLayout(pnlFondo3);
         pnlFondo3.setLayout(pnlFondo3Layout);
         pnlFondo3Layout.setHorizontalGroup(
             pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFondo3Layout.createSequentialGroup()
+                .addGap(103, 103, 103)
+                .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondo3Layout.createSequentialGroup()
+                        .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtContrasena)
+                            .addComponent(txtFolio, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondo3Layout.createSequentialGroup()
                 .addContainerGap(117, Short.MAX_VALUE)
                 .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(130, 130, 130))
-            .addGroup(pnlFondo3Layout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(pnlFondo3Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblContrasena))
-                    .addGroup(pnlFondo3Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblFolio))
-                    .addComponent(jLabel2))
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnlFondo3Layout.createSequentialGroup()
                     .addGap(161, 161, 161)
@@ -134,14 +144,14 @@ public class RetiroSinCuentaGeneradoExitoFORM extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondo3Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(lblFolio))
+                    .addComponent(txtFolio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(lblContrasena))
+                    .addComponent(txtContrasena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addComponent(btnVolver)
                 .addGap(32, 32, 32))
@@ -183,7 +193,7 @@ public class RetiroSinCuentaGeneradoExitoFORM extends javax.swing.JFrame {
             .addGroup(pnlFondoLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addComponent(pnlFondo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 66, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -206,16 +216,20 @@ public class RetiroSinCuentaGeneradoExitoFORM extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void txtFolioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFolioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFolioActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel lblContrasena;
-    private javax.swing.JLabel lblFolio;
     private javax.swing.JPanel pnlFondo;
     private javax.swing.JPanel pnlFondo2;
     private javax.swing.JPanel pnlFondo3;
+    private javax.swing.JTextField txtContrasena;
+    private javax.swing.JTextField txtFolio;
     // End of variables declaration//GEN-END:variables
 }

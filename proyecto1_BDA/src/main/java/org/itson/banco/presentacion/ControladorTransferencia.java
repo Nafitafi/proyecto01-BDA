@@ -168,7 +168,7 @@ public class ControladorTransferencia {
     }
     
     public void abrirRetiroSinCuentaGeneradoExitoFORM(RetiroDTO retiroDTO) {
-        RetiroSinCuentaGeneradoExitoFORM pantalla = new RetiroSinCuentaGeneradoExitoFORM(this, clienteLogueado, retiroDTO);
+        GenerarRetiroSinCuentaGeneradoExitoFORM pantalla = new GenerarRetiroSinCuentaGeneradoExitoFORM(this, clienteLogueado, retiroDTO);
         pantalla.setVisible(true);
     }
     

@@ -20,12 +20,27 @@ public class RetiroBO implements IRetiroBO {
         retiroDAO = new RetiroDAO();
     }
     
+    /**
+     * Metodo encargado de generar y registrar un retiro sin cuenta junto a su contrasena correspondiente
+     * @param numeroCuenta
+     * @param monto
+     * @return
+     * @throws NegocioException 
+     */
     @Override
-    public RetiroDTO generarRetiroSinCuenta(RetiroDTO retiroDTO) throws NegocioException {
+    public RetiroDTO generarRetiroSinCuenta(String numeroCuenta, double monto) throws NegocioException {
         
+        if (monto < 10) {
+            throw new NegocioException("El monto a retirar debe ser mayor a 10$", null);
+        }
+        
+        if (monto > 10000) {
+            throw new NegocioException("El monto a retirar no puede ser mayor a 10000", null);
+        }
         
         String contrasena = String.valueOf(generarContrasena());
-        retiroDTO.setContasena(contrasena);
+        
+        RetiroDTO retiroDTO = new RetiroDTO(monto, numeroCuenta, contrasena);
         
         try {
             int folio = retiroDAO.generarRetiroSinCuenta(retiroDTO);
@@ -37,25 +52,44 @@ public class RetiroBO implements IRetiroBO {
         return retiroDTO;
     }
     
+    /**
+     * Metodo encargado de confirmar que el folio y contrasena sean validos y pertenezcan a un retiro sin cuenta
+     * @param folio
+     * @param contrasena
+     * @throws NegocioException 
+     */
     @Override
     public void confirmarRetiroSinCuenta(int folio, String contrasena) throws NegocioException {
         
-        String cc = "";
-        
-        try {
-            cc = retiroDAO.validarRetiroPendiente(folio);
-        } catch (PersistenciaException ex) {
-            throw new NegocioException("Folio o contraseña invalidos", null);
+        if (folio < 10000000 || folio > 99999999) {
+            throw new NegocioException("El folio debe ser un número positivo de 8 dígitos.", null);
+        }
+
+        // Validación de Contraseña (Solo números y 8 dígitos)
+        if (contrasena == null || !contrasena.matches("\\d{8}")) {
+            throw new NegocioException("La contraseña debe ser numérica y de 8 dígitos.", null);
         }
         
-        if (!contrasena.equals(cc)) {
-            throw new NegocioException("Folio o contraseña invalidos", null);
-        } 
-        
-        folioSeleccionado = folio;
+        try {
+            
+            String cc = retiroDAO.validarRetiroPendiente(folio);
+            if (!contrasena.equals(cc)) {
+                throw new NegocioException("Folio o contraseña invalido.", null);
+            } 
+            
+            folioSeleccionado = folio;
+            
+        } catch (PersistenciaException ex) {
+            throw new NegocioException("Folio o contraseña invalido.", null);
+        }
         
     }
     
+    /**
+     * Metodo encargado de realizar un retiroSinCuenta marcado como pendiente, liberando el monto y cambiando
+     * el estado del retiro
+     * @throws NegocioException 
+     */
     @Override
     public void realizarRetiroSinCuenta() throws NegocioException {
         

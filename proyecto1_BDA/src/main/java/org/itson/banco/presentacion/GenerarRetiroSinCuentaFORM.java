@@ -324,19 +324,30 @@ public class GenerarRetiroSinCuentaFORM extends javax.swing.JFrame {
         try{
             monto = Double.parseDouble(montoString);
         } catch (NumberFormatException ex) {
-            throw new IllegalArgumentException("Error al capturar monto", ex);
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Monto invalido.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            return;
         }
-        
-        RetiroDTO retiroDTO = new RetiroDTO(monto, cuentaSeleccionada.getNumeroCuenta(), "");
         
         try {
-            retiroDTO = retiroBO.generarRetiroSinCuenta(retiroDTO);
+            RetiroDTO retiroDTO = retiroBO.generarRetiroSinCuenta(cuentaSeleccionada.getNumeroCuenta(), monto);
+            controlador.abrirRetiroSinCuentaGeneradoExitoFORM(retiroDTO);
+            dispose();
         } catch (NegocioException ex) {
-            System.err.println(ex.getMessage());
+            JOptionPane.showMessageDialog(
+                    this,
+                    ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            return;
         }
         
-        controlador.abrirRetiroSinCuentaGeneradoExitoFORM(retiroDTO);
-        dispose();
+        
         
     }//GEN-LAST:event_btnGenerarActionPerformed
 
