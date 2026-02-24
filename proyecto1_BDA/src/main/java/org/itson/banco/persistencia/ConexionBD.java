@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class ConexionBD {
     private static final String CADENACONEXION = "jdbc:mysql://localhost:3306/banco";
     private static final String USER = "root";
-    private static final String CONTRA = "maNENE6166!";
+    private static final String CONTRA = "admin";
 
     /**
      * Método estatico para crear una conexión.

@@ -5,6 +5,7 @@
 package org.itson.banco.negocio;
 
 import org.itson.banco.dtos.ClienteDTO;
+import org.itson.banco.persistencia.ClienteDAO;
 import org.itson.banco.persistencia.IClienteDAO;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
