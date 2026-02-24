@@ -47,6 +47,11 @@ public class TransferenciaFORM extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlBanner12 = new javax.swing.JPanel();
+        btnOperaciones11 = new javax.swing.JButton();
+        btnPaginaCuenta22 = new javax.swing.JButton();
+        btnEditarDatos11 = new javax.swing.JButton();
+        btnPaginaCuenta23 = new javax.swing.JButton();
         pnlDatos = new javax.swing.JPanel();
         pnlDatosCuenta = new javax.swing.JPanel();
         lblCuentaOrigen = new javax.swing.JLabel();
@@ -60,14 +65,80 @@ public class TransferenciaFORM extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         lblPesosDisponibles = new javax.swing.JLabel();
         lblSaldoDisponible = new javax.swing.JLabel();
-        pnlBanner4 = new javax.swing.JPanel();
-        btnPaginaCuenta3 = new javax.swing.JButton();
-        lblVoyage3 = new javax.swing.JLabel();
-        lblIcono3 = new javax.swing.JLabel();
-        btnAyuda3 = new javax.swing.JButton();
-        btnOperaciones3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        pnlBanner12.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBanner12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlBanner12.setAlignmentY(0.0F);
+
+        btnOperaciones11.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnOperaciones11.setText("Operaciones");
+        btnOperaciones11.setToolTipText("");
+        btnOperaciones11.setBorder(null);
+        btnOperaciones11.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnOperaciones11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOperaciones11ActionPerformed(evt);
+            }
+        });
+
+        btnPaginaCuenta22.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnPaginaCuenta22.setText("Cuentas");
+        btnPaginaCuenta22.setToolTipText("");
+        btnPaginaCuenta22.setBorder(null);
+        btnPaginaCuenta22.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnPaginaCuenta22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPaginaCuenta22ActionPerformed(evt);
+            }
+        });
+
+        btnEditarDatos11.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnEditarDatos11.setText("Perfil");
+        btnEditarDatos11.setToolTipText("");
+        btnEditarDatos11.setBorder(null);
+        btnEditarDatos11.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnEditarDatos11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarDatos11ActionPerformed(evt);
+            }
+        });
+
+        btnPaginaCuenta23.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnPaginaCuenta23.setText("VOYAGE");
+        btnPaginaCuenta23.setToolTipText("");
+        btnPaginaCuenta23.setBorder(null);
+        btnPaginaCuenta23.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnPaginaCuenta23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPaginaCuenta23ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlBanner12Layout = new javax.swing.GroupLayout(pnlBanner12);
+        pnlBanner12.setLayout(pnlBanner12Layout);
+        pnlBanner12Layout.setHorizontalGroup(
+            pnlBanner12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBanner12Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(btnPaginaCuenta23, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(btnPaginaCuenta22, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addComponent(btnOperaciones11, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(btnEditarDatos11, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
+        );
+        pnlBanner12Layout.setVerticalGroup(
+            pnlBanner12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBanner12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btnPaginaCuenta23, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPaginaCuenta22)
+                .addComponent(btnOperaciones11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEditarDatos11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         pnlDatos.setBackground(new java.awt.Color(217, 217, 217));
 
@@ -127,19 +198,19 @@ public class TransferenciaFORM extends javax.swing.JFrame {
                     .addComponent(lblSaldoDisponible)
                     .addComponent(lblPesosDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
-                        .addComponent(btnVolver)
-                        .addGap(235, 235, 235))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
-                        .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(223, 223, 223))))
             .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
                 .addGap(205, 205, 205)
                 .addComponent(lblTitulo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(227, 227, 227))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosCuentaLayout.createSequentialGroup()
+                        .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(217, 217, 217))))
         );
         pnlDatosCuentaLayout.setVerticalGroup(
             pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,104 +235,27 @@ public class TransferenciaFORM extends javax.swing.JFrame {
                         .addComponent(lblSaldoDisponible)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblPesosDisponibles)))
-                .addGap(22, 22, 22)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(btnContinuar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnVolver)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
         pnlDatos.setLayout(pnlDatosLayout);
         pnlDatosLayout.setHorizontalGroup(
             pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDatosLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDatosLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(pnlDatosCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
         pnlDatosLayout.setVerticalGroup(
             pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDatosLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(pnlDatosCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        pnlBanner4.setBackground(new java.awt.Color(255, 255, 255));
-        pnlBanner4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        pnlBanner4.setAlignmentY(0.0F);
-
-        btnPaginaCuenta3.setBackground(new java.awt.Color(86, 124, 141));
-        btnPaginaCuenta3.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnPaginaCuenta3.setForeground(new java.awt.Color(255, 255, 255));
-        btnPaginaCuenta3.setText("Cuentas");
-        btnPaginaCuenta3.setToolTipText("");
-        btnPaginaCuenta3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnPaginaCuenta3.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        btnPaginaCuenta3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPaginaCuenta3ActionPerformed(evt);
-            }
-        });
-
-        lblVoyage3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lblVoyage3.setText("VOYAGE");
-
-        lblIcono3.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        lblIcono3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblIcono3.setText("Usuario...");
-
-        btnAyuda3.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnAyuda3.setText("Ayuda");
-        btnAyuda3.setToolTipText("");
-        btnAyuda3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnAyuda3.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        btnAyuda3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAyuda3ActionPerformed(evt);
-            }
-        });
-
-        btnOperaciones3.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnOperaciones3.setText("Operaciones");
-        btnOperaciones3.setToolTipText("");
-        btnOperaciones3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnOperaciones3.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        btnOperaciones3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOperaciones3ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlBanner4Layout = new javax.swing.GroupLayout(pnlBanner4);
-        pnlBanner4.setLayout(pnlBanner4Layout);
-        pnlBanner4Layout.setHorizontalGroup(
-            pnlBanner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBanner4Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(lblVoyage3, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPaginaCuenta3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnOperaciones3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btnAyuda3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(lblIcono3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
-        );
-        pnlBanner4Layout.setVerticalGroup(
-            pnlBanner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBanner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btnPaginaCuenta3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(lblVoyage3))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBanner4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlBanner4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOperaciones3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAyuda3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblIcono3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlDatosCuenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -270,23 +264,26 @@ public class TransferenciaFORM extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(pnlBanner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(34, 34, 34)
+                    .addComponent(pnlBanner12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(34, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlBanner4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(66, Short.MAX_VALUE)
                 .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(pnlBanner12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(288, Short.MAX_VALUE)))
         );
 
         pack();
@@ -340,17 +337,24 @@ public class TransferenciaFORM extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    private void btnPaginaCuenta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuenta3ActionPerformed
+    private void btnOperaciones11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperaciones11ActionPerformed
+        controlador.abrirHistorial();
+        this.dispose();
+    }//GEN-LAST:event_btnOperaciones11ActionPerformed
+
+    private void btnPaginaCuenta22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuenta22ActionPerformed
+        controlador.loginExitoso(cliente);
+        this.dispose();
+    }//GEN-LAST:event_btnPaginaCuenta22ActionPerformed
+
+    private void btnEditarDatos11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDatos11ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnPaginaCuenta3ActionPerformed
+    }//GEN-LAST:event_btnEditarDatos11ActionPerformed
 
-    private void btnAyuda3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyuda3ActionPerformed
-        JOptionPane.showMessageDialog(this, "Chamba quien sabe, hay q checar eso");
-    }//GEN-LAST:event_btnAyuda3ActionPerformed
-
-    private void btnOperaciones3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperaciones3ActionPerformed
-        JOptionPane.showMessageDialog(this, "Chamba Nafi");
-    }//GEN-LAST:event_btnOperaciones3ActionPerformed
+    private void btnPaginaCuenta23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuenta23ActionPerformed
+        controlador.abrirInicioCliente(cliente);
+        this.dispose();
+    }//GEN-LAST:event_btnPaginaCuenta23ActionPerformed
 
     private void cargarCuentaOrigen() {
         txtCuentaOrigen.setText(String.valueOf(cuentaOrigen.getNumeroCuenta()));
@@ -367,26 +371,19 @@ public class TransferenciaFORM extends javax.swing.JFrame {
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAyuda2;
-    private javax.swing.JButton btnAyuda3;
     private javax.swing.JButton btnContinuar;
-    private javax.swing.JButton btnOperaciones2;
-    private javax.swing.JButton btnOperaciones3;
-    private javax.swing.JButton btnPaginaCuenta2;
-    private javax.swing.JButton btnPaginaCuenta3;
+    private javax.swing.JButton btnEditarDatos11;
+    private javax.swing.JButton btnOperaciones11;
+    private javax.swing.JButton btnPaginaCuenta22;
+    private javax.swing.JButton btnPaginaCuenta23;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel lblCuentaDestino;
     private javax.swing.JLabel lblCuentaOrigen;
     private javax.swing.JLabel lblCuentaOrigen2;
-    private javax.swing.JLabel lblIcono2;
-    private javax.swing.JLabel lblIcono3;
     private javax.swing.JLabel lblPesosDisponibles;
     private javax.swing.JLabel lblSaldoDisponible;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblVoyage2;
-    private javax.swing.JLabel lblVoyage3;
-    private javax.swing.JPanel pnlBanner3;
-    private javax.swing.JPanel pnlBanner4;
+    private javax.swing.JPanel pnlBanner12;
     private javax.swing.JPanel pnlDatos;
     private javax.swing.JPanel pnlDatosCuenta;
     private javax.swing.JTextField txtCuentaDestino;

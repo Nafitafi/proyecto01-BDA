@@ -73,7 +73,6 @@ public class ConfirmarRetiroSinCuentaFORM extends javax.swing.JFrame {
 
         lblTitulo.setBackground(new java.awt.Color(0, 0, 0));
         lblTitulo.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("VOYAGE");
         panelTitulo.add(lblTitulo);
@@ -82,28 +81,23 @@ public class ConfirmarRetiroSinCuentaFORM extends javax.swing.JFrame {
 
         lblTextNoCuenta.setBackground(new java.awt.Color(0, 0, 0));
         lblTextNoCuenta.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lblTextNoCuenta.setForeground(new java.awt.Color(0, 0, 0));
         lblTextNoCuenta.setText("Folio");
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("VOYAGE");
 
         lblFolio.setBackground(new java.awt.Color(0, 0, 0));
         lblFolio.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lblFolio.setForeground(new java.awt.Color(0, 0, 0));
         lblFolio.setText("000000000000");
 
         lblMonto.setBackground(new java.awt.Color(0, 0, 0));
         lblMonto.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lblMonto.setForeground(new java.awt.Color(0, 0, 0));
         lblMonto.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblMonto.setText("00.00");
 
         lblTextMontoRetirar1.setBackground(new java.awt.Color(0, 0, 0));
         lblTextMontoRetirar1.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
-        lblTextMontoRetirar1.setForeground(new java.awt.Color(0, 0, 0));
         lblTextMontoRetirar1.setText("Monto a retirar:");
 
         javax.swing.GroupLayout pnlCuentaLayout = new javax.swing.GroupLayout(pnlCuenta);
@@ -154,7 +148,6 @@ public class ConfirmarRetiroSinCuentaFORM extends javax.swing.JFrame {
 
         lblRealizarRetiro.setBackground(new java.awt.Color(0, 0, 0));
         lblRealizarRetiro.setFont(new java.awt.Font("Calibri Light", 1, 24)); // NOI18N
-        lblRealizarRetiro.setForeground(new java.awt.Color(0, 0, 0));
         lblRealizarRetiro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRealizarRetiro.setText("Realizar retiro sin cuenta");
         panelHorizontal.add(lblRealizarRetiro);
@@ -164,36 +157,37 @@ public class ConfirmarRetiroSinCuentaFORM extends javax.swing.JFrame {
         panelFondoLayout.setHorizontalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelFondoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFondoLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFondoLayout.createSequentialGroup()
+                        .addComponent(pnlCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(143, 143, 143))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFondoLayout.createSequentialGroup()
+                        .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(203, 203, 203))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelFondoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnlCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(146, 146, 146))
-            .addGroup(panelFondoLayout.createSequentialGroup()
-                .addGroup(panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelFondoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(panelHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelFondoLayout.createSequentialGroup()
-                        .addGap(202, 202, 202)
-                        .addComponent(btnContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelFondoLayout.createSequentialGroup()
-                        .addGap(263, 263, 263)
-                        .addComponent(btnCancelar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnCancelar)
+                .addGap(260, 260, 260))
         );
         panelFondoLayout.setVerticalGroup(
             panelFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelFondoLayout.createSequentialGroup()
                 .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelHorizontal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(18, 18, 18)
                 .addComponent(btnContinuar)
                 .addGap(18, 18, 18)
                 .addComponent(btnCancelar)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -204,7 +198,7 @@ public class ConfirmarRetiroSinCuentaFORM extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelFondo, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
         );
 
         pack();

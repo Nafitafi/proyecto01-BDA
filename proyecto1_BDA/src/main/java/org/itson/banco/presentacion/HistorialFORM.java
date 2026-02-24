@@ -299,21 +299,21 @@ public class HistorialFORM extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnPaginaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPaginaCuentaActionPerformed
-
-    private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
-        JOptionPane.showMessageDialog(this, "Chamba quien sabe, hay q checar eso");
-    }//GEN-LAST:event_btnAyudaActionPerformed
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        realizarBusqueda();
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionesActionPerformed
         JOptionPane.showMessageDialog(this, "Chamba Nafi");
     }//GEN-LAST:event_btnOperacionesActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        realizarBusqueda();
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
+        JOptionPane.showMessageDialog(this, "Chamba quien sabe, hay q checar eso");
+    }//GEN-LAST:event_btnAyudaActionPerformed
+
+    private void btnPaginaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPaginaCuentaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

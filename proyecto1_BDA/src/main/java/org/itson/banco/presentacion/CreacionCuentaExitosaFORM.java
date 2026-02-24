@@ -51,12 +51,11 @@ public class CreacionCuentaExitosaFORM extends javax.swing.JFrame {
         lblMonto = new javax.swing.JLabel();
         lblNombreCliente = new javax.swing.JLabel();
         txtNombreCompleto = new javax.swing.JTextField();
-        pnlBanner2 = new javax.swing.JPanel();
+        pnlBanner1 = new javax.swing.JPanel();
+        btnOperaciones = new javax.swing.JButton();
+        btnPaginaCuenta = new javax.swing.JButton();
+        btnEditarDatos = new javax.swing.JButton();
         btnPaginaCuenta1 = new javax.swing.JButton();
-        lblVoyage1 = new javax.swing.JLabel();
-        lblIcono1 = new javax.swing.JLabel();
-        btnAyuda1 = new javax.swing.JButton();
-        btnOperaciones1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Éxito");
@@ -101,7 +100,7 @@ public class CreacionCuentaExitosaFORM extends javax.swing.JFrame {
         lblMonto.setText("Monto:");
 
         lblNombreCliente.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        lblNombreCliente.setText("Nombre del titular");
+        lblNombreCliente.setText("Nombre del titular:");
 
         txtNombreCompleto.setEditable(false);
         txtNombreCompleto.addActionListener(new java.awt.event.ActionListener() {
@@ -114,33 +113,30 @@ public class CreacionCuentaExitosaFORM extends javax.swing.JFrame {
         pnlDatosCuenta.setLayout(pnlDatosCuentaLayout);
         pnlDatosCuentaLayout.setHorizontalGroup(
             pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTitulo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
                 .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
-                        .addGap(63, 63, 63)
+                        .addGap(42, 42, 42)
                         .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMonto)
-                            .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtNumCuenta, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
-                                .addComponent(txtMonto, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(lblNumCuenta)
-                            .addComponent(lblNombreCliente)
-                            .addComponent(txtNombreCompleto, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)))
+                            .addGroup(pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblNombreCliente)
+                                .addComponent(lblMonto)
+                                .addComponent(txtNombreCompleto)
+                                .addComponent(txtMonto)
+                                .addComponent(txtNumCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblNumCuenta)))
                     .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
-                        .addGap(97, 97, 97)
-                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(48, Short.MAX_VALUE))
-            .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
-                .addGap(196, 196, 196)
-                .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(199, 199, 199)
+                        .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         pnlDatosCuentaLayout.setVerticalGroup(
             pnlDatosCuentaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDatosCuentaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTitulo)
+                .addGap(10, 10, 10)
                 .addComponent(lblNumCuenta)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNumCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,13 +144,13 @@ public class CreacionCuentaExitosaFORM extends javax.swing.JFrame {
                 .addComponent(lblNombreCliente)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMonto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnConfirmar)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlDatosLayout = new javax.swing.GroupLayout(pnlDatos);
@@ -169,21 +165,52 @@ public class CreacionCuentaExitosaFORM extends javax.swing.JFrame {
         pnlDatosLayout.setVerticalGroup(
             pnlDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDatosLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addContainerGap()
                 .addComponent(pnlDatosCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        pnlBanner2.setBackground(new java.awt.Color(255, 255, 255));
-        pnlBanner2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        pnlBanner2.setAlignmentY(0.0F);
+        pnlBanner1.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBanner1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlBanner1.setAlignmentY(0.0F);
 
-        btnPaginaCuenta1.setBackground(new java.awt.Color(86, 124, 141));
-        btnPaginaCuenta1.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnPaginaCuenta1.setForeground(new java.awt.Color(255, 255, 255));
-        btnPaginaCuenta1.setText("Cuentas");
+        btnOperaciones.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnOperaciones.setText("Operaciones");
+        btnOperaciones.setToolTipText("");
+        btnOperaciones.setBorder(null);
+        btnOperaciones.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnOperaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOperacionesActionPerformed(evt);
+            }
+        });
+
+        btnPaginaCuenta.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnPaginaCuenta.setText("Cuentas");
+        btnPaginaCuenta.setToolTipText("");
+        btnPaginaCuenta.setBorder(null);
+        btnPaginaCuenta.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnPaginaCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPaginaCuentaActionPerformed(evt);
+            }
+        });
+
+        btnEditarDatos.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnEditarDatos.setText("Perfil");
+        btnEditarDatos.setToolTipText("");
+        btnEditarDatos.setBorder(null);
+        btnEditarDatos.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnEditarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarDatosActionPerformed(evt);
+            }
+        });
+
+        btnPaginaCuenta1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnPaginaCuenta1.setText("VOYAGE");
         btnPaginaCuenta1.setToolTipText("");
-        btnPaginaCuenta1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnPaginaCuenta1.setBorder(null);
         btnPaginaCuenta1.setMargin(new java.awt.Insets(2, 14, 0, 14));
         btnPaginaCuenta1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,64 +218,30 @@ public class CreacionCuentaExitosaFORM extends javax.swing.JFrame {
             }
         });
 
-        lblVoyage1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lblVoyage1.setText("VOYAGE");
-
-        lblIcono1.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        lblIcono1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblIcono1.setText("Usuario...");
-
-        btnAyuda1.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnAyuda1.setText("Ayuda");
-        btnAyuda1.setToolTipText("");
-        btnAyuda1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnAyuda1.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        btnAyuda1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAyuda1ActionPerformed(evt);
-            }
-        });
-
-        btnOperaciones1.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnOperaciones1.setText("Operaciones");
-        btnOperaciones1.setToolTipText("");
-        btnOperaciones1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnOperaciones1.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        btnOperaciones1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOperaciones1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlBanner2Layout = new javax.swing.GroupLayout(pnlBanner2);
-        pnlBanner2.setLayout(pnlBanner2Layout);
-        pnlBanner2Layout.setHorizontalGroup(
-            pnlBanner2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBanner2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(lblVoyage1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPaginaCuenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnOperaciones1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btnAyuda1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(lblIcono1, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+        javax.swing.GroupLayout pnlBanner1Layout = new javax.swing.GroupLayout(pnlBanner1);
+        pnlBanner1.setLayout(pnlBanner1Layout);
+        pnlBanner1Layout.setHorizontalGroup(
+            pnlBanner1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBanner1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(btnPaginaCuenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(68, 68, 68)
+                .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(btnEditarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
         );
-        pnlBanner2Layout.setVerticalGroup(
-            pnlBanner2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBanner2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btnPaginaCuenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(lblVoyage1))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBanner2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlBanner2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOperaciones1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAyuda1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblIcono1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+        pnlBanner1Layout.setVerticalGroup(
+            pnlBanner1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBanner1Layout.createSequentialGroup()
+                .addGroup(pnlBanner1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPaginaCuenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPaginaCuenta)
+                    .addComponent(btnOperaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -256,21 +249,21 @@ public class CreacionCuentaExitosaFORM extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 6, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pnlBanner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 12, Short.MAX_VALUE)
+                .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlBanner1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlBanner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnlBanner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
                 .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -310,38 +303,37 @@ public class CreacionCuentaExitosaFORM extends javax.swing.JFrame {
         cargarNombreCompleto();
     }//GEN-LAST:event_txtNombreCompletoActionPerformed
 
+    private void btnOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionesActionPerformed
+        controlador.abrirHistorial();
+        this.dispose();
+    }//GEN-LAST:event_btnOperacionesActionPerformed
+
+    private void btnPaginaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuentaActionPerformed
+        controlador.loginExitoso(cliente);
+        this.dispose();
+    }//GEN-LAST:event_btnPaginaCuentaActionPerformed
+
+    private void btnEditarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDatosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditarDatosActionPerformed
+
     private void btnPaginaCuenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuenta1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnPaginaCuenta1ActionPerformed
 
-    private void btnAyuda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyuda1ActionPerformed
-        JOptionPane.showMessageDialog(this, "Chamba quien sabe, hay q checar eso");
-    }//GEN-LAST:event_btnAyuda1ActionPerformed
-
-    private void btnOperaciones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperaciones1ActionPerformed
-        JOptionPane.showMessageDialog(this, "Chamba Nafi");
-    }//GEN-LAST:event_btnOperaciones1ActionPerformed
-
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAyuda;
-    private javax.swing.JButton btnAyuda1;
     private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnEditarDatos;
     private javax.swing.JButton btnOperaciones;
-    private javax.swing.JButton btnOperaciones1;
     private javax.swing.JButton btnPaginaCuenta;
     private javax.swing.JButton btnPaginaCuenta1;
-    private javax.swing.JLabel lblIcono;
-    private javax.swing.JLabel lblIcono1;
     private javax.swing.JLabel lblMonto;
     private javax.swing.JLabel lblNombreCliente;
     private javax.swing.JLabel lblNumCuenta;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblVoyage;
-    private javax.swing.JLabel lblVoyage1;
     private javax.swing.JPanel pnlBanner1;
-    private javax.swing.JPanel pnlBanner2;
     private javax.swing.JPanel pnlDatos;
     private javax.swing.JPanel pnlDatosCuenta;
     private javax.swing.JTextField txtMonto;

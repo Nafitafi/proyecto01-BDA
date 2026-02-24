@@ -28,6 +28,7 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         this.cuentaSeleccionada = cuenta;
         initComponents();
         cargarCuenta();
+        setLocationRelativeTo(null);
     }
     
     private void cargarCuenta() {
@@ -53,12 +54,6 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
     private void initComponents() {
 
         pnlFondo = new javax.swing.JPanel();
-        pnlBanner = new javax.swing.JPanel();
-        btnPaginaCuenta = new javax.swing.JButton();
-        lblVoyage = new javax.swing.JLabel();
-        lblIcono = new javax.swing.JLabel();
-        btnAyuda = new javax.swing.JButton();
-        btnOperaciones = new javax.swing.JButton();
         pnlFondo2 = new javax.swing.JPanel();
         pnlFondo3 = new javax.swing.JPanel();
         pnlCuenta = new javax.swing.JPanel();
@@ -72,77 +67,17 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         lblSaldo = new javax.swing.JLabel();
         lblStatus = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
+        pnlBanner12 = new javax.swing.JPanel();
+        btnOperaciones11 = new javax.swing.JButton();
+        btnPaginaCuenta22 = new javax.swing.JButton();
+        btnEditarDatos11 = new javax.swing.JButton();
+        btnPaginaCuenta23 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Datos de cuenta");
 
         pnlFondo.setBackground(new java.awt.Color(245, 239, 235));
         pnlFondo.setForeground(new java.awt.Color(245, 239, 235));
-
-        pnlBanner.setBackground(new java.awt.Color(255, 255, 255));
-        pnlBanner.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        pnlBanner.setAlignmentY(0.0F);
-
-        btnPaginaCuenta.setBackground(new java.awt.Color(86, 124, 141));
-        btnPaginaCuenta.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnPaginaCuenta.setForeground(new java.awt.Color(255, 255, 255));
-        btnPaginaCuenta.setText("Cuentas");
-        btnPaginaCuenta.setToolTipText("");
-        btnPaginaCuenta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnPaginaCuenta.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        btnPaginaCuenta.addActionListener(this::btnPaginaCuentaActionPerformed);
-
-        lblVoyage.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lblVoyage.setText("VOYAGE");
-
-        lblIcono.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        lblIcono.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblIcono.setText("Usuario...");
-
-        btnAyuda.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnAyuda.setText("Ayuda");
-        btnAyuda.setToolTipText("");
-        btnAyuda.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnAyuda.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        btnAyuda.addActionListener(this::btnAyudaActionPerformed);
-
-        btnOperaciones.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnOperaciones.setText("Operaciones");
-        btnOperaciones.setToolTipText("");
-        btnOperaciones.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnOperaciones.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        btnOperaciones.addActionListener(this::btnOperacionesActionPerformed);
-
-        javax.swing.GroupLayout pnlBannerLayout = new javax.swing.GroupLayout(pnlBanner);
-        pnlBanner.setLayout(pnlBannerLayout);
-        pnlBannerLayout.setHorizontalGroup(
-            pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBannerLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(lblVoyage, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
-        );
-        pnlBannerLayout.setVerticalGroup(
-            pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(lblVoyage))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBannerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOperaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblIcono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
 
         pnlFondo2.setBackground(new java.awt.Color(217, 217, 217));
         pnlFondo2.setForeground(new java.awt.Color(217, 217, 217));
@@ -260,7 +195,7 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
                 .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblStatus)
                     .addComponent(lblEstado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pnlFondo3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRetiroSinCue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDarBajaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -283,7 +218,65 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
             .addGroup(pnlFondo2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(pnlFondo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        pnlBanner12.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBanner12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlBanner12.setAlignmentY(0.0F);
+
+        btnOperaciones11.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnOperaciones11.setText("Operaciones");
+        btnOperaciones11.setToolTipText("");
+        btnOperaciones11.setBorder(null);
+        btnOperaciones11.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnOperaciones11.addActionListener(this::btnOperaciones11ActionPerformed);
+
+        btnPaginaCuenta22.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnPaginaCuenta22.setText("Cuentas");
+        btnPaginaCuenta22.setToolTipText("");
+        btnPaginaCuenta22.setBorder(null);
+        btnPaginaCuenta22.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnPaginaCuenta22.addActionListener(this::btnPaginaCuenta22ActionPerformed);
+
+        btnEditarDatos11.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnEditarDatos11.setText("Perfil");
+        btnEditarDatos11.setToolTipText("");
+        btnEditarDatos11.setBorder(null);
+        btnEditarDatos11.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnEditarDatos11.addActionListener(this::btnEditarDatos11ActionPerformed);
+
+        btnPaginaCuenta23.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnPaginaCuenta23.setText("VOYAGE");
+        btnPaginaCuenta23.setToolTipText("");
+        btnPaginaCuenta23.setBorder(null);
+        btnPaginaCuenta23.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnPaginaCuenta23.addActionListener(this::btnPaginaCuenta23ActionPerformed);
+
+        javax.swing.GroupLayout pnlBanner12Layout = new javax.swing.GroupLayout(pnlBanner12);
+        pnlBanner12.setLayout(pnlBanner12Layout);
+        pnlBanner12Layout.setHorizontalGroup(
+            pnlBanner12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBanner12Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(btnPaginaCuenta23, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(btnPaginaCuenta22, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addComponent(btnOperaciones11, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(btnEditarDatos11, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
+        );
+        pnlBanner12Layout.setVerticalGroup(
+            pnlBanner12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBanner12Layout.createSequentialGroup()
+                .addGroup(pnlBanner12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPaginaCuenta23, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPaginaCuenta22)
+                    .addComponent(btnOperaciones11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditarDatos11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlFondoLayout = new javax.swing.GroupLayout(pnlFondo);
@@ -291,22 +284,22 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         pnlFondoLayout.setHorizontalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFondoLayout.createSequentialGroup()
-                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlFondoLayout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(pnlBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlFondoLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(pnlFondo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addGap(65, 65, 65)
+                .addComponent(pnlFondo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(61, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFondoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlBanner12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24))
         );
         pnlFondoLayout.setVerticalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFondoLayout.createSequentialGroup()
-                .addComponent(pnlBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(pnlBanner12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(pnlFondo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 75, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -323,18 +316,6 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnPaginaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPaginaCuentaActionPerformed
-
-    private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
-        JOptionPane.showMessageDialog(this, "Chamba quien sabe, hay q checar eso");
-    }//GEN-LAST:event_btnAyudaActionPerformed
-
-    private void btnOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionesActionPerformed
-        JOptionPane.showMessageDialog(this, "Chamba Nafi");
-    }//GEN-LAST:event_btnOperacionesActionPerformed
 
     private void btnVovlerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVovlerActionPerformed
         dispose();
@@ -371,6 +352,25 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
         controladorRSC.abrirGenerarRetiroSinCuenta();
     }//GEN-LAST:event_btnRetiroSinCueActionPerformed
 
+    private void btnOperaciones11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperaciones11ActionPerformed
+        controlador.abrirHistorial();
+        this.dispose();
+    }//GEN-LAST:event_btnOperaciones11ActionPerformed
+
+    private void btnPaginaCuenta22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuenta22ActionPerformed
+        controlador.loginExitoso(clienteLogueado);
+        this.dispose();
+    }//GEN-LAST:event_btnPaginaCuenta22ActionPerformed
+
+    private void btnEditarDatos11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDatos11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditarDatos11ActionPerformed
+
+    private void btnPaginaCuenta23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuenta23ActionPerformed
+        controlador.abrirInicioCliente(clienteLogueado);
+        this.dispose();
+    }//GEN-LAST:event_btnPaginaCuenta23ActionPerformed
+
     private void cancelarCuenta() throws NegocioException {
         controlador.cancelarCuenta(
                 cuentaSeleccionada,
@@ -387,22 +387,21 @@ public class CuentaDatosFORM extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAyuda;
     private javax.swing.JButton btnDarBajaCuenta;
-    private javax.swing.JButton btnOperaciones;
-    private javax.swing.JButton btnPaginaCuenta;
+    private javax.swing.JButton btnEditarDatos11;
+    private javax.swing.JButton btnOperaciones11;
+    private javax.swing.JButton btnPaginaCuenta22;
+    private javax.swing.JButton btnPaginaCuenta23;
     private javax.swing.JButton btnRetiroSinCue;
     private javax.swing.JButton btnVovler;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblEstado;
-    private javax.swing.JLabel lblIcono;
     private javax.swing.JLabel lblNoCuenta;
     private javax.swing.JLabel lblSaldo;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JLabel lblTextNoCuenta;
-    private javax.swing.JLabel lblVoyage;
     private javax.swing.JLabel lbltxtSaldo;
-    private javax.swing.JPanel pnlBanner;
+    private javax.swing.JPanel pnlBanner12;
     private javax.swing.JPanel pnlCuenta;
     private javax.swing.JPanel pnlFondo;
     private javax.swing.JPanel pnlFondo2;

@@ -17,6 +17,7 @@ public class InicioClienteFORM extends javax.swing.JFrame {
     private static final Logger LOGGER = Logger.getLogger(InicioClienteFORM.class.getName());
     private ControladorTransferencia controlador;
     private ClienteDTO cliente;
+    
     /**
      * Creates new form InicioCliente
      */
@@ -24,6 +25,8 @@ public class InicioClienteFORM extends javax.swing.JFrame {
         this.controlador = controlador;
         this.cliente = cliente;
         initComponents();
+        cargarUsuario();
+        setLocationRelativeTo(null);   
     }
 
     /**
@@ -38,28 +41,28 @@ public class InicioClienteFORM extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        scbScroll = new javax.swing.JScrollBar();
         pnlBanner1 = new javax.swing.JPanel();
-        lblVoyage1 = new javax.swing.JLabel();
         btnOperaciones = new javax.swing.JButton();
-        btnAyuda = new javax.swing.JButton();
-        lblIcono = new javax.swing.JLabel();
         btnPaginaCuenta = new javax.swing.JButton();
+        btnEditarDatos = new javax.swing.JButton();
+        btnPaginaCuenta1 = new javax.swing.JButton();
+        lblNombre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(245, 239, 235));
 
-        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        jLabel2.setText("BANCO VOYAGE");
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        jLabel2.setText("Bienvenido, ");
 
         jScrollPane1.setBorder(null);
 
         jTextArea1.setEditable(false);
         jTextArea1.setBackground(new java.awt.Color(245, 239, 235));
         jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Calibri Light", 1, 18)); // NOI18N
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed vulputate purus, nec congue \nmetus. In quis euismod dui, iaculis fringilla mi. Cras dignissim lorem at consectetur laoreet. Curabitur \net mattis sapien. Nulla feugiat id enim non semper. Vestibulum erat tortor, viverra nec posuere in, \ngravida et ligula. Etiam pulvinar, arcu et dignissim venenatis, felis libero vehicula mi, ac hendrerit \nligula lectus eget justo. Vivamus tempor libero ac ante accumsan ultrices. Aliquam ultrices, augue \ngravida malesuada lacinia, tortor metus luctus sem, nec molestie ipsum magna nec arcu. Donec \naugue nibh, tincidunt vel risus vitae, aliquet auctor lacus. Praesent maximus orci eleifend lacus \nfinibus ");
+        jTextArea1.setText("¿Qué podemos hacer por usted el día de hoy?\n");
         jTextArea1.setWrapStyleWord(true);
         jTextArea1.setBorder(null);
         jScrollPane1.setViewportView(jTextArea1);
@@ -68,13 +71,10 @@ public class InicioClienteFORM extends javax.swing.JFrame {
         pnlBanner1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         pnlBanner1.setAlignmentY(0.0F);
 
-        lblVoyage1.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lblVoyage1.setText("VOYAGE");
-
-        btnOperaciones.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        btnOperaciones.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         btnOperaciones.setText("Operaciones");
         btnOperaciones.setToolTipText("");
-        btnOperaciones.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnOperaciones.setBorder(null);
         btnOperaciones.setMargin(new java.awt.Insets(2, 14, 0, 14));
         btnOperaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,31 +82,36 @@ public class InicioClienteFORM extends javax.swing.JFrame {
             }
         });
 
-        btnAyuda.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnAyuda.setText("Ayuda");
-        btnAyuda.setToolTipText("");
-        btnAyuda.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnAyuda.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        btnAyuda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAyudaActionPerformed(evt);
-            }
-        });
-
-        lblIcono.setBackground(new java.awt.Color(255, 255, 255));
-        lblIcono.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        lblIcono.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblIcono.setText("Usuario...");
-        lblIcono.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-
-        btnPaginaCuenta.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
+        btnPaginaCuenta.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         btnPaginaCuenta.setText("Cuentas");
         btnPaginaCuenta.setToolTipText("");
-        btnPaginaCuenta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        btnPaginaCuenta.setBorder(null);
         btnPaginaCuenta.setMargin(new java.awt.Insets(2, 14, 0, 14));
         btnPaginaCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPaginaCuentaActionPerformed(evt);
+            }
+        });
+
+        btnEditarDatos.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnEditarDatos.setText("Perfil");
+        btnEditarDatos.setToolTipText("");
+        btnEditarDatos.setBorder(null);
+        btnEditarDatos.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnEditarDatos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarDatosActionPerformed(evt);
+            }
+        });
+
+        btnPaginaCuenta1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnPaginaCuenta1.setText("VOYAGE");
+        btnPaginaCuenta1.setToolTipText("");
+        btnPaginaCuenta1.setBorder(null);
+        btnPaginaCuenta1.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnPaginaCuenta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPaginaCuenta1ActionPerformed(evt);
             }
         });
 
@@ -115,27 +120,29 @@ public class InicioClienteFORM extends javax.swing.JFrame {
         pnlBanner1Layout.setHorizontalGroup(
             pnlBanner1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBanner1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(lblVoyage1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(btnPaginaCuenta)
-                .addGap(45, 45, 45)
-                .addComponent(btnOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21))
+                .addGap(17, 17, 17)
+                .addComponent(btnPaginaCuenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addComponent(btnOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(btnEditarDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
         );
         pnlBanner1Layout.setVerticalGroup(
             pnlBanner1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBanner1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(lblVoyage1)
-                .addComponent(btnOperaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblIcono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(pnlBanner1Layout.createSequentialGroup()
+                .addGroup(pnlBanner1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPaginaCuenta1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPaginaCuenta)
+                    .addComponent(btnOperaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditarDatos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        lblNombre.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
+        lblNombre.setText("-");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,33 +152,34 @@ public class InicioClienteFORM extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlBanner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
-                .addComponent(scbScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(pnlBanner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(5, 5, 5)
                 .addComponent(pnlBanner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 116, Short.MAX_VALUE))
-            .addComponent(scbScroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(lblNombre))
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
-        JOptionPane.showMessageDialog(this, "Chamba quien sabe, hay q checar eso");
-    }//GEN-LAST:event_btnAyudaActionPerformed
-
     private void btnOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionesActionPerformed
-        JOptionPane.showMessageDialog(this, "Chamba Nafi");
+        controlador.abrirHistorial();
+        this.dispose();
     }//GEN-LAST:event_btnOperacionesActionPerformed
 
     private void btnPaginaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuentaActionPerformed
@@ -179,17 +187,28 @@ public class InicioClienteFORM extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnPaginaCuentaActionPerformed
 
+    private void btnEditarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDatosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditarDatosActionPerformed
+
+    private void btnPaginaCuenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuenta1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPaginaCuenta1ActionPerformed
+
+    
+    private void cargarUsuario(){
+        lblNombre.setText(cliente.getNombres() + " " + cliente.getApellidoPaterno());
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAyuda;
+    private javax.swing.JButton btnEditarDatos;
     private javax.swing.JButton btnOperaciones;
     private javax.swing.JButton btnPaginaCuenta;
+    private javax.swing.JButton btnPaginaCuenta1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JLabel lblIcono;
-    private javax.swing.JLabel lblVoyage1;
+    private javax.swing.JLabel lblNombre;
     private javax.swing.JPanel pnlBanner1;
-    private javax.swing.JScrollBar scbScroll;
     // End of variables declaration//GEN-END:variables
 }

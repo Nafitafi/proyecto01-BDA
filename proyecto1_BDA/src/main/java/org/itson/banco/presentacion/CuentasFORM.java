@@ -99,12 +99,11 @@ public class CuentasFORM extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlBanner = new javax.swing.JPanel();
-        btnPaginaCuenta = new javax.swing.JButton();
-        lblVoyage = new javax.swing.JLabel();
-        lblIcono = new javax.swing.JLabel();
-        btnAyuda = new javax.swing.JButton();
-        btnOperaciones = new javax.swing.JButton();
+        pnlBanner12 = new javax.swing.JPanel();
+        btnOperaciones11 = new javax.swing.JButton();
+        btnPaginaCuenta22 = new javax.swing.JButton();
+        btnEditarDatos11 = new javax.swing.JButton();
+        btnPaginaCuenta23 = new javax.swing.JButton();
         pnlDatos = new javax.swing.JPanel();
         lblHola = new javax.swing.JLabel();
         lblNombreCliente = new javax.swing.JLabel();
@@ -124,75 +123,68 @@ public class CuentasFORM extends javax.swing.JFrame {
         setTitle("Cuentas del usuario");
         setBackground(new java.awt.Color(245, 239, 235));
 
-        pnlBanner.setBackground(new java.awt.Color(255, 255, 255));
-        pnlBanner.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        pnlBanner.setAlignmentY(0.0F);
+        pnlBanner12.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBanner12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
+        pnlBanner12.setAlignmentY(0.0F);
 
-        btnPaginaCuenta.setBackground(new java.awt.Color(86, 124, 141));
-        btnPaginaCuenta.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnPaginaCuenta.setForeground(new java.awt.Color(255, 255, 255));
-        btnPaginaCuenta.setText("Cuentas");
-        btnPaginaCuenta.setToolTipText("");
-        btnPaginaCuenta.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnPaginaCuenta.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        btnPaginaCuenta.addActionListener(this::btnPaginaCuentaActionPerformed);
+        btnOperaciones11.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnOperaciones11.setText("Operaciones");
+        btnOperaciones11.setToolTipText("");
+        btnOperaciones11.setBorder(null);
+        btnOperaciones11.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnOperaciones11.addActionListener(this::btnOperaciones11ActionPerformed);
 
-        lblVoyage.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        lblVoyage.setText("VOYAGE");
+        btnPaginaCuenta22.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnPaginaCuenta22.setText("Cuentas");
+        btnPaginaCuenta22.setToolTipText("");
+        btnPaginaCuenta22.setBorder(null);
+        btnPaginaCuenta22.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnPaginaCuenta22.addActionListener(this::btnPaginaCuenta22ActionPerformed);
 
-        lblIcono.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        lblIcono.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblIcono.setText("Usuario...");
+        btnEditarDatos11.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
+        btnEditarDatos11.setText("Perfil");
+        btnEditarDatos11.setToolTipText("");
+        btnEditarDatos11.setBorder(null);
+        btnEditarDatos11.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnEditarDatos11.addActionListener(this::btnEditarDatos11ActionPerformed);
 
-        btnAyuda.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnAyuda.setText("Ayuda");
-        btnAyuda.setToolTipText("");
-        btnAyuda.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnAyuda.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        btnAyuda.addActionListener(this::btnAyudaActionPerformed);
+        btnPaginaCuenta23.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        btnPaginaCuenta23.setText("VOYAGE");
+        btnPaginaCuenta23.setToolTipText("");
+        btnPaginaCuenta23.setBorder(null);
+        btnPaginaCuenta23.setMargin(new java.awt.Insets(2, 14, 0, 14));
+        btnPaginaCuenta23.addActionListener(this::btnPaginaCuenta23ActionPerformed);
 
-        btnOperaciones.setFont(new java.awt.Font("Calibri Light", 1, 12)); // NOI18N
-        btnOperaciones.setText("Operaciones");
-        btnOperaciones.setToolTipText("");
-        btnOperaciones.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        btnOperaciones.setMargin(new java.awt.Insets(2, 14, 0, 14));
-        btnOperaciones.addActionListener(this::btnOperacionesActionPerformed);
-
-        javax.swing.GroupLayout pnlBannerLayout = new javax.swing.GroupLayout(pnlBanner);
-        pnlBanner.setLayout(pnlBannerLayout);
-        pnlBannerLayout.setHorizontalGroup(
-            pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBannerLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(lblVoyage, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnOperaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(lblIcono, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+        javax.swing.GroupLayout pnlBanner12Layout = new javax.swing.GroupLayout(pnlBanner12);
+        pnlBanner12.setLayout(pnlBanner12Layout);
+        pnlBanner12Layout.setHorizontalGroup(
+            pnlBanner12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBanner12Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(btnPaginaCuenta23, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(btnPaginaCuenta22, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
+                .addComponent(btnOperaciones11, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(btnEditarDatos11, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
         );
-        pnlBannerLayout.setVerticalGroup(
-            pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btnPaginaCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(lblVoyage))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBannerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlBannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOperaciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnAyuda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblIcono, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+        pnlBanner12Layout.setVerticalGroup(
+            pnlBanner12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBanner12Layout.createSequentialGroup()
+                .addGroup(pnlBanner12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPaginaCuenta23, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPaginaCuenta22)
+                    .addComponent(btnOperaciones11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditarDatos11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pnlDatos.setBackground(new java.awt.Color(217, 217, 217));
 
         lblHola.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
-        lblHola.setText("Hola,");
+        lblHola.setText("Cuentas de");
 
         lblNombreCliente.setFont(new java.awt.Font("Calibri Light", 1, 14)); // NOI18N
         lblNombreCliente.setText("cliente");
@@ -302,7 +294,7 @@ public class CuentasFORM extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnTransferir))
                     .addComponent(pnlCuentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(btnAgregarCuenta)
                 .addContainerGap())
         );
@@ -332,7 +324,7 @@ public class CuentasFORM extends javax.swing.JFrame {
                     .addComponent(lblNombreCliente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlDatosCuenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -340,27 +332,24 @@ public class CuentasFORM extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(pnlBanner12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlBanner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(pnlBanner12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(pnlDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnPaginaCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPaginaCuentaActionPerformed
 
     private void btnTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirActionPerformed
         CuentaDTO cuentaSeleccionada = seleccionarCuenta();
@@ -391,14 +380,24 @@ public class CuentasFORM extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxCuentasUsuarioActionPerformed
 
-    private void btnOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperacionesActionPerformed
+    private void btnOperaciones11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperaciones11ActionPerformed
         controlador.abrirHistorial();
         this.dispose();
-    }//GEN-LAST:event_btnOperacionesActionPerformed
+    }//GEN-LAST:event_btnOperaciones11ActionPerformed
 
-    private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
-        JOptionPane.showMessageDialog(this, "Chamba quien sabe, hay q checar eso");
-    }//GEN-LAST:event_btnAyudaActionPerformed
+    private void btnPaginaCuenta22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuenta22ActionPerformed
+        controlador.loginExitoso(cliente);
+        this.dispose();
+    }//GEN-LAST:event_btnPaginaCuenta22ActionPerformed
+
+    private void btnEditarDatos11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarDatos11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditarDatos11ActionPerformed
+
+    private void btnPaginaCuenta23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPaginaCuenta23ActionPerformed
+        controlador.abrirInicioCliente(cliente);
+        this.dispose();
+    }//GEN-LAST:event_btnPaginaCuenta23ActionPerformed
 
     private CuentaDTO seleccionarCuenta() {
         Object seleccionado = cbxCuentasUsuario.getSelectedItem();
@@ -412,22 +411,76 @@ public class CuentasFORM extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarCuenta;
-    private javax.swing.JButton btnAyuda;
     private javax.swing.JButton btnDatosCuenta;
+    private javax.swing.JButton btnEditarDatos;
+    private javax.swing.JButton btnEditarDatos1;
+    private javax.swing.JButton btnEditarDatos10;
+    private javax.swing.JButton btnEditarDatos11;
+    private javax.swing.JButton btnEditarDatos2;
+    private javax.swing.JButton btnEditarDatos3;
+    private javax.swing.JButton btnEditarDatos4;
+    private javax.swing.JButton btnEditarDatos5;
+    private javax.swing.JButton btnEditarDatos6;
+    private javax.swing.JButton btnEditarDatos7;
+    private javax.swing.JButton btnEditarDatos8;
+    private javax.swing.JButton btnEditarDatos9;
     private javax.swing.JButton btnOperaciones;
+    private javax.swing.JButton btnOperaciones1;
+    private javax.swing.JButton btnOperaciones10;
+    private javax.swing.JButton btnOperaciones11;
+    private javax.swing.JButton btnOperaciones2;
+    private javax.swing.JButton btnOperaciones3;
+    private javax.swing.JButton btnOperaciones4;
+    private javax.swing.JButton btnOperaciones5;
+    private javax.swing.JButton btnOperaciones6;
+    private javax.swing.JButton btnOperaciones7;
+    private javax.swing.JButton btnOperaciones8;
+    private javax.swing.JButton btnOperaciones9;
     private javax.swing.JButton btnPaginaCuenta;
+    private javax.swing.JButton btnPaginaCuenta1;
+    private javax.swing.JButton btnPaginaCuenta10;
+    private javax.swing.JButton btnPaginaCuenta11;
+    private javax.swing.JButton btnPaginaCuenta12;
+    private javax.swing.JButton btnPaginaCuenta13;
+    private javax.swing.JButton btnPaginaCuenta14;
+    private javax.swing.JButton btnPaginaCuenta15;
+    private javax.swing.JButton btnPaginaCuenta16;
+    private javax.swing.JButton btnPaginaCuenta17;
+    private javax.swing.JButton btnPaginaCuenta18;
+    private javax.swing.JButton btnPaginaCuenta19;
+    private javax.swing.JButton btnPaginaCuenta2;
+    private javax.swing.JButton btnPaginaCuenta20;
+    private javax.swing.JButton btnPaginaCuenta21;
+    private javax.swing.JButton btnPaginaCuenta22;
+    private javax.swing.JButton btnPaginaCuenta23;
+    private javax.swing.JButton btnPaginaCuenta3;
+    private javax.swing.JButton btnPaginaCuenta4;
+    private javax.swing.JButton btnPaginaCuenta5;
+    private javax.swing.JButton btnPaginaCuenta6;
+    private javax.swing.JButton btnPaginaCuenta7;
+    private javax.swing.JButton btnPaginaCuenta8;
+    private javax.swing.JButton btnPaginaCuenta9;
     private javax.swing.JButton btnTransferir;
     private javax.swing.JComboBox<String> cbxCuentasUsuario;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblHola;
-    private javax.swing.JLabel lblIcono;
     private javax.swing.JLabel lblNombreCliente;
     private javax.swing.JLabel lblNumCuenta;
     private javax.swing.JLabel lblSaldoCuenta;
     private javax.swing.JLabel lblSaldoDisponible;
     private javax.swing.JLabel lblSignoDinero;
-    private javax.swing.JLabel lblVoyage;
-    private javax.swing.JPanel pnlBanner;
+    private javax.swing.JPanel pnlBanner1;
+    private javax.swing.JPanel pnlBanner10;
+    private javax.swing.JPanel pnlBanner11;
+    private javax.swing.JPanel pnlBanner12;
+    private javax.swing.JPanel pnlBanner2;
+    private javax.swing.JPanel pnlBanner3;
+    private javax.swing.JPanel pnlBanner4;
+    private javax.swing.JPanel pnlBanner5;
+    private javax.swing.JPanel pnlBanner6;
+    private javax.swing.JPanel pnlBanner7;
+    private javax.swing.JPanel pnlBanner8;
+    private javax.swing.JPanel pnlBanner9;
     private javax.swing.JPanel pnlCuentas;
     private javax.swing.JPanel pnlDatos;
     private javax.swing.JPanel pnlDatosCuenta;
